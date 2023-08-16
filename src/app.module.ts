@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ormConfig } from 'src/_common/typeorm.config';
 import { ViewModule } from './view/view.module';
 
 @Module({
-  imports: [ViewModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync({ useFactory: ormConfig }), ViewModule],
   controllers: [],
   providers: [],
 })
