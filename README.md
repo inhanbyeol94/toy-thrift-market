@@ -36,6 +36,7 @@ npm install bcrypt
 npm install ejs
 npm install multer multer-s3 aws-sdk @types/uuidv4 @types/multer
 npm install cookie-parser
+npm install typeorm-naming-strategies
 ```
 ### .prettierrc
 ```bash
