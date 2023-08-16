@@ -32,6 +32,7 @@ npm install class-validator class-transformer
 npm install @nestjs/jwt
 npm install bcrypt
 npm install ejs
+npm install multer multer-s3 aws-sdk @types/uuidv4 @types/multer
 ```
 
 ## Description
