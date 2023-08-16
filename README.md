@@ -35,6 +35,7 @@ npm install @nestjs/jwt
 npm install bcrypt
 npm install ejs
 npm install multer multer-s3 aws-sdk @types/uuidv4 @types/multer
+npm install cookie-parser
 ```
 ### .prettierrc
 ```bash
