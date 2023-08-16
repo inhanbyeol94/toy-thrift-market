@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Document } from 'src/_common/entities/document.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Board {
@@ -22,4 +23,7 @@ export class Board {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Document, (document) => document.board)
+  documents: Document[];
 }

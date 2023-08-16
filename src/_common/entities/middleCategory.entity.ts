@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { LargeCategory } from 'src/_common/entities/largeCategory.entity';
+import { SmallCategory } from 'src/_common/entities/smallCategory.entity';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class MiddleCategory {
@@ -7,6 +9,14 @@ export class MiddleCategory {
 
   @Column()
   name: string;
+
+  @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.middleCategories, {
+    nullable: false,
+  })
+  largeCategory: LargeCategory;
+
+  @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory)
+  smallCategories: SmallCategory[];
 
   @CreateDateColumn()
   createdAt: Date;

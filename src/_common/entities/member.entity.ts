@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Comment } from 'src/_common/entities/comment.entity';
+import { Document } from 'src/_common/entities/document.entity';
+import { Pick } from 'src/_common/entities/pick.entity';
+import { Product } from 'src/_common/entities/product.entity';
+import { Trade } from 'src/_common/entities/trade.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Member {
@@ -37,4 +42,19 @@ export class Member {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Product, (product) => product.member)
+  products: Product[];
+
+  @OneToMany(() => Pick, (pick) => pick.member)
+  picks: Pick[];
+
+  @OneToMany(() => Trade, (trade) => trade.member)
+  trades: Trade[];
+
+  @OneToMany(() => Document, (document) => document.member)
+  documents: Document[];
+
+  @OneToMany(() => Comment, (comment) => comment.member)
+  comments: Comment[];
 }

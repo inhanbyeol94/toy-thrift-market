@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Trade } from 'src/_common/entities/trade.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Review {
@@ -13,4 +14,10 @@ export class Review {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToOne(() => Trade, {
+    nullable: false,
+  })
+  @JoinColumn()
+  trade: Trade;
 }

@@ -1,4 +1,6 @@
-import { CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Member } from 'src/_common/entities/member.entity';
+import { Product } from 'src/_common/entities/product.entity';
+import { CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Pick {
@@ -10,4 +12,14 @@ export class Pick {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToOne(() => Product, (product) => product.picks, {
+    nullable: false,
+  })
+  product: Product;
+
+  @ManyToOne(() => Member, (member) => member.picks, {
+    nullable: false,
+  })
+  member: Member;
 }
