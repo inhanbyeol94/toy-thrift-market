@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# Najung_E
 내일배움캠프 Node.js B반 7조 최종 프로젝트
 =======
 <p align="center">
@@ -75,4 +73,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
->>>>>>> 989b6e1 (first)
