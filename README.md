@@ -24,7 +24,9 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## install library
+---
+## History
+### install library
 ```bash
 npm install @nestjs/config
 npm install @nestjs/typeorm typeorm mysql2
@@ -34,6 +36,19 @@ npm install bcrypt
 npm install ejs
 npm install multer multer-s3 aws-sdk @types/uuidv4 @types/multer
 ```
+### .prettierrc
+```bash
+/* add options */
+  "printWidth": 170,
+  "tabWidth": 2,
+```
+### .eslintrc.js
+```bash
+/* add rules */
+'prettier/prettier': ['error', { printWidth: 170 }]
+```
+
+---
 
 ## Description
 
