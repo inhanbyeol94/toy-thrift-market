@@ -29,6 +29,7 @@
 npm install @nestjs/config
 npm install @nestjs/typeorm typeorm mysql2
 npm install class-validator class-transformer
+npm install @nestjs/jwt
 ```
 
 ## Description
