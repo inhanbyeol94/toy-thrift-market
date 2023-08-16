@@ -27,6 +27,7 @@
 ## install library
 ```bash
 npm install @nestjs/config
+npm install @nestjs/typeorm typeorm mysql2
 ```
 
 ## Description
