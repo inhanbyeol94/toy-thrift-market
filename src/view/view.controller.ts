@@ -5,16 +5,16 @@ import { IView } from '../_common/interfaces/view.interface';
 export class ViewController {
   @Get()
   @Render('main/index.ejs')
-  test(): IView {
+  index(): IView {
     return { title: '테스트', subtitle: '서브 테스트' };
   }
 
   @Get('login')
   @Render('main/login.ejs')
-  test2(): IView {
-    return { title: '테스트', subtitle: '서브 테스트' };
+  login(): IView {
+    return { title: '나중애', subtitle: '로그인' };
   }
-  
+
   @Get('signup')
   @Render('main/signup.ejs')
   signup(): IView {
