@@ -10,14 +10,14 @@ const signupBtn = document.getElementById('signupBtn');
 
 signupBtn.addEventListener('click', async () => {
   /* 필수 값 검증 */
-  // if (!email.value.trim()) return alert('이메일을 입력해주세요.');
-  // if (!name.value.trim()) return alert('이름을 입력해주세요.');
-  // if (!nickname.value.trim()) return alert('닉네임을 입력해주세요.');
-  // if (!password.value.trim()) return alert('패스워드를 입력해 주세요.');
-  // if (!confirmPassword.value.trim()) return alert('확인 패스워드를 입력해 주세요.');
-  // if (!address.value.trim()) return alert('주소를 입력해 주세요.');
-  // if (!subAddress.value.trim()) return alert('상세 주소를 입력해주세요.');
-  // if (!tel.value.trim()) return alert('연락처를 입력해주세요.');
+  if (!email.value.trim()) return alert('이메일을 입력해주세요.');
+  if (!name.value.trim()) return alert('이름을 입력해주세요.');
+  if (!nickname.value.trim()) return alert('닉네임을 입력해주세요.');
+  if (!password.value.trim()) return alert('패스워드를 입력해 주세요.');
+  if (!confirmPassword.value.trim()) return alert('확인 패스워드를 입력해 주세요.');
+  if (!address.value.trim()) return alert('주소를 입력해 주세요.');
+  if (!subAddress.value.trim()) return alert('상세 주소를 입력해주세요.');
+  if (!tel.value.trim()) return alert('연락처를 입력해주세요.');
 
   /* 정규식 검사 */
   const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -47,24 +47,17 @@ signupBtn.addEventListener('click', async () => {
   });
 
   const { status } = await api;
+  const { message } = await api.json();
 
-  if (status === 201) {
-    alert('가입이 완료되었습니다.');
-    window.location.href = '/login';
-  } else {
-    alert('가입에 실패하였습니다.\n입력 정보를 확인해주세요.');
-  }
+  alert(message);
+  if (status === 201) return (window.location.href = '/login');
 });
 
 address.addEventListener('click', () => {
   new daum.Postcode({
     oncomplete: function (data) {
-      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-      // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-      var roadAddr = data.roadAddress; // 도로명 주소 변수
-      var jibunAddr = data.jibunAddress; // 지번 주소 변수
-      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      let roadAddr = data.roadAddress;
+      let jibunAddr = data.jibunAddress;
 
       if (roadAddr !== '') {
         document.getElementById('address').value = roadAddr;
@@ -88,7 +81,7 @@ class createUser {
     this.name = name.value;
     this.nickname = nickname.value;
     this.password = password.value;
-    this.address = address.value + subAddress.value;
+    this.address = (address.value + subAddress.value).trim();
     this.tel = tel.value;
   }
 }
