@@ -24,11 +24,13 @@ signupBtn.addEventListener('click', async () => {
   const passwordRegexp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])/;
   const nameRegexp = /[가-힣]/;
   const nicknameRegexp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/;
+  const telRegexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 
   if (!emailRegexp.test(email.value)) return alert('이메일 형식이 일치하지 않습니다.');
   if (!passwordRegexp.test(password.value)) return alert('패스워드는 영문, 숫자, 특수문자를 최소 1가지 이상 조합해야 합니다.');
   if (!nameRegexp.test(name.value)) return alert('이름은 한글만 입력이 가능합니다.');
   if (!nicknameRegexp.test(nickname.value)) return alert('닉네임은 한글, 영문, 숫자만 조합이 가능합니다.');
+  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호는 하이픈을 포함하여 입력해 주세요.');
 
   /* 패스워드, 확인 패스워드 일치여부 검사 */
   if (password.value !== confirmPassword.value) return alert('패스워드와 확인 패스워드가 일치하지 않습니다.');
