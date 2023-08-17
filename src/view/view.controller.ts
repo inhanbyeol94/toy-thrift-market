@@ -9,6 +9,12 @@ export class ViewController {
     return { title: '테스트', subtitle: '서브 테스트' };
   }
 
+  @Get('login')
+  @Render('main/login.ejs')
+  test2(): IView {
+    return { title: '테스트', subtitle: '서브 테스트' };
+  }
+  
   @Get('signup')
   @Render('main/signup.ejs')
   signup(): IView {
