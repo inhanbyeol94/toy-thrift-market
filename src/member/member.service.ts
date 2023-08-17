@@ -3,13 +3,13 @@ import { CreateMemberDto } from '../_common/dtos/members.dto';
 import { Repository } from 'typeorm';
 import { Member } from '../_common/entities/member.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IResult } from '../_common/interfaces/return.interface';
+import { IMessage } from '../_common/interfaces/message.interface';
 import * as bcrypt from 'bcrypt';
 @Injectable()
 export class MemberService {
   constructor(@InjectRepository(Member) private membersRepository: Repository<Member>) {}
   //회원가입
-  async createMember(createMember: CreateMemberDto): Promise<IResult> {
+  async createMember(createMember: CreateMemberDto): Promise<IMessage> {
     const { email } = createMember;
     const existingUser = await this.membersRepository.findOne({ where: { email } });
 
@@ -18,6 +18,6 @@ export class MemberService {
     createMember.password = await bcrypt.hash(createMember.password, 10);
     const newMember = this.membersRepository.create(createMember);
     await this.membersRepository.save(newMember);
-    return { result: true, message: '회원가입이 완료되었습니다.' };
+    return { message: '회원가입이 완료되었습니다.' };
   }
 }
