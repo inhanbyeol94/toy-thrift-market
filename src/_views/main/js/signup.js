@@ -30,7 +30,7 @@ signupBtn.addEventListener('click', async () => {
   if (!passwordRegexp.test(password.value)) return alert('패스워드는 영문, 숫자, 특수문자를 최소 1가지 이상 조합해야 합니다.');
   if (!nameRegexp.test(name.value)) return alert('이름은 한글만 입력이 가능합니다.');
   if (!nicknameRegexp.test(nickname.value)) return alert('닉네임은 한글, 영문, 숫자만 조합이 가능합니다.');
-  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호는 하이픈을 포함하여 입력해 주세요.');
+  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다. 하이픈을 포함한 010으로 시작하는 휴대폰 번호를 입력해주세요.');
 
   /* 패스워드, 확인 패스워드 일치여부 검사 */
   if (password.value !== confirmPassword.value) return alert('패스워드와 확인 패스워드가 일치하지 않습니다.');
