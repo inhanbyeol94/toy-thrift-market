@@ -18,9 +18,7 @@ export class CategoryService {
     return largeCategory;
   }
   async findAllLargeCategories(): Promise<LargeCategory[]> {
-    const largeCategories = await this.largeCategoriesRepository.find({
-      relations: ['middleCategories', 'middleCategories.smallCategories', 'middleCategories.smallCategories.products'],
-    });
+    const largeCategories = await this.largeCategoriesRepository.find();
     return largeCategories;
   }
   async updateLargeCategory(id: number, name: string) {
@@ -99,7 +97,7 @@ export class CategoryService {
   }
   // 카테고리(소) 조회
   async getSmallCategory(): Promise<SmallCategory[]> {
-    return this.smallCategoryRepository.find({ relations: ['products'] });
+    return this.smallCategoryRepository.find();
   }
   // 카테고리(소) 개별 조회
   async getSmallCategoryById(id: number) {
