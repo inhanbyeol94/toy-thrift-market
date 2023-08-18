@@ -27,6 +27,14 @@ export class CategoryService {
     await this.largeCategoriesRepository.save(existLargeCategory);
   }
 
+  async deleteLargeCategory(id: number) {
+    const existLargeCategory = await this.largeCategoriesRepository.findOne({ where: { id } });
+    if (!existLargeCategory) {
+      throw new NotFoundException('카테고리(대)가 존재하지 않습니다.');
+    }
+    await this.largeCategoriesRepository.delete(id);
+  }
+
   //   async findOneLargeCategory(name: string) {
   //     return await this.largeCategoriesRepository.findOne({ where: { name } });
   //   }
