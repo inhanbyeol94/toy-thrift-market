@@ -68,7 +68,7 @@ export class CategoryService {
 
   // 카테고리(소) 조회
   async getSmallCategory(): Promise<SmallCategory[]> {
-    return this.smallCategoryRepository.find();
+    return this.smallCategoryRepository.find({ relations: ['products'] });
   }
 
   // 카테고리(소) 개별 조회
