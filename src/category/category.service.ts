@@ -15,9 +15,9 @@ export class CategoryService {
 
   // 생성
   async createSmallCategory(createSmallCategory: SmallCategoryDto): Promise<IMessage> {
-    const { middle_category_id, name } = createSmallCategory;
+    const { middleCategoryId, name } = createSmallCategory;
 
-    const existingMiddleCategory = await this.middleCategoryRepository.findOne({ where: { id: middle_category_id } });
+    const existingMiddleCategory = await this.middleCategoryRepository.findOne({ where: { id: middleCategoryId } });
     if (!existingMiddleCategory) {
       throw new HttpException('해당 중간 카테고리가 존재하지 않습니다.', 404);
     }

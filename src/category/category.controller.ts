@@ -16,28 +16,28 @@ export class CategoryController {
 
   // 카테고리(소) 조회
   @Get('/small')
-  @HttpCode(201)
+  @HttpCode(200)
   async getSmallCategory() {
     return this.categoryService.getSmallCategory();
   }
 
   // 카테고리(소) 개별 조회
   @Get('/small/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   async getSmallCategoryById(@Param('id') id: number) {
     return this.categoryService.getSmallCategoryById(id);
   }
 
   // 카테고리(소) 수정
   @Patch('/small/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   async updateSmallCategory(@Param('id') id: number, @Body() data: SmallCategoryDto) {
     return this.categoryService.updateSmallCategory(id, data.name);
   }
 
   // 카테고리(소) 삭제
   @Delete('/small/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   async deleteSmallCategory(@Param('id') id: number) {
     return this.categoryService.deleteSmallCategory(id);
   }

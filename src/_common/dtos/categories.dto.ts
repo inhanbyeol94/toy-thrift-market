@@ -4,5 +4,5 @@ export class SmallCategoryDto {
   readonly name: string;
 
   @IsNumber()
-  readonly middle_category_id: number;
+  readonly middleCategoryId: number;
 }
