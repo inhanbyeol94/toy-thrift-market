@@ -5,15 +5,47 @@ import { MiddleCategory } from '../_common/entities/middleCategory.entity';
 import { SmallCategoryDto } from '../_common/dtos/categories.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IMessage } from '../_common/interfaces/message.interface';
+import { LargeCategory } from 'src/_common/entities/largeCategory.entity';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(SmallCategory) private smallCategoryRepository: Repository<SmallCategory>,
     @InjectRepository(MiddleCategory) private middleCategoryRepository: Repository<MiddleCategory>,
+    @InjectRepository(LargeCategory) private largeCategoriesRepository: Repository<LargeCategory>,
   ) {}
 
-  // 생성
+  async createLargeCategory(name: string): Promise<LargeCategory> {
+    const largeCategory = this.largeCategoriesRepository.create({ name });
+    await this.largeCategoriesRepository.save(largeCategory);
+    return largeCategory;
+  }
+
+  async findAllLargeCategories(): Promise<LargeCategory[]> {
+    const largeCategories = await this.largeCategoriesRepository.find({
+      relations: ['middleCategories', 'middleCategories.smallCategories', 'middleCategories.smallCategories.products'],
+    });
+    return largeCategories;
+  }
+
+  async updateLargeCategory(id: number, name: string) {
+    const existLargeCategory = await this.largeCategoriesRepository.findOne({ where: { id } });
+    if (!existLargeCategory) {
+      throw new NotFoundException('카테고리(대)가 존재하지 않습니다.');
+    }
+    existLargeCategory.name = name;
+    await this.largeCategoriesRepository.save(existLargeCategory);
+  }
+
+  async deleteLargeCategory(id: number) {
+    const existLargeCategory = await this.largeCategoriesRepository.findOne({ where: { id } });
+    if (!existLargeCategory) {
+      throw new NotFoundException('카테고리(대)가 존재하지 않습니다.');
+    }
+    await this.largeCategoriesRepository.delete(id);
+  }
+
+  // 카테고리(소) 생성
   async createSmallCategory(createSmallCategory: SmallCategoryDto): Promise<IMessage> {
     const { middleCategoryId, name } = createSmallCategory;
 
