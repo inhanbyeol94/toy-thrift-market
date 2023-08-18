@@ -18,7 +18,9 @@ export class CategoryService {
     return largeCategory;
   }
   async findAllLargeCategories(): Promise<LargeCategory[]> {
-    const largeCategories = await this.largeCategoriesRepository.find();
+    const largeCategories = await this.largeCategoriesRepository.find({
+      relations: ['middleCategories', 'middleCategories.smallCategories'],
+    });
     return largeCategories;
   }
   async updateLargeCategory(id: number, name: string) {
