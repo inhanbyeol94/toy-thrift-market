@@ -13,6 +13,11 @@ export class CategoryService {
     return largeCategory;
   }
 
+  async findAllLargeCategories() {
+    const largeCategories = await this.largeCategoriesRepository.find();
+    return largeCategories;
+  }
+
   //   async findOneLargeCategory(name: string) {
   //     return await this.largeCategoriesRepository.findOne({ where: { name } });
   //   }
