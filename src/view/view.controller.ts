@@ -20,4 +20,10 @@ export class ViewController {
   signup(): IView {
     return { title: '나중애', subtitle: '회원가입' };
   }
+
+  @Get('admins')
+  @Render('admin/index.ejs')
+  admin(): IView {
+    return { title: '나중애', subtitle: '관리자' };
+  }
 }
