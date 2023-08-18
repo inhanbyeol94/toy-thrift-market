@@ -13,8 +13,10 @@ export class CategoryService {
     return largeCategory;
   }
 
-  async findAllLargeCategories() {
-    const largeCategories = await this.largeCategoriesRepository.find();
+  async findAllLargeCategories(): Promise<LargeCategory[]> {
+    const largeCategories = await this.largeCategoriesRepository.find({
+      relations: ['middleCategories', 'middleCategories.smallCategories', 'middleCategories.smallCategories.products'],
+    });
     return largeCategories;
   }
 
