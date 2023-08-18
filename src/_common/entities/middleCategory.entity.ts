@@ -13,7 +13,7 @@ export class MiddleCategory {
   @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.middleCategories, {
     nullable: false,
   })
-  largeCategory: LargeCategory;
+  largeCategory: number;
 
   @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory)
   smallCategories: SmallCategory[];
