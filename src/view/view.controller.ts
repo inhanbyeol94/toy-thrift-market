@@ -26,4 +26,16 @@ export class ViewController {
   admin(): IView {
     return { title: '나중애', subtitle: '관리자' };
   }
+
+  @Get('admins/category')
+  @Render('admin/category-manage.ejs')
+  category(): IView {
+    return { title: '관리자', subtitle: '카테고리 관리' };
+  }
+
+  @Get('admins/category/add')
+  @Render('admin/category-add.ejs')
+  categoryAdd(): IView {
+    return { title: '관리자', subtitle: '카테고리 추가' };
+  }
 }
