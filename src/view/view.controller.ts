@@ -38,4 +38,16 @@ export class ViewController {
   categoryAdd(): IView {
     return { title: '관리자', subtitle: '카테고리 추가' };
   }
+
+  @Get('admins/category/edit')
+  @Render('admin/category-edit.ejs')
+  categoryEdit(): IView {
+    return { title: '관리자', subtitle: '카테고리 수정' };
+  }
+
+  @Get('admins/category/delete')
+  @Render('admin/category-delete.ejs')
+  categoryDelete(): IView {
+    return { title: '관리자', subtitle: '카테고리 삭제' };
+  }
 }
