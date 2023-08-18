@@ -1,9 +1,9 @@
-import { LargeCategory } from 'src/_common/entities/largeCategory.entity';
 import { Member } from 'src/_common/entities/member.entity';
 import { Pick } from 'src/_common/entities/pick.entity';
 import { ProductImage } from 'src/_common/entities/productImage.entity';
 import { Trade } from 'src/_common/entities/trade.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { SmallCategory } from './smallCategory.entity';
 
 @Entity()
 export class Product {
@@ -37,10 +37,15 @@ export class Product {
   @OneToMany(() => ProductImage, (productImage) => productImage.product)
   productImages: Product[];
 
-  @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.products, {
+  @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
     nullable: false,
   })
-  largeCategory: LargeCategory;
+  smallCategory: SmallCategory;
+
+  // @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.products, {
+  //   nullable: false,
+  // })
+  // largeCategory: LargeCategory;
 
   @ManyToOne(() => Member, (member) => member.products, {
     nullable: false,
