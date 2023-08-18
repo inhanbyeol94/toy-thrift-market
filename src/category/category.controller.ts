@@ -1,6 +1,6 @@
-import { CreateLargeCategoryDto } from './../_common/dtos/largeCategory.dto';
+import { CreateLargeCategoryDto, UpdateLargeCategoryDto } from './../_common/dtos/largeCategory.dto';
 import { CategoryService } from './category.service';
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 
 @Controller('categories')
 export class CategoryController {
@@ -18,7 +18,11 @@ export class CategoryController {
   getAllLargeCategories() {
     return this.categoryService.findAllLargeCategories();
   }
-}
 
-//   @Patch('large')
-//   @Delete('large')
+  @Patch('large/:id')
+  updateLargeCategory(@Param('id') id: number, @Body() data: UpdateLargeCategoryDto) {
+    this.categoryService.updateLargeCategory(id, data.name);
+  }
+
+  //   @Delete('large')
+}

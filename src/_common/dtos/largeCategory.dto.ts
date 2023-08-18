@@ -5,3 +5,5 @@ export class CreateLargeCategoryDto {
   @IsString()
   name: string;
 }
+
+export class UpdateLargeCategoryDto extends CreateLargeCategoryDto {}
