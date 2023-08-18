@@ -1,11 +1,9 @@
 import { Injectable, HttpException, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { SmallCategory } from '../_common/entities/smallCategory.entity';
-import { MiddleCategory } from '../_common/entities/middleCategory.entity';
 import { SmallCategoryDto } from '../_common/dtos/categories.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IMessage } from '../_common/interfaces/message.interface';
-import { LargeCategory } from 'src/_common/entities/largeCategory.entity';
+import { LargeCategory, MiddleCategory, SmallCategory } from 'src/_common/entities';
 
 @Injectable()
 export class CategoryService {

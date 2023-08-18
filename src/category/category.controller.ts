@@ -1,7 +1,6 @@
 import { Controller, Post, HttpCode, Body, Get, Patch, Delete, Param } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { SmallCategoryDto } from '../_common/dtos/categories.dto';
-import { CreateLargeCategoryDto, UpdateLargeCategoryDto } from './../_common/dtos/largeCategory.dto';
+import { LargeCategoryDto, SmallCategoryDto } from '../_common/dtos/categories.dto';
 // import { IMessage } from '../_common/interfaces/message.interface';
 
 @Controller('categories')
@@ -10,8 +9,8 @@ export class CategoryController {
 
   // 카테고리(대) 추가
   @Post('large')
-  createLargeCategory(@Body() createLargeCategoryDto: CreateLargeCategoryDto) {
-    const { name } = createLargeCategoryDto;
+  createLargeCategory(@Body() data: LargeCategoryDto) {
+    const { name } = data;
     return this.categoryService.createLargeCategory(name);
   }
 
@@ -22,7 +21,7 @@ export class CategoryController {
   }
 
   @Patch('large/:id')
-  updateLargeCategory(@Param('id') id: number, @Body() data: UpdateLargeCategoryDto) {
+  updateLargeCategory(@Param('id') id: number, @Body() data: LargeCategoryDto) {
     this.categoryService.updateLargeCategory(id, data.name);
   }
 
