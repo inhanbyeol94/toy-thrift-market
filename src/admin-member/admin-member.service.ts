@@ -16,6 +16,7 @@ export class AdminMemberService {
   // 회원(Member) 추가
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
     const { email, nickname, tel } = createMember;
+
     // 이미 등록된 email 이 있는지 검증
     const existingEmail = await this.membersRepository.findOne({ where: { email } });
     if (existingEmail) throw new HttpException('이미 등록되어있는 이메일입니다.', 403);
@@ -27,6 +28,9 @@ export class AdminMemberService {
     if (existingTel) throw new HttpException('이미 등록되어있는 전화번호입니다.', 403);
     // DB에 들어가는 password 해쉬화
     createMember.password = await bcrypt.hash(createMember.password, 10);
+
+    const isAdmin = Boolean(createMember.isAdmin);
+
     await this.membersRepository.save({
       email: createMember.email,
       name: createMember.name,
@@ -34,6 +38,7 @@ export class AdminMemberService {
       password: createMember.password,
       tel: createMember.tel,
       address: createMember.address,
+      isAdmin: isAdmin,
     });
     return { message: '회원을 추가하였습니다.' };
   }
