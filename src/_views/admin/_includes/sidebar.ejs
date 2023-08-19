@@ -19,11 +19,27 @@
     </li><!-- End Blank Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="/admins/category">
-        <i class="bi bi-card-list"></i>
-        <span>카테고리 관리</span>
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-menu-button-wide"></i><span>카테고리 관리</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-    </li><!-- End Register Page Nav -->
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/admins/category/add">
+            <i class="bi bi-circle"></i><span>카테고리 추가</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/category/edit">
+            <i class="bi bi-circle"></i><span>카테고리 수정</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/category/delete">
+            <i class="bi bi-circle"></i><span>카테고리 삭제</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
 
   </ul>
 
