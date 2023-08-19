@@ -6,11 +6,10 @@ export class LargeCategory {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: number;
 
-  @OneToMany(() => MiddleCategory, (middleCategory) => middleCategory.largeCategory)
+  @OneToMany(() => MiddleCategory, (middleCategory) => middleCategory.largeCategory, {
+    cascade: true,
+  })
   middleCategories: LargeCategory[];
-
-  // @OneToMany(() => Product, (product) => product.largeCategory)
-  // products: Product[];
 
   @Column()
   name: string;
