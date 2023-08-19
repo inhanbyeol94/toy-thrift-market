@@ -1,7 +1,7 @@
 import { Injectable, HttpException, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateMiddleCategoryDto } from '../_common/dtos/middlecategory.dto';
-import { SmallCategoryDto } from '../_common/dtos/categories.dto';
+import { SmallCategoryDto, UpdateCategoryDto } from '../_common/dtos/categories.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IMessage } from '../_common/interfaces/message.interface';
 import { LargeCategory, MiddleCategory, SmallCategory } from 'src/_common/entities';
@@ -59,12 +59,12 @@ export class CategoryService {
   }
   // 상세조회
   async findByMiddleCategory(id: number): Promise<MiddleCategory> {
-    const middleCategory = await this.middleCategoryRepository.findOne({ where: { id } });
+    const middleCategory = await this.middleCategoryRepository.findOne({ where: { id }, relations: ['smallCategories'] });
     if (!middleCategory) throw new HttpException('카테고리를 찾지 못했습니다.', 404);
     return middleCategory;
   }
   // 수정
-  async updateMiddleCategory(id: number, updateData: CreateMiddleCategoryDto): Promise<IMessage> {
+  async updateMiddleCategory(id: number, updateData: UpdateCategoryDto): Promise<IMessage> {
     const modifyCategory = await this.middleCategoryRepository.findOne({ where: { id } });
     if (!modifyCategory) throw new HttpException('수정할 카테고리가 없습니다.', 404);
     // -> 수정하는 단계

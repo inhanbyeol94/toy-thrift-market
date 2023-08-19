@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { LargeCategoryDto, SmallCategoryDto } from '../_common/dtos/categories.dto';
+import { LargeCategoryDto, SmallCategoryDto, UpdateCategoryDto } from '../_common/dtos/categories.dto';
 import { CreateMiddleCategoryDto } from '../_common/dtos/middlecategory.dto';
 import { IMessage } from '../_common/interfaces/message.interface';
 import { MiddleCategory } from '../_common/entities';
@@ -20,7 +20,7 @@ export class CategoryController {
   }
   // 카테고리 수정
   @Patch('large/:id')
-  updateLargeCategory(@Param('id') id: number, @Body() data: LargeCategoryDto) {
+  updateLargeCategory(@Param('id') id: number, @Body() data: UpdateCategoryDto) {
     this.categoryService.updateLargeCategory(id, data.name);
   }
   // 카테고리 삭제
@@ -50,7 +50,7 @@ export class CategoryController {
   // 수정
   @Patch('middle/:id')
   @HttpCode(200)
-  async updateMiddleCategory(@Param('id') id: number, @Body() updateData: CreateMiddleCategoryDto): Promise<IMessage> {
+  async updateMiddleCategory(@Param('id') id: number, @Body() updateData: UpdateCategoryDto): Promise<IMessage> {
     return await this.categoryService.updateMiddleCategory(id, updateData);
   }
   // 삭제
@@ -80,7 +80,7 @@ export class CategoryController {
   // 카테고리(소) 수정
   @Patch('/small/:id')
   @HttpCode(200)
-  async updateSmallCategory(@Param('id') id: number, @Body() data: SmallCategoryDto) {
+  async updateSmallCategory(@Param('id') id: number, @Body() data: UpdateCategoryDto) {
     return this.categoryService.updateSmallCategory(id, data.name);
   }
   // 카테고리(소) 삭제

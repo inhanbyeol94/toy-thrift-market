@@ -14,3 +14,5 @@ export class SmallCategoryDto {
   @IsNumber()
   readonly middleCategoryId: number;
 }
+
+export class UpdateCategoryDto extends LargeCategoryDto {}
