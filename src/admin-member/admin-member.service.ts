@@ -18,20 +18,29 @@ export class AdminMemberService {
     if (!member) {
       throw new NotFoundException('회원이 존재하지 않습니다.');
     }
+    const existingName = await this.membersRepository.findOne({ where: { name } });
+    if (existingName && existingName.id != id) {
+      throw new NotFoundException('이미 존재하는 이름입니다.');
+    }
+    const existingNickname = await this.membersRepository.findOne({ where: { nickname } });
+    if (existingNickname && existingNickname.id != id) {
+      throw new NotFoundException('이미 존재하는 닉네임입니다.');
+    }
+    const existingTel = await this.membersRepository.findOne({ where: { tel } });
+    if (existingTel && existingTel.id != id) {
+      throw new NotFoundException('이미 존재하는 번호입니다.');
+    }
     member.name = name;
     member.nickname = nickname;
     member.tel = tel;
     member.address = address;
     member.isAdmin = isAdmin;
-
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       member.password = hashedPassword;
     }
-
     await this.membersRepository.save(member);
     return { message: '회원 정보가 수정되었습니다.' };
   }
-
   // async deleteMember(){}
 }
