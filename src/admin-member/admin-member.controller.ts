@@ -1,7 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
 import { AdminMemberService } from './admin-member.service';
+import { IMessage } from '../_common/interfaces/message.interface';
 
-@Controller('members')
+@Controller('admin-members')
 export class AdminMemberController {
   constructor(private adminMemberService: AdminMemberService) {}
+
+  // @Get()
+
+  // @Post()
+
+  // @Patch()
+
+  // @Delete()
 }
