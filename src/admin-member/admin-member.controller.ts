@@ -12,5 +12,9 @@ export class AdminMemberController {
 
   // @Patch()
 
-  // @Delete()
+  @Delete('/:id')
+  @HttpCode(200)
+  async deleteMember(@Param('id') id: number): Promise<IMessage> {
+    return await this.adminMemberService.deleteMember(id);
+  }
 }
