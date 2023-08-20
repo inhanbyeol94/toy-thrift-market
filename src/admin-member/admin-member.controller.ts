@@ -25,7 +25,7 @@ export class AdminMemberController {
   @Patch('/:id')
   @HttpCode(200)
   async updateAdminMember(@Param('id') memberId: number, @Body() data: UpdateAdminMemberDto): Promise<IMessage> {
-    const id = 2;
+    const id = 1;
     return await this.adminMemberService.updateAdminMember(memberId, data.name, data.nickname, data.password, data.tel, data.address, data.isAdmin, id);
   }
 
