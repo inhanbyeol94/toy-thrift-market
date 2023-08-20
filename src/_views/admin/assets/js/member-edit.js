@@ -14,7 +14,7 @@ function loadMembers() {
       const MemberList = document.getElementById('MemberList');
 
       data.forEach((member) => {
-        const { id, email, name, nickname, password, profileImage, tel, address, isAdmin } = member;
+        const { id, email, name, nickname, profileImage, tel, address, isAdmin } = member;
         const editButton = document.createElement('button');
         editButton.classList.add('edit-button');
         editButton.setAttribute('data-id', id);
@@ -35,7 +35,6 @@ function loadMembers() {
           <td>${email}</td>
           <td>${name}</td>
           <td>${nickname}</td>
-          <td>${password}</td>
           <td>${profileImage}</td>
           <td>${tel}</td>
           <td>${address}</td>
@@ -56,22 +55,28 @@ function openEditModal(member) {
   const editForm = document.getElementById('editForm');
   const editName = document.getElementById('editName');
   const editNickname = document.getElementById('editNickname');
-  const editPassword = document.getElementById('editPassword');
   const editProfileImage = document.getElementById('editProfileImage');
   const editTel = document.getElementById('editTel');
   const editAddress = document.getElementById('editAddress');
-  const editIsAdmin = document.getElementById('editIsAdmin');
 
   editName.value = member.name;
   editNickname.value = member.nickname;
-  editPassword.value = member.password;
   editProfileImage.value = member.profileImage;
   editTel.value = member.tel;
   editAddress.value = member.address;
-  editIsAdmin.value = member.isAdmin;
 
   editForm.onsubmit = function (event) {
     event.preventDefault();
+
+    const editIsAdminTrue = document.getElementById('editIsAdminTrue');
+    const editIsAdminFalse = document.getElementById('editIsAdminFalse');
+    const isAdminValue = editIsAdminTrue.checked ? true : editIsAdminFalse.checked ? false : undefined;
+
+    if (isAdminValue === undefined) {
+      // 어느 버튼도 선택되지 않았을 경우에 대한 처리
+      alert('관리자 여부를 선택해주세요.');
+      return;
+    }
 
     const updatedMemberData = {
       name: editName.value,
@@ -80,7 +85,7 @@ function openEditModal(member) {
       profileImage: editProfileImage.value,
       tel: editTel.value,
       address: editAddress.value,
-      isAdmin: editIsAdmin.checked,
+      isAdmin: isAdminValue,
     };
     // 수정 API 요청
     fetch(`/admin-members/${member.id}`, {

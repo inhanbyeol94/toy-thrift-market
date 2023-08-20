@@ -69,11 +69,8 @@ export class AdminMemberService {
     if (existingTel && existingTel.id != memberId) {
       throw new NotFoundException('이미 존재하는 번호입니다.');
     }
-    if (id === 1 && memberId !== 1 && isAdmin) {
-      member.isAdmin = true;
-    } else if (id !== 1 && memberId === 1 && !isAdmin) {
-      throw new HttpException('권한이 없습니다.', 403);
-    }
+    console.log(isAdmin);
+    if (id !== 1 && isAdmin) throw new HttpException('관리자 권한은 최고 관리자 권한을 부여받은 계정만 부여가 가능합니다.', 401);
     member.name = name;
     member.nickname = nickname;
     member.tel = tel;
@@ -82,6 +79,8 @@ export class AdminMemberService {
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       member.password = hashedPassword;
+    } else {
+      member.password = member.password;
     }
     await this.membersRepository.save(member);
     return { message: '회원 정보가 수정되었습니다.' };

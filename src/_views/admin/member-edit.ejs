@@ -25,7 +25,13 @@
               <input type="text" id="editProfileImage" name="profileImage" placeholder="profileImage">
               <input type="text" id="editTel" name="tel" placeholder="tel">
               <input type="text" id="editAddress" name="address" placeholder="address">
-              <input type="text" id="editIsAdmin" name="isAdmin" placeholder="isAdmin">
+              <div class="isAdmin-select-group">
+                <label for="editIsAdmin">isAdmin:</label>
+                <input type="radio" id="editIsAdminTrue" name="isAdmin" value="true">
+                <label for="editIsAdminTrue">True</label>
+                <input type="radio" id="editIsAdminFalse" name="isAdmin" value="false">
+                <label for="editIsAdminFalse">False</label>
+              </div>
               <button type="submit">수정 완료</button>
             </form>
           </div>
@@ -39,7 +45,6 @@
                 <th>Email</th>
                 <th>Name</th>
                 <th>Nickname</th>
-                <th>Password</th>
                 <th>Profile Image</th>
                 <th>Tel</th>
                 <th>Address</th>

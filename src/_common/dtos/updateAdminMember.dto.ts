@@ -15,11 +15,7 @@ class UpdateAdminMemberDto {
   @Matches(/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/)
   nickname: string;
 
-  @IsNotEmpty()
   @IsString()
-  @MaxLength(20)
-  @MinLength(8)
-  @Matches(/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])/)
   password: string;
 
   @IsString()
