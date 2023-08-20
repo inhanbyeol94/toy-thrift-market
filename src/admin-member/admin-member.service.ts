@@ -13,22 +13,36 @@ export class AdminMemberService {
 
   // async createMember(){}
 
-  async updateAdminMember(id: number, name: string, nickname: string, password: string, tel: string, address: string, isAdmin: boolean): Promise<IMessage> {
-    const member = await this.membersRepository.findOne({ where: { id } });
+  async updateAdminMember(
+    memberId: number,
+    name: string,
+    nickname: string,
+    password: string,
+    tel: string,
+    address: string,
+    isAdmin: boolean,
+    id: number,
+  ): Promise<IMessage> {
+    const member = await this.membersRepository.findOne({ where: { id: memberId } });
     if (!member) {
       throw new NotFoundException('회원이 존재하지 않습니다.');
     }
     const existingName = await this.membersRepository.findOne({ where: { name } });
-    if (existingName && existingName.id != id) {
+    if (existingName && existingName.id != memberId) {
       throw new NotFoundException('이미 존재하는 이름입니다.');
     }
     const existingNickname = await this.membersRepository.findOne({ where: { nickname } });
-    if (existingNickname && existingNickname.id != id) {
+    if (existingNickname && existingNickname.id != memberId) {
       throw new NotFoundException('이미 존재하는 닉네임입니다.');
     }
     const existingTel = await this.membersRepository.findOne({ where: { tel } });
-    if (existingTel && existingTel.id != id) {
+    if (existingTel && existingTel.id != memberId) {
       throw new NotFoundException('이미 존재하는 번호입니다.');
+    }
+    if (id === 1 && memberId !== 1 && isAdmin) {
+      member.isAdmin = true;
+    } else if (id !== 1) {
+      throw new HttpException('권한이 없습니다.', 403);
     }
     member.name = name;
     member.nickname = nickname;
