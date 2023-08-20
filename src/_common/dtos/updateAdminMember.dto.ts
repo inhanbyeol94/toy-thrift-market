@@ -1,12 +1,6 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
-class CreateMemberDto {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(50)
-  @IsEmail()
-  email: string;
-
+class UpdateAdminMemberDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(5)
@@ -43,4 +37,4 @@ class CreateMemberDto {
   isAdmin: boolean;
 }
 
-export { CreateMemberDto };
+export { UpdateAdminMemberDto };
