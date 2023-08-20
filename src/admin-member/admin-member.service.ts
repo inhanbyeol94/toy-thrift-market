@@ -85,5 +85,17 @@ export class AdminMemberService {
     await this.membersRepository.save(member);
     return { message: '회원 정보가 수정되었습니다.' };
   }
-  // async deleteMember(){}
+
+  // 회원 삭제
+  async deleteMember(id: number): Promise<IMessage> {
+    const existingMember = await this.membersRepository.findOne({
+      where: { id },
+    });
+
+    if (!existingMember) {
+      throw new NotFoundException('id와 일치하는 회원이 없습니다.');
+    }
+    await this.membersRepository.softDelete(id);
+    return { message: '회원 삭제를 완료했습니다.' };
+  }
 }

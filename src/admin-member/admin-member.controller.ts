@@ -22,6 +22,7 @@ export class AdminMemberController {
     return await this.adminMemberService.createMember(resisterData);
   }
 
+  // 회원(Member) 수정
   @Patch('/:id')
   @HttpCode(200)
   async updateAdminMember(@Param('id') memberId: number, @Body() data: UpdateAdminMemberDto): Promise<IMessage> {
@@ -29,5 +30,10 @@ export class AdminMemberController {
     return await this.adminMemberService.updateAdminMember(memberId, data.name, data.nickname, data.password, data.tel, data.address, data.isAdmin, id);
   }
 
-  // @Delete()
+  // 회원(Member) 삭제
+  @Delete('/:id')
+  @HttpCode(200)
+  async deleteMember(@Param('id') id: number): Promise<IMessage> {
+    return await this.adminMemberService.deleteMember(id);
+  }
 }
