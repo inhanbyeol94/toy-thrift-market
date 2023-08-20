@@ -2,7 +2,6 @@
   <%- include('_includes/sidebar') %>
 
     <main id="main" class="main">
-
       <div class="pagetitle">
         <h1>회원 수정 페이지</h1>
         <nav>
@@ -14,27 +13,46 @@
       </div><!-- End Page Title -->
 
       <section class="section dashboard">
-        <div class="row">
-
-          <div class="col-lg-8">
-            <div class="row">
-
-              <div class="col-12">
-                <div class="card top-selling overflow-auto">
-                  <div class="card-body pb-0">
-                    <h5 class="card-title">회원 정보</h5>
-                    <ul id="largeCategoryList"></ul>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+        <!-- 수정하기 모달 -->
+        <div id="editModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>회원 정보 수정</h2>
+            <form id="editForm">
+              <input type="text" id="editName" name="name" placeholder="Name">
+              <input type="text" id="editNickname" name="nickname" placeholder="nickname">
+              <input type="text" id="editPassword" name="password" placeholder="password">
+              <input type="text" id="editProfileImage" name="profileImage" placeholder="profileImage">
+              <input type="text" id="editTel" name="tel" placeholder="tel">
+              <input type="text" id="editAddress" name="address" placeholder="address">
+              <input type="text" id="editIsAdmin" name="isAdmin" placeholder="isAdmin">
+              <button type="submit">수정 완료</button>
+            </form>
           </div>
         </div>
+
+        <div class="member-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Nickname</th>
+                <th>Password</th>
+                <th>Profile Image</th>
+                <th>Tel</th>
+                <th>Address</th>
+                <th>Is Admin</th>
+                <th>수정하기</th>
+              </tr>
+            </thead>
+            <tbody id="MemberList">
+            </tbody>
+          </table>
+        </div>
       </section>
-
     </main><!-- End #main -->
-
 
     <%- include('_includes/footer') %>
       <script src="/admin/assets/js/member-edit.js"></script>
