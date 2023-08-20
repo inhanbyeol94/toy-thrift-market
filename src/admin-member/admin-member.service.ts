@@ -71,7 +71,7 @@ export class AdminMemberService {
     }
     if (id === 1 && memberId !== 1 && isAdmin) {
       member.isAdmin = true;
-    } else if (id !== 1) {
+    } else if (id !== 1 && memberId === 1 && !isAdmin) {
       throw new HttpException('권한이 없습니다.', 403);
     }
     member.name = name;
