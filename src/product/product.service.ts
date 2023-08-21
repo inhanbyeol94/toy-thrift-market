@@ -48,6 +48,10 @@ export class ProductService {
   }
 
   async remove(id: number): Promise<IMessage> {
+    const existingMember = await this.findOne(id);
+    if (!existingMember) throw new NotFoundException('회원이 존재하지 않습니다.');
+
+    await this.productRepository.delete(id);
     return { message: '상품이 삭제되었습니다.' };
   }
 }
