@@ -28,28 +28,32 @@ export class ProductService {
 
   // 상품 전체 조회
   async findAll(): Promise<Product[]> {
-    return await this.productRepository.find();
+    const products = await this.productRepository.find();
+    if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');
+    return products;
   }
 
   // 상품 조회
   async findOne(id: number): Promise<Product> {
-    return await this.productRepository.findOne({ where: { id } });
+    const product = await this.productRepository.findOne({ where: { id } });
+    if (!product) throw new NotFoundException('상품이 존재하지 않습니다.');
+    return product;
   }
 
   // 상품 수정
   async update(id: number, updateProductDto: UpdateProductDto): Promise<IMessage> {
     const { name, price, content, count } = updateProductDto;
-    const existingMember = await this.findOne(id);
-    if (!existingMember) throw new NotFoundException('회원이 존재하지 않습니다.');
+    const existingProduct = await this.findOne(id);
+    if (!existingProduct) throw new NotFoundException('상품이 존재하지 않습니다.');
 
-    const updatedMember = { ...existingMember, name, price, content, count };
-    await this.productRepository.save(updatedMember);
+    const updatedProduct = { ...existingProduct, name, price, content, count };
+    await this.productRepository.save(updatedProduct);
     return { message: '상품이 수정되었습니다.' };
   }
 
   async remove(id: number): Promise<IMessage> {
-    const existingMember = await this.findOne(id);
-    if (!existingMember) throw new NotFoundException('회원이 존재하지 않습니다.');
+    const existingProduct = await this.findOne(id);
+    if (!existingProduct) throw new NotFoundException('상품이 존재하지 않습니다.');
 
     await this.productRepository.delete(id);
     return { message: '상품이 삭제되었습니다.' };
