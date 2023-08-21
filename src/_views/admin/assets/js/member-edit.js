@@ -68,6 +68,10 @@ function openEditModal(member) {
   editAddress.value = member.address;
   subAddress.value = member.subAddress;
 
+  editTel.addEventListener('input', () => {
+    autoHyphen2(editTel);
+  });
+
   editAddress.addEventListener('click', () => {
     new daum.Postcode({
       oncomplete: function (data) {
