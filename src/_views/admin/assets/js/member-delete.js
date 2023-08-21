@@ -29,14 +29,15 @@ loadMembers();
 // 테이블 row html 생성 메서드
 const createTempHtml = (membersData) => {
   return membersData
-    .map((member) => {
+    .map((member, index) => {
       const { id, name, email, nickname, isAdmin } = member;
+      const role = isAdmin ? '관리자' : '회원';
       return `<tr>
-                <th scope="row">${id}</th>
+                <th scope="row">${index + 1}</th>
                 <td>${name}</td>
                 <td>${email}</td>
                 <td>${nickname}</td>
-                <td>${isAdmin}</td>
+                <td>${role}</td>
                 <td>
                     <button data-member-id="${id}" class="btn btn-danger">삭제</button>
                 </td>
