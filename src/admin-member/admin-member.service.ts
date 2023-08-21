@@ -59,10 +59,6 @@ export class AdminMemberService {
     if (!member) {
       throw new NotFoundException('회원이 존재하지 않습니다.');
     }
-    const existingName = await this.membersRepository.findOne({ where: { name } });
-    if (existingName && existingName.id != memberId) {
-      throw new NotFoundException('이미 존재하는 이름입니다.');
-    }
     const existingNickname = await this.membersRepository.findOne({ where: { nickname } });
     if (existingNickname && existingNickname.id != memberId) {
       throw new NotFoundException('이미 존재하는 닉네임입니다.');
