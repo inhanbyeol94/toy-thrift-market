@@ -32,6 +32,9 @@ export class Member {
   address: string;
 
   @Column()
+  subAddress: string;
+
+  @Column()
   isAdmin: boolean;
 
   @CreateDateColumn()
