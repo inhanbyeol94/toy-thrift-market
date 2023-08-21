@@ -7,9 +7,11 @@ import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
 import { AdminMemberModule } from './admin-member/admin-member.module';
+import { BoardModule } from './board/board.module';
+import { AdminBoardModule } from './admin-board/admin-board.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync({ useFactory: ormConfig }), ViewModule, MemberModule, AuthModule, CategoryModule, AdminMemberModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync({ useFactory: ormConfig }), ViewModule, MemberModule, AuthModule, CategoryModule, AdminMemberModule, BoardModule, AdminBoardModule],
   controllers: [],
   providers: [],
 })
