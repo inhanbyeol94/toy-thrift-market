@@ -6,9 +6,10 @@ import { ViewModule } from './view/view.module';
 import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
+import { AdminMemberModule } from './admin-member/admin-member.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync({ useFactory: ormConfig }), ViewModule, MemberModule, AuthModule, CategoryModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRootAsync({ useFactory: ormConfig }), ViewModule, MemberModule, AuthModule, CategoryModule, AdminMemberModule],
   controllers: [],
   providers: [],
 })

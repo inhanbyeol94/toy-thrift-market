@@ -50,4 +50,23 @@ export class ViewController {
   categoryDelete(): IView {
     return { title: '관리자', subtitle: '카테고리 삭제' };
   }
+
+  // 회원관리 => 회원을 member로 지칭
+  @Get('admins/member/add')
+  @Render('admin/member-add.ejs')
+  memberAdd(): IView {
+    return { title: '관리자', subtitle: '회원 추가' };
+  }
+
+  @Get('admins/member/edit')
+  @Render('admin/member-edit.ejs')
+  memberEdit(): IView {
+    return { title: '관리자', subtitle: '회원 수정' };
+  }
+
+  @Get('admins/member/delete')
+  @Render('admin/member-delete.ejs')
+  memberDelete(): IView {
+    return { title: '관리자', subtitle: '회원 삭제' };
+  }
 }

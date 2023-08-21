@@ -1,12 +1,6 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
-class CreateMemberDto {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(50)
-  @IsEmail()
-  email: string;
-
+class UpdateAdminMemberDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(5)
@@ -21,11 +15,7 @@ class CreateMemberDto {
   @Matches(/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/)
   nickname: string;
 
-  @IsNotEmpty()
   @IsString()
-  @MaxLength(20)
-  @MinLength(8)
-  @Matches(/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])/)
   password: string;
 
   @IsString()
@@ -47,4 +37,4 @@ class CreateMemberDto {
   isAdmin: boolean;
 }
 
-export { CreateMemberDto };
+export { UpdateAdminMemberDto };
