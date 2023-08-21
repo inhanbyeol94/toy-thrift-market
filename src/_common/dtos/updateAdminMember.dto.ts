@@ -28,6 +28,10 @@ class UpdateAdminMemberDto {
   @IsNotEmpty()
   address: string;
 
+  @IsString()
+  @IsNotEmpty()
+  subAddress: string;
+
   @IsBoolean()
   @IsNotEmpty()
   isAdmin: boolean;

@@ -58,12 +58,29 @@ function openEditModal(member) {
   const editProfileImage = document.getElementById('editProfileImage');
   const editTel = document.getElementById('editTel');
   const editAddress = document.getElementById('editAddress');
+  const subAddress = document.getElementById('subAddress');
 
   editName.value = member.name;
   editNickname.value = member.nickname;
   editProfileImage.value = member.profileImage;
   editTel.value = member.tel;
   editAddress.value = member.address;
+  subAddress.value = member.subAddress;
+
+  editAddress.addEventListener('click', () => {
+    new daum.Postcode({
+      oncomplete: function (data) {
+        let roadAddr = data.roadAddress;
+        let jibunAddr = data.jibunAddress;
+
+        if (roadAddr !== '') {
+          editAddress.value = roadAddr;
+        } else if (jibunAddr !== '') {
+          editAddress.value = jibunAddr;
+        }
+      },
+    }).open();
+  });
 
   editForm.onsubmit = function (event) {
     event.preventDefault();
@@ -121,4 +138,11 @@ function openEditModal(member) {
   closeButton.onclick = function () {
     editModal.style.display = 'none';
   };
+}
+
+function autoHyphen2(target) {
+  target.value = target.value
+    .replace(/[^0-9]/g, '')
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+    .replace(/(\-{1,2})$/g, '');
 }

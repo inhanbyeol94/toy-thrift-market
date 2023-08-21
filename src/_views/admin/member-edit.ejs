@@ -19,12 +19,38 @@
             <span class="close">&times;</span>
             <h2>회원 정보 수정</h2>
             <form id="editForm">
-              <input type="text" id="editName" name="name" placeholder="Name">
-              <input type="text" id="editNickname" name="nickname" placeholder="nickname">
-              <input type="text" id="editPassword" name="password" placeholder="password">
-              <input type="text" id="editProfileImage" name="profileImage" placeholder="profileImage">
-              <input type="text" id="editTel" name="tel" placeholder="tel">
-              <input type="text" id="editAddress" name="address" placeholder="address">
+              <div class="col-sm-12">
+                <label class="form-label" for="name">이름</label>
+                <input class="form-control" type="text" id="editName" name="name" placeholder="Name" maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="nickname">닉네임</label>
+                <input class="form-control" type="text" id="editNickname" name="nickname" placeholder="nickname"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="password">비밀번호</label>
+                <input class="form-control" type="password" id="editPassword" name="password" placeholder="password"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">프로필 이미지</label>
+                <input class="form-control" type="text" id="editProfileImage" name="profileImage"
+                  placeholder="profileImage" maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">연락처</label>
+                <input class="form-control" type="text" id="editTel" name="tel" placeholder="tel" maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">주소</label>
+                <input class="form-control" type="text" id="editAddress" name="address" placeholder="address"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="subAddress">상세 주소</label>
+                <input class="form-control" type="text" id="subAddress" placeholder="우리아파트 101동 201호">
+              </div>
               <div class="isAdmin-select-group">
                 <label for="editIsAdmin">isAdmin:</label>
                 <input type="radio" id="editIsAdminTrue" name="isAdmin" value="true">
@@ -32,7 +58,7 @@
                 <input type="radio" id="editIsAdminFalse" name="isAdmin" value="false">
                 <label for="editIsAdminFalse">False</label>
               </div>
-              <button type="submit">수정 완료</button>
+              <button type="submit" class="btn btn-light">수정 완료</button>
             </form>
           </div>
         </div>
@@ -61,3 +87,4 @@
 
     <%- include('_includes/footer') %>
       <script src="/admin/assets/js/member-edit.js"></script>
+      <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
