@@ -31,8 +31,9 @@ export class ProductService {
     return await this.productRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  // 상품 조회
+  async findOne(id: number): Promise<Product> {
+    return await this.productRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {

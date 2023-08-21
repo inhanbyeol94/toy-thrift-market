@@ -21,9 +21,10 @@ export class ProductController {
     return await this.productService.findAll();
   }
 
+  // 상품 조회
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.productService.findOne(+id);
+  async findOne(@Param('id') id: number): Promise<Product> {
+    return await this.productService.findOne(id);
   }
 
   @Patch(':id')
