@@ -2,7 +2,6 @@
   <%- include('_includes/sidebar') %>
 
     <main id="main" class="main">
-
       <div class="pagetitle">
         <h1>회원 수정 페이지</h1>
         <nav>
@@ -14,27 +13,78 @@
       </div><!-- End Page Title -->
 
       <section class="section dashboard">
-        <div class="row">
-
-          <div class="col-lg-8">
-            <div class="row">
-
-              <div class="col-12">
-                <div class="card top-selling overflow-auto">
-                  <div class="card-body pb-0">
-                    <h5 class="card-title">회원 정보</h5>
-                    <ul id="largeCategoryList"></ul>
-                  </div>
-                </div>
+        <!-- 수정하기 모달 -->
+        <div id="editModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>회원 정보 수정</h2>
+            <form id="editForm">
+              <div class="col-sm-12">
+                <label class="form-label" for="name">이름</label>
+                <input class="form-control" type="text" id="editName" name="name" placeholder="Name" maxlength="50">
               </div>
-
-            </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="nickname">닉네임</label>
+                <input class="form-control" type="text" id="editNickname" name="nickname" placeholder="nickname"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="password">비밀번호</label>
+                <input class="form-control" type="password" id="editPassword" name="password" placeholder="password"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">프로필 이미지</label>
+                <input class="form-control" type="text" id="editProfileImage" name="profileImage"
+                  placeholder="profileImage" maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">연락처</label>
+                <input class="form-control" type="text" id="editTel" name="tel" placeholder="tel" maxlength="50">
+              </div>
+              <div class="col-sm-12">
+                <label class="form-label" for="editProfileImage">주소</label>
+                <input class="form-control" type="text" id="editAddress" name="address" placeholder="address"
+                  maxlength="50">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="subAddress">상세 주소</label>
+                <input class="form-control" type="text" id="subAddress" placeholder="우리아파트 101동 201호">
+              </div>
+              <div class="isAdmin-select-group">
+                <label for="editIsAdmin">isAdmin:</label>
+                <input type="radio" id="editIsAdminTrue" name="isAdmin" value="true">
+                <label for="editIsAdminTrue">True</label>
+                <input type="radio" id="editIsAdminFalse" name="isAdmin" value="false">
+                <label for="editIsAdminFalse">False</label>
+              </div>
+              <button type="submit" class="btn btn-light">수정 완료</button>
+            </form>
           </div>
         </div>
+
+        <div class="member-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Nickname</th>
+                <th>Profile Image</th>
+                <th>Tel</th>
+                <th>Address</th>
+                <th>Is Admin</th>
+                <th>수정하기</th>
+              </tr>
+            </thead>
+            <tbody id="MemberList">
+            </tbody>
+          </table>
+        </div>
       </section>
-
     </main><!-- End #main -->
-
 
     <%- include('_includes/footer') %>
       <script src="/admin/assets/js/member-edit.js"></script>
+      <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
