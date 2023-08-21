@@ -38,6 +38,7 @@ export class AdminMemberService {
       password: createMember.password,
       tel: createMember.tel,
       address: createMember.address,
+      subAddress: createMember.subAddress,
       isAdmin: isAdmin,
     });
     return { message: '회원을 추가하였습니다.' };

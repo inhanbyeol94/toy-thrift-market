@@ -3,17 +3,86 @@
 
     <main id="main" class="main">
 
-      <div class="pagetitle">
-        <h1>회원 추가 페이지</h1>
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">회원 관리</a></li>
-            <li class="breadcrumb-item active">추가</li>
-          </ol>
-        </nav>
-      </div><!-- End Page Title -->
+      <div class="row">
+        <div class="col-lg-9">   <div class="card">
+            <div class="card-body">
 
-    </main><!-- End #main -->
+              <h5 class="card-title">회원 목록</h5>
+
+              <!-- Table with stripped rows -->
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">이메일</th>
+                  <th scope="col">이름</th>
+                  <th scope="col">닉네임</th>
+                  <th scope="col">연락처</th>
+                  <th scope="col">주소</th>
+                  <th scope="col">상세주소</th>
+                  <th scope="col">권한</th>
+                </tr>
+                </thead>
+                <tbody id="memberList">
+
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div></div>
+        <div class="col-lg-3"><div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">회원 추가</h5>
+              <div class="news">
+                <div class="post-item-large clearfix">
+                  <div>
+                    <div class="form-group mb-3">
+                      <label for="email">이메일 </label>
+                      <input type="email" class="form-control" id="email" placeholder="your email"/>
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="name">이름 </label>
+                      <input type="text" class="form-control" id="name" placeholder="ex)홍길동" />
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="nickname">닉네임 </label>
+                      <input type="text" class="form-control" id="nickname" placeholder="ex)홍길동"/>
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="password">비밀번호 </label>
+                      <input type="password" class="form-control" id="password" placeholder="**********"/>
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="tel">연락처 </label>
+                      <input type="tel" class="form-control" id="tel" placeholder="xxx-xxxx-xxxx" oninput="autoHyphen2(this)" maxlength="13"/>
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="address">주소 </label>
+                      <input type="text" class="form-control" id="address" placeholder="ex)서울특별시" readonly/>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="subAddress">상세 주소</label>
+                      <input class="form-control" type="text" id="subAddress" placeholder="ex)우리아파트 101동 201호">
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="isAdmin">권한 설정 </label>
+                      <input type="checkbox" id="isAdmin" />
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                      <button type="button" class="btn btn-outline-info mb-4" id="all-submit">회원추가</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div>
+      </div>
+
+
+    </main>
+<!-- End #main -->
 
     <%- include('_includes/footer') %>
-      <script src="/admin/assets/js/member-add.js"></script>
+      <script src="/admin/assets/js/member-add.js" defer></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
