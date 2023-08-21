@@ -50,6 +50,7 @@ export class AdminMemberService {
     password: string,
     tel: string,
     address: string,
+    subAddress: string,
     isAdmin: boolean,
     id: number,
   ): Promise<IMessage> {
@@ -75,6 +76,7 @@ export class AdminMemberService {
     member.nickname = nickname;
     member.tel = tel;
     member.address = address;
+    member.subAddress = subAddress;
     member.isAdmin = isAdmin;
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);

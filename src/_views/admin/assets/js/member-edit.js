@@ -14,7 +14,7 @@ function loadMembers() {
       const MemberList = document.getElementById('MemberList');
 
       data.forEach((member) => {
-        const { id, email, name, nickname, profileImage, tel, address, isAdmin } = member;
+        const { id, email, name, nickname, profileImage, tel, address, subAddress, isAdmin } = member;
         const editButton = document.createElement('button');
         editButton.classList.add('edit-button');
         editButton.setAttribute('data-id', id);
@@ -38,6 +38,7 @@ function loadMembers() {
           <td>${profileImage}</td>
           <td>${tel}</td>
           <td>${address}</td>
+          <td>${subAddress}</td>
           <td>${isAdmin}</td>
         `;
 
@@ -102,6 +103,7 @@ function openEditModal(member) {
       profileImage: editProfileImage.value,
       tel: editTel.value,
       address: editAddress.value,
+      subAddress: subAddress.value,
       isAdmin: isAdminValue,
     };
     // 수정 API 요청

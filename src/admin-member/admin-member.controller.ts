@@ -27,7 +27,7 @@ export class AdminMemberController {
   @HttpCode(200)
   async updateAdminMember(@Param('id') memberId: number, @Body() data: UpdateAdminMemberDto): Promise<IMessage> {
     const id = 1;
-    return await this.adminMemberService.updateAdminMember(memberId, data.name, data.nickname, data.password, data.tel, data.address, data.isAdmin, id);
+    return await this.adminMemberService.updateAdminMember(memberId, data.name, data.nickname, data.password, data.tel, data.address, data.subAddress, data.isAdmin, id);
   }
 
   // 회원(Member) 삭제
