@@ -27,13 +27,14 @@ export class ProductController {
     return await this.productService.findOne(id);
   }
 
+  // 상품 수정
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return await this.productService.update(+id, updateProductDto);
+  async update(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto): Promise<IMessage> {
+    return await this.productService.update(id, updateProductDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<IMessage> {
     return await this.productService.remove(+id);
   }
 }

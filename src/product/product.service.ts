@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/_common/dtos/create-product.dto';
 import { UpdateProductDto } from 'src/_common/dtos/update-product.dto';
@@ -36,12 +36,18 @@ export class ProductService {
     return await this.productRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    // return this.productRepository.findOne(updateProductDto);
-    // return this.productRepository.findOne({ where: updateProductDto });
+  // 상품 수정
+  async update(id: number, updateProductDto: UpdateProductDto): Promise<IMessage> {
+    const { name, price, content, count } = updateProductDto;
+    const existingMember = await this.findOne(id);
+    if (!existingMember) throw new NotFoundException('회원이 존재하지 않습니다.');
+
+    const updatedMember = { ...existingMember, name, price, content, count };
+    await this.productRepository.save(updatedMember);
+    return { message: '상품이 수정되었습니다.' };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: number): Promise<IMessage> {
+    return { message: '상품이 삭제되었습니다.' };
   }
 }
