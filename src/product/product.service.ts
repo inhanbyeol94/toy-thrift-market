@@ -3,13 +3,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/_common/dtos/create-product.dto';
 import { UpdateProductDto } from 'src/_common/dtos/update-product.dto';
-import { Product } from 'src/_common/entities';
+import { Pick, Product } from 'src/_common/entities';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 import { Like, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectRepository(Product) private productRepository: Repository<Product>) {}
+  constructor(
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(Pick) private readonly pickRepository: Repository<Pick>,
+  ) {}
 
   // 상품 추가
   async create(createProductDto: CreateProductDto): Promise<IMessage> {
@@ -32,6 +35,28 @@ export class ProductService {
     const products = await this.productRepository.find();
     if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');
     return products;
+  }
+
+  // 상품 검색
+  async search(search: SearchProductDto): Promise<Product[]> {
+    const { searchString } = search;
+    const products = await this.productRepository.find({ where: { name: Like(`%${searchString}%`) } });
+    return products;
+  }
+
+  // 찜한 상품 조회
+  async findPickedProducts(memberId: number) {
+    const result = await this.pickRepository.find({
+      where: { member_id: memberId },
+      relations: { product: true },
+      select: { member_id: true },
+      order: { createdAt: 'DESC' },
+    });
+    if (!result.length) throw new NotFoundException('상품이 존재하지 않습니다.');
+    const pickedProducts = result.map((item) => {
+      return item.product;
+    });
+    return pickedProducts;
   }
 
   // 상품 조회
@@ -59,12 +84,5 @@ export class ProductService {
 
     await this.productRepository.delete(id);
     return { message: '상품이 삭제되었습니다.' };
-  }
-
-  // 상품 검색
-  async search(search: SearchProductDto): Promise<Product[]> {
-    const { searchString } = search;
-    const products = await this.productRepository.find({ where: { name: Like(`%${searchString}%`) } });
-    return products;
   }
 }

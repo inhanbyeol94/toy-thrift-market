@@ -28,6 +28,13 @@ export class ProductController {
     return await this.productService.search(search);
   }
 
+  // 찜한 상품 조회
+  @Get('picks')
+  async getPickedProducts() {
+    const memberId = 32; // FIXME: 로그인한 회원의 id를 받게 수정
+    return await this.productService.findPickedProducts(memberId);
+  }
+
   // 상품 조회
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Product> {
