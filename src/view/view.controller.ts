@@ -69,4 +69,10 @@ export class ViewController {
   memberDelete(): IView {
     return { title: '관리자', subtitle: '회원 삭제' };
   }
+
+  @Get('members/mypage')
+  @Render('main/mypage.ejs')
+  memberGet(): IView {
+    return { title: '멤버', subtitle: '회원 정보' };
+  }
 }
