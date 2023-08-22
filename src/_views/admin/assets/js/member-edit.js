@@ -21,12 +21,13 @@ function loadMembers() {
         editButton.textContent = '수정';
 
         editButton.addEventListener('click', () => {
-          // 모달을 열고 회원 정보를 채워 넣는 로직
           openEditModal(member);
         });
 
         const buttonCell = document.createElement('td');
         buttonCell.appendChild(editButton);
+
+        const role = isAdmin ? '관리자' : '회원';
 
         const newRow = document.createElement('tr');
         newRow.classList.add('member-row');
@@ -39,12 +40,11 @@ function loadMembers() {
           <td>${tel}</td>
           <td>${address}</td>
           <td>${subAddress}</td>
-          <td>${isAdmin}</td>
+          <td>${role}</td>
         `;
 
         newRow.appendChild(buttonCell);
         MemberList.appendChild(newRow);
-        // 여기까지 추가된 코드 블록
       });
     });
 }
@@ -95,7 +95,6 @@ function openEditModal(member) {
     const isAdminValue = editIsAdminTrue.checked ? true : editIsAdminFalse.checked ? false : undefined;
 
     if (isAdminValue === undefined) {
-      // 어느 버튼도 선택되지 않았을 경우에 대한 처리
       alert('관리자 여부를 선택해주세요.');
       return;
     }
@@ -110,7 +109,6 @@ function openEditModal(member) {
       subAddress: subAddress.value,
       isAdmin: isAdminValue,
     };
-    // 수정 API 요청
     fetch(`/admin-members/${member.id}`, {
       method: 'PATCH',
       headers: {

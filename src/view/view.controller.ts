@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Res } from '@nestjs/common';
+import { Controller, Get, Render, Res, Query } from '@nestjs/common';
 import { IView } from '../_common/interfaces/view.interface';
 
 @Controller()
@@ -68,5 +68,19 @@ export class ViewController {
   @Render('admin/member-delete.ejs')
   memberDelete(): IView {
     return { title: '관리자', subtitle: '회원 삭제' };
+  }
+
+  // 게시판 관리
+  @Get('admins/board/manage')
+  @Render('admin/board-manage.ejs')
+  boardAdd(): IView {
+    return { title: '관리자', subtitle: '게시판 추가' };
+  }
+
+  // 게시판
+  @Get('board')
+  @Render('main/board.ejs')
+  loadBoard(@Query('boardId') boardId: number): IView {
+    return { title: '나중애', subtitle: '게시판' };
   }
 }
