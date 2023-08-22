@@ -1,10 +1,11 @@
+import { SearchProductDto } from './../_common/dtos/search-product.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/_common/dtos/create-product.dto';
 import { UpdateProductDto } from 'src/_common/dtos/update-product.dto';
 import { Product } from 'src/_common/entities';
 import { IMessage } from 'src/_common/interfaces/message.interface';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
@@ -51,11 +52,19 @@ export class ProductService {
     return { message: '상품이 수정되었습니다.' };
   }
 
+  // 상품 삭제
   async remove(id: number): Promise<IMessage> {
     const existingProduct = await this.findOne(id);
     if (!existingProduct) throw new NotFoundException('상품이 존재하지 않습니다.');
 
     await this.productRepository.delete(id);
     return { message: '상품이 삭제되었습니다.' };
+  }
+
+  // 상품 검색
+  async search(search: SearchProductDto): Promise<Product[]> {
+    const { searchString } = search;
+    const products = await this.productRepository.find({ where: { name: Like(`%${searchString}%`) } });
+    return products;
   }
 }

@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from '../_common/dtos/create-product.dto';
 import { UpdateProductDto } from '../_common/dtos/update-product.dto';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 import { Product } from 'src/_common/entities';
+import { SearchProductDto } from 'src/_common/dtos/search-product.dto';
 
 @Controller('products')
 export class ProductController {
@@ -21,6 +22,12 @@ export class ProductController {
     return await this.productService.findAll();
   }
 
+  // 상품 검색
+  @Get('search')
+  async search(@Query() search: SearchProductDto): Promise<Product[]> {
+    return await this.productService.search(search);
+  }
+
   // 상품 조회
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Product> {
@@ -33,8 +40,9 @@ export class ProductController {
     return await this.productService.update(id, updateProductDto);
   }
 
+  // 상품 삭제
   @Delete(':id')
-  async remove(@Param('id') id: string): Promise<IMessage> {
-    return await this.productService.remove(+id);
+  async remove(@Param('id') id: number): Promise<IMessage> {
+    return await this.productService.remove(id);
   }
 }
