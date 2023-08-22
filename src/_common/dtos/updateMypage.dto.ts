@@ -29,6 +29,9 @@ class UpdateMyPageDto {
   @IsNotEmpty()
   subAddress: string;
 
+  @IsString()
+  profileImage: string;
+
   @IsBoolean()
   @IsNotEmpty()
   isAdmin: boolean;
