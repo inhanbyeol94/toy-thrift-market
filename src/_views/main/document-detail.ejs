@@ -1,0 +1,44 @@
+<%- include('_includes/header') %>
+  <div class="container py-5 mt-md-2 mb-2">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <h2 class="h4 pb-3" id="title">제목</h2>
+        <p class="fs-md" id="content">내용</p>
+        <div class="mt-5">
+          <a class="btn btn-primary" id="editDocBtn">수정</a>
+          <a class="btn btn-primary" id="deleteDocBtn">삭제</a>
+        </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수정 모달 -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">문서 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm">
+            <div class="mb-3">
+              <label for="editTitle" class="form-label">제목</label>
+              <input type="text" class="form-control" id="editTitle" name="editTitle">
+            </div>
+            <div class="mb-3">
+              <label for="editContent" class="form-label">내용</label>
+              <textarea class="form-control" id="editContent" name="editContent" rows="4"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-primary" id="saveChangesBtn">저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('_includes/footer') %>
+    <script src="../main/js/document-detail.js" defer></script>

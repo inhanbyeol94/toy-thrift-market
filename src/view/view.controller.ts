@@ -83,4 +83,18 @@ export class ViewController {
   loadBoard(@Query('boardId') boardId: number): IView {
     return { title: '나중애', subtitle: '게시판' };
   }
+
+  // 게시물작성
+  @Get('document-write')
+  @Render('main/document-write.ejs')
+  documentWrite(@Query('boardId') boardId: number): IView {
+    return { title: '나중애', subtitle: '게시물작성' };
+  }
+
+  // 게시물 상세
+  @Get('document')
+  @Render('main/document-detail.ejs')
+  documentDetail(@Query('id') id: number): IView {
+    return { title: '나중애', subtitle: '게시물상세' };
+  }
 }

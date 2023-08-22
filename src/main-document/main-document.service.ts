@@ -5,6 +5,7 @@ import { CreateDocumentDto } from '../_common/dtos/create-document.dto';
 import { UpdateDocumentDto } from '../_common/dtos/update-document.dto';
 import { Document, Board, Member } from 'src/_common/entities';
 import { IMessage } from '../_common/interfaces/message.interface';
+// import { where } from 'sequelize';
 
 @Injectable()
 export class MainDocumentService {
@@ -29,18 +30,18 @@ export class MainDocumentService {
     return { message: '게시글이 추가되었습니다.' };
   }
   // 게시물 목록조회
-  async getDocuments(): Promise<Document[]> {
-    return await this.documentRepository.find();
+  async getDocuments(boardId: number): Promise<Document[]> {
+    return await this.documentRepository.find({ where: { board: { id: boardId } } });
   }
   // 게시물 상세조회
   async getOneDocument(id: number): Promise<Document> {
-    const document = await this.documentRepository.findOne({ where: { id } });
+    const document = await this.documentRepository.findOne({ where: { id: id } });
     if (!document) throw new HttpException('게시물을 찾지 못했습니다.', 404);
     return document;
   }
   // 게시물 수정
   async updateDocument(id: number, data: UpdateDocumentDto): Promise<IMessage> {
-    const document = await this.documentRepository.findOne({ where: { id } });
+    const document = await this.documentRepository.findOne({ where: { id: id } });
     if (!document) {
       throw new NotFoundException('해당하는 게시물이 없습니다.');
     }
@@ -55,7 +56,7 @@ export class MainDocumentService {
     if (!document) {
       throw new NotFoundException('해당하는 게시물이 없습니다.');
     }
-    await this.documentRepository.delete(id);
+    await this.documentRepository.softDelete(id);
     return { message: '게시물이 삭제되었습니다. ' };
   }
 }

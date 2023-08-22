@@ -15,19 +15,20 @@ export class MainDocumentController {
     return await this.documentService.createDocument(documentData);
   }
   // 게시물 목록조회
-  @Get()
+  @Get(':boardId')
   @HttpCode(200)
-  async getDocuments(): Promise<Document[]> {
-    return this.documentService.getDocuments();
+  async getDocuments(@Param('boardId') boardId: number): Promise<Document[]> {
+    return this.documentService.getDocuments(boardId);
   }
   // 게시물 상세조회
-  @Get(':id')
+  @Get('detail/:id')
   @HttpCode(200)
   async getOneDocument(@Param('id') id: number): Promise<Document> {
-    return this.documentService.getOneDocument(id);
+    console.log(id);
+    return await this.documentService.getOneDocument(id);
   }
   // 게시물 수정
-  @Patch(':id')
+  @Patch('edit/:id')
   @HttpCode(200)
   async updateDocument(@Param('id') id: number, @Body() data: UpdateDocumentDto): Promise<IMessage> {
     return this.documentService.updateDocument(id, data);
