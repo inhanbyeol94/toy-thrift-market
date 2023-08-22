@@ -22,6 +22,13 @@ export class ProductController {
     return await this.productService.findAll();
   }
 
+  // 내 상품 조회 --> 멤버 컨트롤러로 가야할까?
+  @Get('my-products')
+  async findByMemberId(): Promise<Product[]> {
+    const memberId = 44; // FIXME: 로그인한 회원의 id를 받게 수정
+    return await this.productService.findByMemberId(memberId);
+  }
+
   // 상품 검색
   @Get('search')
   async search(@Query() search: SearchProductDto): Promise<Product[]> {

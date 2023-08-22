@@ -25,6 +25,12 @@ export class Product {
   @Column()
   count: number;
 
+  @Column({ nullable: false })
+  member_id: number;
+
+  @Column({ nullable: false })
+  small_Category_id: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -41,11 +47,6 @@ export class Product {
     nullable: false,
   })
   smallCategory: SmallCategory;
-
-  // @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.products, {
-  //   nullable: false,
-  // })
-  // largeCategory: LargeCategory;
 
   @ManyToOne(() => Member, (member) => member.products, {
     nullable: false,

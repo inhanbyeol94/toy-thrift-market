@@ -37,6 +37,12 @@ export class ProductService {
     return products;
   }
 
+  // 내 상품 조회
+  async findByMemberId(memberId: number) {
+    const products = await this.productRepository.findBy({ member_id: memberId });
+    return products;
+  }
+
   // 상품 검색
   async search(search: SearchProductDto): Promise<Product[]> {
     const { searchString } = search;
