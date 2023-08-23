@@ -50,4 +50,10 @@ export class ViewController {
   categoryDelete(): IView {
     return { title: '관리자', subtitle: '카테고리 삭제' };
   }
+
+  @Get('pick')
+  @Render('main/pick.ejs')
+  pick(): IView {
+    return { title: '메인', subtitle: '찜목록' };
+  }
 }
