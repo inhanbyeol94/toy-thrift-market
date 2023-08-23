@@ -11,10 +11,9 @@ export class MiddleCategory {
   name: string;
 
   @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.middleCategories, {
-    onDelete: 'CASCADE',
     nullable: false,
   })
-  largeCategory: number;
+  largeCategory: LargeCategory;
 
   @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory)
   smallCategories: SmallCategory[];

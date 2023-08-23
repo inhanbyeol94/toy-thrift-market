@@ -1,24 +1,9 @@
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { TokenValidMiddleware } from 'src/_common/middlewares/token.valid.middleware';
-import { ViewAdminMiddleware } from 'src/_common/middlewares/view.admin.middleware';
-import { ViewAuthMiddleware } from 'src/_common/middlewares/view.auth.middleware';
+import { Module } from '@nestjs/common';
 import { ViewController } from './view.controller';
 import { ViewService } from './view.service';
 
 @Module({
   controllers: [ViewController],
-  providers: [ViewService, JwtService],
+  providers: [ViewService]
 })
-export class ViewModule {
-  configure(consumer: MiddlewareConsumer) {
-    /* 토큰 미들웨어 */
-    consumer.apply(TokenValidMiddleware).forRoutes(ViewController);
-
-    /* 로그인 제한 미들웨어*/
-    // consumer.apply(ViewAuthMiddleware).forRoutes({ path: '/', method: RequestMethod.GET });
-
-    /* 로그인 & 관리자 제한 미들웨어 */
-    consumer.apply(ViewAdminMiddleware).forRoutes({ path: '/admins/*', method: RequestMethod.GET });
-  }
-}
+export class ViewModule {}

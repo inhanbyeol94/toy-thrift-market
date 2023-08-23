@@ -1,7 +1,4 @@
-import { IPayload } from 'src/_common/interfaces/payload.interface';
-
-export interface IView extends Partial<IPayload> {
+export interface IView {
   title: string;
   subtitle: string;
-  isLogin: boolean;
 }
