@@ -9,11 +9,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
       const status = exception.getStatus(); // 예외코드
       const message = exception.message;
       response.status(status).json({ message });
-    } catch (error) {
+      console.log(exception);
+    } catch (err) {
       const ctx = host.switchToHttp();
       const response = ctx.getResponse<Response>();
+
       const message = exception.message;
       response.status(500).json({ message });
+      console.log(exception);
     }
   }
 }

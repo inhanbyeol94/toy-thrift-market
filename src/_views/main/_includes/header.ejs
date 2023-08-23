@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <% if(subtitle !== '메인') { %>
-        <title><%= title %> | <%= subtitle %></title>
-    <% } else { %>
-        <title><%= title %></title>
-    <% } %>
+    <title><%= title %> | <%= subtitle %></title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
     <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
@@ -41,11 +37,9 @@
                         <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
                         <input class="form-control rounded-start" type="text" placeholder="상품을 입력해주세요.">
                     </div>
-                    <% if(isLogin) { %>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"><span class="navbar-tool-tooltip">Favorites</span>
                         <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a>
-                    <div class="navbar-tool dropdown ms-2">
-                        <a class="navbar-tool-icon-box border dropdown-toggle" href="dashboard-sales.html"><img src="<%= profileImage %>" width="32" alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="/myprofile"><small><%= nickname %></small><%= name %></a>
+                    <div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="/members/mypage"><img src="https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png" width="32" alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="dashboard-sales.html"><small>잠꾸러기</small>심재두</a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div style="min-width: 14rem;">
                                 <h6 class="dropdown-header">Account</h6><a class="dropdown-item d-flex align-items-center" href="dashboard-settings.html"><i class="ci-settings opacity-60 me-2"></i>Settings</a><a class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i class="ci-basket opacity-60 me-2"></i>Purchases</a><a class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"><i class="ci-heart opacity-60 me-2"></i>Favorites<span class="fs-xs text-muted ms-auto">4</span></a>
@@ -55,9 +49,6 @@
                             </div>
                         </div>
                     </div>
-                    <% } else { %>
-                        <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
-                    <% } %>
                 </div>
                 <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
                     <!-- Search-->
