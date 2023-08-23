@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
 export interface IRequest extends Request {
-  user?: number;
+  user?: { id: number; email: string; name: string; nickname: string; isAdmin: boolean };
   file: any;
 }
