@@ -1,21 +1,13 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @IsNotEmpty()
-  @IsNumber()
-  memberId: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  smallCategoryId: number;
+  // @IsNotEmpty()
+  // @IsNumber()
+  // smallCategoryId: number;
 
   @IsNotEmpty()
   @IsString()
   name: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  productStatus: number;
 
   @IsNotEmpty()
   @IsNumber()
@@ -24,8 +16,4 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   content: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  count: number;
 }

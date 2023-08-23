@@ -5,6 +5,7 @@ import { CreateProductDto } from 'src/_common/dtos/create-product.dto';
 import { UpdateProductDto } from 'src/_common/dtos/update-product.dto';
 import { Pick, Product } from 'src/_common/entities';
 import { IMessage } from 'src/_common/interfaces/message.interface';
+import { ProductImageService } from 'src/product-image/product-image.service';
 import { Like, Repository } from 'typeorm';
 
 @Injectable()
@@ -12,21 +13,26 @@ export class ProductService {
   constructor(
     @InjectRepository(Product) private productRepository: Repository<Product>,
     @InjectRepository(Pick) private readonly pickRepository: Repository<Pick>,
+    private productImageService: ProductImageService,
   ) {}
 
   // 상품 추가
-  async create(createProductDto: CreateProductDto): Promise<IMessage> {
-    const { memberId, smallCategoryId, name, productStatus, price, content, count } = createProductDto;
+  async create(_product: CreateProductDto, productImages, memberId, smallCategoryId): Promise<IMessage> {
+    const { name, price, content } = _product;
+    const count = 1;
     const newProduct = this.productRepository.create({
       member: { id: memberId },
       smallCategory: { id: smallCategoryId },
       name,
-      productStatus,
       price,
       content,
       count,
     });
-    await this.productRepository.save(newProduct);
+    const product = await this.productRepository.save(newProduct);
+    // 이미지 추가
+    if (productImages) {
+      this.productImageService.create(product.id, productImages);
+    }
     return { message: '상품이 추가되었습니다.' };
   }
 
@@ -74,11 +80,11 @@ export class ProductService {
 
   // 상품 수정
   async update(id: number, updateProductDto: UpdateProductDto): Promise<IMessage> {
-    const { name, price, content, count } = updateProductDto;
+    const { name, price, content } = updateProductDto;
     const existingProduct = await this.findOne(id);
     if (!existingProduct) throw new NotFoundException('상품이 존재하지 않습니다.');
 
-    const updatedProduct = { ...existingProduct, name, price, content, count };
+    const updatedProduct = { ...existingProduct, name, price, content };
     await this.productRepository.save(updatedProduct);
     return { message: '상품이 수정되었습니다.' };
   }

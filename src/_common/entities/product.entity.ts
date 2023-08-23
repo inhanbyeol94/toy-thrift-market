@@ -13,7 +13,7 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: 1 })
   productStatus: number;
 
   @Column()

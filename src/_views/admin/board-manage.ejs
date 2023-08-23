@@ -1,0 +1,101 @@
+<%- include('_includes/header') %>
+  <%- include('_includes/sidebar') %>
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>게시판 관리 페이지</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">게시판 관리</a></li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section dashboard">
+        <div class="row">
+
+          <div class="col-lg-8">
+            <div class="row">
+
+              <div class="col-12">
+                <div class="card top-selling overflow-auto">
+                  <div class="card-body pb-0">
+                    <h5 class="card-title">게시판 목록</h5>
+                    <div class="member-table">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>게시판명</th>
+                            <th>게시물 작성 권한</th>
+                            <th>댓글 작성 권한</th>
+                            <th>수정하기</th>
+                            <th>삭제하기</th>
+                          </tr>
+                        </thead>
+                        <tbody id="boardList">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right side columns -->
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-body pb-0">
+                <h5 class="card-title">게시판 추가</h5>
+
+                <div class="news">
+                  <div class="post-item-large clearfix">
+                    게시판 이름 : <input class="boardName mb-3">
+                    <div class="form-group  mb-3">
+                      <label for="documentAuthority">게시물 작성 권한</label>
+                      <input type="checkbox" id="documentAuthority" />
+                    </div>
+                    <div class="form-group  mb-3">
+                      <label for="commentAuthority">댓글 작성 권한</label>
+                      <input type="checkbox" id="commentAuthority" />
+                    </div>
+                    <p class="boardAddBtn mt-3">
+                      <a>➕ 추가하기</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Right side columns -->
+
+        </div>
+      </section>
+
+      <!-- 수정하기 모달 -->
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>게시판 정보 수정</h2>
+          <form id="editForm">
+            <div class="col-sm-12">
+              <label class="form-label" for="name">이름</label>
+              <input class="form-control mb-3" type="text" id="editName" name="name" placeholder="Name" maxlength="50">
+            </div>
+            <div class="documentAuth-select-group mb-3">
+              <label for="editDocumentAuth">게시글 작성 권한:</label>
+              <input type="checkbox" id="documentAuth" />
+            </div>
+            <div class="commentAuth-select-group mb-3">
+              <label for="edit">댓글 작성 권한:</label>
+              <input type="checkbox" id="commentAuth" />
+            </div>
+            <button type="submit" class="btn btn-outline-dark">수정 완료</button>
+          </form>
+        </div>
+      </div>
+
+    </main><!-- End #main -->
+
+    <%- include('_includes/footer') %>
+      <script src="/admin/assets/js/board-manage.js"></script>
