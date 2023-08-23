@@ -50,4 +50,11 @@ export class ViewController {
   categoryDelete(): IView {
     return { title: '관리자', subtitle: '카테고리 삭제' };
   }
+
+  // 상품 추가 페이지
+  @Get('my-page/products/new')
+  @Render('main/add-new-product.ejs')
+  newProduct(): IView {
+    return { title: '마이페이지', subtitle: '상품 추가' };
+  }
 }
