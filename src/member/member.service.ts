@@ -1,13 +1,20 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMemberDto } from '../_common/dtos/members.dto';
 import { Repository } from 'typeorm';
 import { Member } from '../_common/entities/member.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IMessage } from '../_common/interfaces/message.interface';
 import * as bcrypt from 'bcrypt';
+import * as AWS from 'aws-sdk';
+import { UploadService } from '../upload/upload.service';
+import { DeleteDto } from '../_common/dtos/delete.dto';
+
 @Injectable()
 export class MemberService {
-  constructor(@InjectRepository(Member) private membersRepository: Repository<Member>) {}
+  constructor(
+    @InjectRepository(Member) private membersRepository: Repository<Member>,
+    private uploadService: UploadService,
+  ) {}
   //회원가입
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
     const { email, nickname, tel } = createMember;
@@ -25,5 +32,85 @@ export class MemberService {
     const newMember = this.membersRepository.create(createMember);
     await this.membersRepository.save(newMember);
     return { message: '회원가입이 완료되었습니다.' };
+  }
+  // 회원정보 조회
+  async findUser(id: number): Promise<Member> {
+    const getMember = await this.membersRepository.findOne({ where: { id } });
+    return {
+      ...getMember,
+      profileImage: getMember.profileImage || 'https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png',
+    };
+  }
+  // 회원정보 수정
+  async updateMember(id: number, name: string, nickname: string, tel: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IMessage> {
+    console.log(nickname);
+    const member = await this.membersRepository.findOne({ where: { id } });
+    if (!member) {
+      throw new NotFoundException('회원이 존재하지 않습니다.');
+    }
+    if (nickname !== member.nickname) {
+      const existingNickname = await this.membersRepository.findOne({ where: { nickname } });
+      if (existingNickname) {
+        throw new NotFoundException('이미 존재하는 닉네임입니다.');
+      }
+    }
+    if (tel !== member.tel) {
+      const existingTel = await this.membersRepository.findOne({ where: { tel } });
+      if (existingTel) {
+        throw new NotFoundException('이미 존재하는 전화번호입니다.');
+      }
+    }
+    if (file) {
+      const imageUpload = await this.uploadService.uploadFile(file);
+      member.name = name;
+      member.nickname = nickname;
+      member.tel = tel;
+      member.address = address;
+      member.subAddress = subAddress;
+      member.profileImage = imageUpload.Location;
+      await this.membersRepository.save(member);
+      return { message: '회원 정보가 수정되었습니다.' };
+    }
+
+    member.name = name;
+    member.nickname = nickname;
+    member.tel = tel;
+    member.address = address;
+    member.subAddress = subAddress;
+    await this.membersRepository.save(member);
+    return { message: '회원 정보가 수정되었습니다.' };
+  }
+
+  // 비밀번호 변경
+  async changePassword(memberId: number, password: string, confirmPassword: string): Promise<IMessage> {
+    const member = await this.membersRepository.findOne({ where: { id: memberId } });
+    if (!member) {
+      throw new NotFoundException('회원이 존재하지 않습니다.');
+    }
+
+    const oldPassword = await bcrypt.compare(password, member.password);
+    if (!oldPassword) {
+      throw new NotFoundException('기존 비밀번호가 올바르지 않습니다.');
+    }
+    const editPassword = await bcrypt.hash(confirmPassword, 10);
+    member.password = editPassword;
+    await this.membersRepository.save(member);
+    return { message: '비밀번호가 변경되었습니다.' };
+  }
+  // 회원탈퇴
+  async deleteMember(memberId: number, Dpassword: DeleteDto): Promise<IMessage> {
+    const { password } = Dpassword;
+    const existingMember = await this.membersRepository.findOne({ where: { id: memberId } });
+    if (!existingMember) {
+      throw new NotFoundException('회원이 존재하지 않습니다.');
+    }
+    // 비밀번호 검증
+    const isValidPassword = await bcrypt.compare(password, existingMember.password);
+    if (!isValidPassword) {
+      throw new BadRequestException('비밀번호가 일치하지 않습니다.');
+    }
+
+    await this.membersRepository.softDelete(memberId);
+    return { message: '회원 탈퇴가 완료되었습니다.' };
   }
 }

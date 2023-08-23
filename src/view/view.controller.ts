@@ -129,4 +129,10 @@ export class ViewController {
   pick(): IView {
     return { title: '메인', subtitle: '찜목록' };
   }
+
+  @Get('mypage')
+  @Render('main/mypage.ejs')
+  memberGet(): IView {
+    return { title: '멤버', subtitle: '회원 정보' };
+  }
 }
