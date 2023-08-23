@@ -7,6 +7,8 @@ import { ViewModule } from './view/view.module';
 import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
+import { ProductImageModule } from './product-image/product-image.module';
 import { AdminMemberModule } from './admin-member/admin-member.module';
 import { BoardModule } from './board/board.module';
 import { AdminBoardModule } from './admin-board/admin-board.module';
@@ -22,6 +24,8 @@ import { CommentModule } from './comment/comment.module';
     MemberModule,
     AuthModule,
     CategoryModule,
+    ProductModule,
+    ProductImageModule,
     AdminMemberModule,
     BoardModule,
     AdminBoardModule,
