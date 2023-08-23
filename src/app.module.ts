@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
 import { AdminMemberModule } from './admin-member/admin-member.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AdminMemberModule } from './admin-member/admin-member.module';
     AuthModule,
     CategoryModule,
     AdminMemberModule,
+    UploadModule,
   ],
   controllers: [],
   providers: [],
