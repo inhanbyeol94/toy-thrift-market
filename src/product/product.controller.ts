@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from '../_common/dtos/create-product.dto';
 import { UpdateProductDto } from '../_common/dtos/update-product.dto';
@@ -12,8 +12,12 @@ export class ProductController {
 
   // 상품 추가
   @Post()
-  async create(@Body() createProductDto: CreateProductDto): Promise<IMessage> {
-    return await this.productService.create(createProductDto);
+  async create(@Body() product: CreateProductDto, @Req() req): Promise<IMessage> {
+    const memberId = 32;
+    const smallCategoryId = 24;
+    const productImages = req.files.length ? req.files.map((file) => file.location) : null;
+    await this.productService.create(product, productImages, memberId, smallCategoryId);
+    return { message: '상품이 추가되었습니다.' };
   }
 
   // 상품 전체 조회
