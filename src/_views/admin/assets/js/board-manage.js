@@ -94,28 +94,17 @@ const openEditModal = (board) => {
 
   const editForm = document.getElementById('editForm');
   const editName = document.getElementById('editName');
+  const documentAuthIsChecked = document.getElementById('documentAuth');
+  const commentAuthIsChecked = document.getElementById('commentAuth');
 
   editName.value = board.name;
+  documentAuthIsChecked.checked = board.documentAuthority;
+  commentAuthIsChecked.checked = board.commentAuthority;
 
   editForm.onsubmit = function (event) {
     event.preventDefault();
-
-    const documentAuthTrue = document.getElementById('documentAuthTrue');
-    const documentAuthFalse = document.getElementById('documentAuthFalse');
-    const documentAuth = documentAuthTrue.checked ? true : documentAuthFalse.checked ? false : undefined;
-    if (documentAuth === undefined) {
-      alert('게시글 작성 권한을 선택해주세요.');
-      return;
-    }
-
-    const commentAuthTrue = document.getElementById('commentAuthTrue');
-    const commentAuthFalse = document.getElementById('commentAuthFalse');
-    const commentAuth = commentAuthTrue.checked ? true : commentAuthFalse.checked ? false : undefined;
-    if (commentAuth === undefined) {
-      alert('게시글 작성 권한을 선택해주세요.');
-      return;
-    }
-
+    const documentAuth = document.getElementById('documentAuth').checked;
+    const commentAuth = document.getElementById('commentAuth').checked;
     const updatedBoardData = {
       name: editName.value,
       documentAuthority: documentAuth,

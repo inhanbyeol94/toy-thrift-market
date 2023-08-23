@@ -3,12 +3,12 @@ import { IsBoolean, IsNumber, IsNotEmpty, IsString, Matches } from 'class-valida
 export class CreateDocumentDto {
   @IsString()
   @IsNotEmpty()
-  @Matches(/[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/)
+  @Matches(/[ㄱ-ㅎ가-힣a-zA-Z0-9\s~`!@#$%^&*()_+=[\]{}|\\;:'",<.>?/-]+$/)
   title: string;
 
   @IsString()
   @IsNotEmpty()
-  @Matches(/[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/)
+  @Matches(/[ㄱ-ㅎ가-힣a-zA-Z0-9\s~`!@#$%^&*()_+=[\]{}|\\;:'",<.>?/-]+$/)
   content: string;
 
   @IsBoolean()

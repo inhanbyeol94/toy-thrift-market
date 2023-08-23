@@ -10,6 +10,7 @@ import { AdminMemberModule } from './admin-member/admin-member.module';
 import { BoardModule } from './board/board.module';
 import { AdminBoardModule } from './admin-board/admin-board.module';
 import { MainDocumentModule } from './main-document/main-document.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MainDocumentModule } from './main-document/main-document.module';
     BoardModule,
     AdminBoardModule,
     MainDocumentModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],
