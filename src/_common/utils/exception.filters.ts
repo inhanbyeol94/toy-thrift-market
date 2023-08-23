@@ -1,16 +1,19 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
 import { Response } from 'express';
-
-@Catch(HttpException) // Catch 데코레이터
+@Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const status = exception.getStatus(); // 예외코드
-    const message = exception.message; // 예외메세지
-
-    response.status(status).json({ message });
-
-    console.error(exception);
+    try {
+      const ctx = host.switchToHttp();
+      const response = ctx.getResponse<Response>();
+      const status = exception.getStatus(); // 예외코드
+      const message = exception.message;
+      response.status(status).json({ message });
+    } catch (error) {
+      const ctx = host.switchToHttp();
+      const response = ctx.getResponse<Response>();
+      const message = exception.message;
+      response.status(500).json({ message });
+    }
   }
 }
