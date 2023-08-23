@@ -119,7 +119,8 @@ export class ViewController {
   // 상품 추가 페이지
   @Get('my-page/products/new')
   @Render('main/add-new-product.ejs')
-  newProduct(): IView {
-    return { title: '마이페이지', subtitle: '상품 추가' };
+  addProduct(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 추가', payload);
   }
 }
