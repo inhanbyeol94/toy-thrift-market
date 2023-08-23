@@ -40,7 +40,7 @@ export class Product {
   @OneToMany(() => Pick, (pick) => pick.product)
   picks: Pick[];
 
-  @OneToMany(() => ProductImage, (productImage) => productImage.product)
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true })
   productImages: Product[];
 
   @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
