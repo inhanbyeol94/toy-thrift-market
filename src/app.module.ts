@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from 'src/_common/typeorm.config';
 import { ViewModule } from './view/view.module';
@@ -16,6 +17,7 @@ import { CommentModule } from './comment/comment.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
+    JwtModule,
     ViewModule,
     MemberModule,
     AuthModule,
