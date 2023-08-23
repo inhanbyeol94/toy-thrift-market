@@ -117,7 +117,7 @@ export class ViewController {
   }
 
   // 상품 추가 페이지
-  @Get('my-page/products/new')
+  @Get('mypage/products/new')
   @Render('main/add-new-product.ejs')
   addProduct(@Req() req: IRequest): IView {
     const payload = req.user;
