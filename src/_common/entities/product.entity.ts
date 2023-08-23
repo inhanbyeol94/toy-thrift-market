@@ -1,9 +1,9 @@
-import { LargeCategory } from 'src/_common/entities/largeCategory.entity';
 import { Member } from 'src/_common/entities/member.entity';
 import { Pick } from 'src/_common/entities/pick.entity';
 import { ProductImage } from 'src/_common/entities/productImage.entity';
 import { Trade } from 'src/_common/entities/trade.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { SmallCategory } from './smallCategory.entity';
 
 @Entity()
 export class Product {
@@ -13,7 +13,7 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: 1 })
   productStatus: number;
 
   @Column()
@@ -25,6 +25,12 @@ export class Product {
   @Column()
   count: number;
 
+  @Column({ nullable: false })
+  member_id: number;
+
+  @Column({ nullable: false })
+  small_Category_id: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -34,13 +40,13 @@ export class Product {
   @OneToMany(() => Pick, (pick) => pick.product)
   picks: Pick[];
 
-  @OneToMany(() => ProductImage, (productImage) => productImage.product)
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true })
   productImages: Product[];
 
-  @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.products, {
+  @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
     nullable: false,
   })
-  largeCategory: LargeCategory;
+  smallCategory: SmallCategory;
 
   @ManyToOne(() => Member, (member) => member.products, {
     nullable: false,

@@ -1,0 +1,62 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-heading">Pages</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admins/board/manage">
+        <i class="bi bi-journal-text"></i>
+        <span>게시판 관리</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-menu-button-wide"></i><span>카테고리 관리</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/admins/category/add">
+            <i class="bi bi-circle"></i><span>카테고리 추가</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/category/edit">
+            <i class="bi bi-circle"></i><span>카테고리 수정</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/category/delete">
+            <i class="bi bi-circle"></i><span>카테고리 삭제</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-person"></i><span>회원 관리</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/admins/member/add">
+            <i class="bi bi-circle"></i><span>회원 추가</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/member/edit">
+            <i class="bi bi-circle"></i><span>회원 수정</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admins/member/delete">
+            <i class="bi bi-circle"></i><span>회원 삭제</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Forms Nav -->
+
+  </ul>
+
+</aside><!-- End Sidebar -->

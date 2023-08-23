@@ -32,6 +32,9 @@ export class Member {
   address: string;
 
   @Column()
+  subAddress: string;
+
+  @Column()
   isAdmin: boolean;
 
   @CreateDateColumn()
@@ -52,9 +55,9 @@ export class Member {
   @OneToMany(() => Trade, (trade) => trade.member)
   trades: Trade[];
 
-  @OneToMany(() => Document, (document) => document.member)
+  @OneToMany(() => Document, (document) => document.member, { cascade: true })
   documents: Document[];
 
-  @OneToMany(() => Comment, (comment) => comment.member)
+  @OneToMany(() => Comment, (comment) => comment.member, { cascade: true })
   comments: Comment[];
 }

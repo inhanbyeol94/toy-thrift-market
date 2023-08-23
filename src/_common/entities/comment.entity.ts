@@ -20,11 +20,14 @@ export class Comment {
   deletedAt: Date;
 
   @ManyToOne(() => Member, (member) => member.comments, {
+    onDelete: 'CASCADE',
     nullable: false,
+    eager: true,
   })
   member: Member;
 
   @ManyToOne(() => Document, (document) => document.comments, {
+    onDelete: 'CASCADE',
     nullable: false,
   })
   document: Document;
