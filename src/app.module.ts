@@ -8,6 +8,10 @@ import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
 import { AdminMemberModule } from './admin-member/admin-member.module';
+import { BoardModule } from './board/board.module';
+import { AdminBoardModule } from './admin-board/admin-board.module';
+import { MainDocumentModule } from './main-document/main-document.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -19,6 +23,10 @@ import { AdminMemberModule } from './admin-member/admin-member.module';
     AuthModule,
     CategoryModule,
     AdminMemberModule,
+    BoardModule,
+    AdminBoardModule,
+    MainDocumentModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],

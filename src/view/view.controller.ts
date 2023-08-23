@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Req } from '@nestjs/common';
+import { Controller, Get, Render, Res, Req, Query } from '@nestjs/common';
 import { IRequest } from 'src/_common/interfaces/request.interface';
 import { ViewService } from 'src/view/view.service';
 import { IView } from '../_common/interfaces/view.interface';
@@ -83,5 +83,36 @@ export class ViewController {
   memberDelete(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '회원 삭제', payload);
+  }
+
+  // 게시판 관리
+  @Get('admins/board/manage')
+  @Render('admin/board-manage.ejs')
+  boardAdd(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '게시판 추가', payload);
+  }
+
+  // 게시판
+  @Get('board')
+  @Render('main/board.ejs')
+  loadBoard(@Req() req: IRequest, @Query('boardId') boardId: number): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '게시판', payload);
+  }
+
+  // 게시물작성
+  @Get('document-write')
+  @Render('main/document-write.ejs')
+  documentWrite(@Req() req: IRequest, @Query('boardId') boardId: number): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '게시물 작성', payload);
+  }
+  // 게시물 상세
+  @Get('document')
+  @Render('main/document-detail.ejs')
+  documentDetail(@Req() req: IRequest, @Query('id') id: number): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '게시물 상세', payload);
   }
 }
