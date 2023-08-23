@@ -123,4 +123,10 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '상품 추가', payload);
   }
+
+  @Get('pick')
+  @Render('main/pick.ejs')
+  pick(): IView {
+    return { title: '메인', subtitle: '찜목록' };
+  }
 }
