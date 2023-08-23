@@ -27,15 +27,18 @@ export class Document {
   deletedAt: Date;
 
   @ManyToOne(() => Member, (member) => member.documents, {
+    onDelete: 'CASCADE',
     nullable: false,
+    eager: true,
   })
   member: Member;
 
   @ManyToOne(() => Board, (board) => board.documents, {
+    onDelete: 'CASCADE',
     nullable: false,
   })
   board: Board;
 
-  @OneToMany(() => Comment, (comment) => comment.document)
+  @OneToMany(() => Comment, (comment) => comment.document, { cascade: true })
   comments: Comment[];
 }
