@@ -21,7 +21,7 @@ export class AuthService {
     if (!(await bcrypt.compare(passowrd, member.password))) {
       throw new HttpException('사용자 정보가 일치하지 않습니다.', 403);
     }
-    const payload = { id: member.id, email: member.email, nickname: member.nickname, isAdmin: member.isAdmin };
+    const payload = { id: member.id, email: member.email, nickname: member.nickname, name: member.name, isAdmin: member.isAdmin };
     return { access_token: this.jwtService.sign(payload, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_TIME, secret: process.env.ACCESS_SECRET_KEY }) };
   }
 }
