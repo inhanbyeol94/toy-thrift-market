@@ -126,13 +126,15 @@ export class ViewController {
 
   @Get('pick')
   @Render('main/pick.ejs')
-  pick(): IView {
-    return { title: '메인', subtitle: '찜목록' };
+  pick(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '찜목록', payload);
   }
 
   @Get('mypage')
   @Render('main/mypage.ejs')
-  memberGet(): IView {
-    return { title: '멤버', subtitle: '회원 정보' };
+  memberGet(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '프로필', payload);
   }
 }
