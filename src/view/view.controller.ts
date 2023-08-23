@@ -1,72 +1,87 @@
-import { Controller, Get, Render, Res } from '@nestjs/common';
+import { Controller, Get, Render, Req } from '@nestjs/common';
+import { IRequest } from 'src/_common/interfaces/request.interface';
+import { ViewService } from 'src/view/view.service';
 import { IView } from '../_common/interfaces/view.interface';
 
 @Controller()
 export class ViewController {
+  constructor(private viewService: ViewService) {}
+
   @Get()
   @Render('main/index.ejs')
-  index(): IView {
-    return { title: '테스트', subtitle: '서브 테스트' };
+  index(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '메인', payload);
   }
 
   @Get('login')
   @Render('main/login.ejs')
-  login(): IView {
-    return { title: '나중애', subtitle: '로그인' };
+  login(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '로그인', payload);
   }
 
   @Get('signup')
   @Render('main/signup.ejs')
-  signup(): IView {
-    return { title: '나중애', subtitle: '회원가입' };
+  signup(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '회원가입', payload);
   }
 
   @Get('admins')
   @Render('admin/index.ejs')
-  admin(): IView {
-    return { title: '나중애', subtitle: '관리자' };
+  admin(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '대시보드', payload);
   }
 
   @Get('admins/category')
   @Render('admin/category-manage.ejs')
-  category(): IView {
-    return { title: '관리자', subtitle: '카테고리 관리' };
+  category(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '카테고리 관리', payload);
   }
 
   @Get('admins/category/add')
   @Render('admin/category-add.ejs')
-  categoryAdd(): IView {
-    return { title: '관리자', subtitle: '카테고리 추가' };
+  categoryAdd(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '카테고리 추가', payload);
   }
 
   @Get('admins/category/edit')
   @Render('admin/category-edit.ejs')
-  categoryEdit(): IView {
-    return { title: '관리자', subtitle: '카테고리 수정' };
+  categoryEdit(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '카테고리 수정', payload);
   }
 
   @Get('admins/category/delete')
   @Render('admin/category-delete.ejs')
-  categoryDelete(): IView {
-    return { title: '관리자', subtitle: '카테고리 삭제' };
+  categoryDelete(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '카테고리 삭제', payload);
   }
 
   // 회원관리 => 회원을 member로 지칭
   @Get('admins/member/add')
   @Render('admin/member-add.ejs')
-  memberAdd(): IView {
-    return { title: '관리자', subtitle: '회원 추가' };
+  memberAdd(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '회원 추가', payload);
   }
 
   @Get('admins/member/edit')
   @Render('admin/member-edit.ejs')
-  memberEdit(): IView {
-    return { title: '관리자', subtitle: '회원 수정' };
+  memberEdit(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '회원 수정', payload);
   }
 
   @Get('admins/member/delete')
   @Render('admin/member-delete.ejs')
-  memberDelete(): IView {
-    return { title: '관리자', subtitle: '회원 삭제' };
+  memberDelete(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '회원 삭제', payload);
   }
 }
