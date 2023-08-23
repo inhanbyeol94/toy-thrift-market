@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { ProductImageModule } from './product-image/product-image.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ProductModule } from './product/product.module';
     AuthModule,
     CategoryModule,
     ProductModule,
+    ProductImageModule,
   ],
   controllers: [],
   providers: [],
