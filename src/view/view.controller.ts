@@ -70,7 +70,7 @@ export class ViewController {
     return { title: '관리자', subtitle: '회원 삭제' };
   }
 
-  @Get('members/mypage')
+  @Get('mypage')
   @Render('main/mypage.ejs')
   memberGet(): IView {
     return { title: '멤버', subtitle: '회원 정보' };
