@@ -5,15 +5,19 @@ import { Pick, Product } from 'src/_common/entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UploadMiddleware } from 'src/_common/middlewares/upload.middleware';
 import { ProductImageModule } from 'src/product-image/product-image.module';
+import { TokenValidMiddleware } from 'src/_common/middlewares/token.valid.middleware';
+import { ViewAuthMiddleware } from 'src/_common/middlewares/view.auth.middleware';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Product, Pick]), ProductImageModule],
   controllers: [ProductController],
-  providers: [ProductService],
+  providers: [ProductService, JwtService],
 })
 export class ProductModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(UploadMiddleware).forRoutes({ path: '/products', method: RequestMethod.POST });
-    // consumer.apply(TokenValidMiddleware).forRoutes(BoardsController);
+    consumer.apply(TokenValidMiddleware).forRoutes(ProductController);
+    consumer.apply(ViewAuthMiddleware).forRoutes({ path: '/products/my-products', method: RequestMethod.GET });
   }
 }

@@ -17,7 +17,8 @@ export class ProductController {
   @Post()
   async create(@Body() _product: CreateProductDto, @Req() req: IRequest): Promise<IMessage> {
     const { id: memberId } = req.user;
-    await this.productService.create(_product, req.files, memberId);
+    const _files = req.files;
+    await this.productService.create(_product, _files, memberId);
     return { message: '상품이 추가되었습니다.' };
   }
 
