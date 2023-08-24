@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Post, Body, Res, Delete } from '@nestjs/common';
+import { IMessage } from 'src/_common/interfaces/message.interface';
 import { AuthService } from './auth.service';
 import { AuthDto } from '../_common/dtos/auth.dto';
 import { Response } from 'express';
@@ -13,5 +14,11 @@ export class AuthController {
 
     res.cookie('access_token', result.access_token, { httpOnly: true });
     return res.status(200).json(true);
+  }
+
+  @Delete()
+  async logout(@Res() res: Response): Promise<Response> {
+    res.clearCookie('access_token');
+    return res.status(200).json({ result: true });
   }
 }
