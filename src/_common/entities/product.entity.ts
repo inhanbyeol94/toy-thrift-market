@@ -13,7 +13,7 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: 1 })
   productStatus: number;
 
   @Column()
@@ -25,6 +25,12 @@ export class Product {
   @Column()
   count: number;
 
+  @Column({ nullable: false })
+  member_id: number;
+
+  @Column({ nullable: false })
+  small_Category_id: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -34,18 +40,13 @@ export class Product {
   @OneToMany(() => Pick, (pick) => pick.product)
   picks: Pick[];
 
-  @OneToMany(() => ProductImage, (productImage) => productImage.product)
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true })
   productImages: Product[];
 
   @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
     nullable: false,
   })
   smallCategory: SmallCategory;
-
-  // @ManyToOne(() => LargeCategory, (largeCategory) => largeCategory.products, {
-  //   nullable: false,
-  // })
-  // largeCategory: LargeCategory;
 
   @ManyToOne(() => Member, (member) => member.products, {
     nullable: false,

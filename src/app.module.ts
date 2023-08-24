@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from 'src/_common/typeorm.config';
 import { ViewModule } from './view/view.module';
@@ -13,12 +12,12 @@ import { AdminBoardModule } from './admin-board/admin-board.module';
 import { MainDocumentModule } from './main-document/main-document.module';
 import { CommentModule } from './comment/comment.module';
 import { SlackModule } from './slack/slack.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
-    JwtModule,
     ViewModule,
     MemberModule,
     AuthModule,
@@ -29,6 +28,7 @@ import { SlackModule } from './slack/slack.module';
     MainDocumentModule,
     CommentModule,
     SlackModule,
+    UploadModule,
   ],
   controllers: [],
   providers: [],

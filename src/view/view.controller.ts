@@ -115,4 +115,26 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '게시물 상세', payload);
   }
+
+  // 상품 추가 페이지
+  @Get('my-page/products/new')
+  @Render('main/add-new-product.ejs')
+  addProduct(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 추가', payload);
+  }
+
+  @Get('pick')
+  @Render('main/pick.ejs')
+  pick(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '찜목록', payload);
+  }
+
+  @Get('mypage')
+  @Render('main/mypage.ejs')
+  memberGet(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '프로필', payload);
+  }
 }
