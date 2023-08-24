@@ -623,6 +623,7 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .img-thumbnail {
@@ -15793,6 +15794,7 @@ a.nav-link:hover .media-tab-media {
   border-radius: 50%;
   line-height: 2.625rem;
   text-align: center;
+  overflow: hidden;
 }
 .navbar-tool-icon-box.dropdown-toggle::after {
   display: none;
