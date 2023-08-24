@@ -16,7 +16,7 @@ export class ViewModule {
     consumer.apply(TokenValidMiddleware).forRoutes(ViewController);
 
     /* 로그인 제한 미들웨어*/
-    // consumer.apply(ViewAuthMiddleware).forRoutes({ path: '/', method: RequestMethod.GET });
+    consumer.apply(ViewAuthMiddleware).forRoutes({ path: '/myprofile', method: RequestMethod.GET }, { path: '/pick', method: RequestMethod.GET });
 
     /* 로그인 & 관리자 제한 미들웨어 */
     consumer.apply(ViewAdminMiddleware).forRoutes({ path: '/admins/*', method: RequestMethod.GET });
