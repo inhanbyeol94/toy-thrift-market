@@ -12,6 +12,7 @@ import { BoardModule } from './board/board.module';
 import { AdminBoardModule } from './admin-board/admin-board.module';
 import { MainDocumentModule } from './main-document/main-document.module';
 import { CommentModule } from './comment/comment.module';
+import { SlackModule } from './slack/slack.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { CommentModule } from './comment/comment.module';
     AdminBoardModule,
     MainDocumentModule,
     CommentModule,
+    SlackModule,
   ],
   controllers: [],
   providers: [],

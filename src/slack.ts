@@ -1,17 +1,18 @@
-import { WebClient } from '@slack/web-api';
+// import { WebClient } from '@slack/web-api';
 
-const token = process.env.BOT_TOKEN;
-const web = new WebClient(token);
+// const token = 'xoxb-5780611130694-5793352678868-mUhGbgFqpOpdqRibvkdQ9fbh';
+// console.log(token);
+// const web = new WebClient(token);
 
-export async function sendSlackMessage(message: string) {
-  try {
-    const result = await web.chat.postMessage({
-      channel: '#general', // 메시지를 보낼 채널 이름
-      text: message,
-    });
+// export const sendSlackMessage = async (message: string) => {
+//   try {
+//     const result = await web.chat.postMessage({
+//       channel: 'C05PUUANS3S',
+//       text: message,
+//     });
 
-    console.log('Message sent: ', result.ts);
-  } catch (error) {
-    console.error('Error sending message to Slack: ', error);
-  }
-}
+//     console.log('Message sent: ', result.ts);
+//   } catch (error) {
+//     console.error('Error sending message to Slack: ', error);
+//   }
+// };
