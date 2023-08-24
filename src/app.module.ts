@@ -13,6 +13,7 @@ import { MainDocumentModule } from './main-document/main-document.module';
 import { CommentModule } from './comment/comment.module';
 import { SlackModule } from './slack/slack.module';
 import { UploadModule } from './upload/upload.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UploadModule } from './upload/upload.module';
     CommentModule,
     SlackModule,
     UploadModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],
