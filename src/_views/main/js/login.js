@@ -3,6 +3,17 @@ const loginBtnEl = document.querySelector('#login-button');
 loginBtnEl.addEventListener('click', async () => {
   const email = document.querySelector('#login-email').value;
   const password = document.querySelector('#login-password').value;
+  // 필수값 검증
+  if (!email.trim()) return alert('이메일을 입력해주세요.');
+  if (!password.trim()) return alert('비밀번호를 입력해주세요.');
+  // 정규식 검사
+  const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  const passwordRegexp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])/;
+  if (!emailRegexp.test(email)) return alert('이메일 주소와 비밀번호를 확인해주세요.');
+  if (!passwordRegexp.test(password)) return alert('이메일 주소와 비밀번호를 확인해주세요.');
+  // 문자열 길이 검사
+  if (email.length < 8 || email.length > 50) return alert('이메일 주소와 비밀번호를 확인해주세요.');
+  if (password.length < 8 || password.length > 20) return alert('이메일 주소와 비밀번호를 확인해주세요.');
 
   try {
     const response = await fetch(`/auth/login`, {
