@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><%= title %> | <%= subtitle %></title>
+    <% if(subtitle !== '메인') { %>
+        <title><%= title %> | <%= subtitle %></title>
+    <% } else { %>
+        <title><%= title %></title>
+    <% } %>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
     <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
@@ -22,6 +26,8 @@
     <link rel="stylesheet" media="screen" href="/main/vendor/tiny-slider/dist/tiny-slider.css"/>
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="/main/css/theme.min.css">
+    <!--Project JS-->
+    <script src="/main/js/header.js" defer></script>
 </head>
 <!-- Body-->
 <body class="handheld-toolbar-enabled">
@@ -37,18 +43,23 @@
                         <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
                         <input class="form-control rounded-start" type="text" placeholder="상품을 입력해주세요.">
                     </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"><span class="navbar-tool-tooltip">Favorites</span>
-                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a>
-                    <div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="/mypage"><img src="https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png" width="32" alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="dashboard-sales.html"><small>잠꾸러기</small>심재두</a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <div style="min-width: 14rem;">
-                                <h6 class="dropdown-header">Account</h6><a class="dropdown-item d-flex align-items-center" href="dashboard-settings.html"><i class="ci-settings opacity-60 me-2"></i>Settings</a><a class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i class="ci-basket opacity-60 me-2"></i>Purchases</a><a class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"><i class="ci-heart opacity-60 me-2"></i>Favorites<span class="fs-xs text-muted ms-auto">4</span></a>
-                                <div class="dropdown-divider"></div>
-                                <h6 class="dropdown-header">Seller Dashboard</h6><a class="dropdown-item d-flex align-items-center" href="dashboard-sales.html"><i class="ci-dollar opacity-60 me-2"></i>Sales<span class="fs-xs text-muted ms-auto">$1,375.00</span></a><a class="dropdown-item d-flex align-items-center" href="dashboard-products.html"><i class="ci-package opacity-60 me-2"></i>Products<span class="fs-xs text-muted ms-auto">5</span></a><a class="dropdown-item d-flex align-items-center" href="dashboard-add-new-product.html"><i class="ci-cloud-upload opacity-60 me-2"></i>Add New Product</a><a class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item d-flex align-items-center" href="account-signin.html"><i class="ci-sign-out opacity-60 me-2"></i>Sign Out</a>
+                    <% if(isLogin) { %>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"><span class="navbar-tool-tooltip">Favorites</span>
+                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a>
+                        <div class="navbar-tool dropdown ms-2">
+                            <a class="navbar-tool-icon-box border dropdown-toggle" href="dashboard-sales.html"><img src="<%= profileImage %>" width="32" alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="#"><small><%= nickname %></small><%= name %></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <div style="min-width: 14rem;">
+                                    <h6 class="dropdown-header">Account</h6><a class="dropdown-item d-flex align-items-center" href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a><a class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i class="ci-basket opacity-60 me-2"></i>Purchases</a><a class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"><i class="ci-heart opacity-60 me-2"></i>Favorites<span class="fs-xs text-muted ms-auto">4</span></a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Seller Dashboard</h6><a class="dropdown-item d-flex align-items-center" href="dashboard-sales.html"><i class="ci-dollar opacity-60 me-2"></i>Sales<span class="fs-xs text-muted ms-auto">$1,375.00</span></a><a class="dropdown-item d-flex align-items-center" href="dashboard-products.html"><i class="ci-package opacity-60 me-2"></i>Products<span class="fs-xs text-muted ms-auto">5</span></a><a class="dropdown-item d-flex align-items-center" href="dashboard-add-new-product.html"><i class="ci-cloud-upload opacity-60 me-2"></i>Add New Product</a><a class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item d-flex align-items-center" href="#" id="logoutBtn"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <% } else { %>
+                        <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
+                    <% } %>
                 </div>
                 <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
                     <!-- Search-->
