@@ -6,10 +6,13 @@ let formData = new FormData();
 form.addEventListener('submit', async (e) => {
   try {
     e.preventDefault();
+    const smallCategoryId = smallCategoryOptionEl.value;
     const productName = document.querySelector('#unp-product-name').value;
     const content = document.querySelector('#unp-product-description').value;
     const price = document.querySelector('#unp-standard-price').value;
+    if (smallCategoryId === '0') return alert('카테고리를 선택해주세요.');
 
+    formData.append('smallCategoryId', smallCategoryId);
     formData.append('name', productName);
     formData.append('content', content);
     formData.append('price', price);
@@ -76,6 +79,7 @@ loadCategories();
 const largeCategoryOptionEl = document.querySelector('#unp-category-large');
 const middleCategoryOptionEl = document.querySelector('#unp-category-middle');
 const smallCategoryOptionEl = document.querySelector('#unp-category-small');
+const NO_CATEGORY_OPTION = '<option value="0">카테고리 선택</option>';
 
 async function loadCategories() {
   const response = await fetch('/categories/large');
@@ -88,11 +92,12 @@ async function loadCategories() {
   largeCategoryOptionEl.addEventListener('change', () => {
     const largeCategoryId = largeCategoryOptionEl.value;
     if (largeCategoryId === '0') {
-      middleCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
-      smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+      middleCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
+      NO_CATEGORY_OPTION;
+      smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
       return;
     }
-    smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+    smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
     const selectedLarge = largeCategories.find((e) => e.id === largeCategoryId);
     generateCategories(selectedLarge.middleCategories, middleCategoryOptionEl);
   });
@@ -106,7 +111,7 @@ async function loadCategories() {
   middleCategoryOptionEl.addEventListener('change', () => {
     const middleCategoryId = middleCategoryOptionEl.value;
     if (middleCategoryId === '0') {
-      smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+      smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
       return;
     }
     const selectedMiddle = middleCategories.find((e) => e.id === middleCategoryId);

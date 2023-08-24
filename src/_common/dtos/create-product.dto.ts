@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  // @IsNotEmpty()
-  // @IsNumber()
-  // smallCategoryId: number;
+  @IsNotEmpty()
+  @IsNumber()
+  smallCategoryId: number;
 
   @IsNotEmpty()
   @IsString()
