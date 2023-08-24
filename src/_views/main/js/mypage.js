@@ -84,6 +84,11 @@ async function updateMemberInfo() {
 
 // 비밀번호 변경
 async function editPassword() {
+  if (!editpassWord.value.trim() || !confirmPW.value.trim()) {
+    alert('새로운 비밀번호와 확인 비밀번호를 입력해주세요.');
+    return;
+  }
+
   if (editpassWord.value !== confirmPW.value) {
     alert('새로운 비밀번호와 확인 비밀빈호가 일치하지 않습니다.');
     return;
