@@ -37,6 +37,9 @@ npm install ejs
 npm install multer multer-s3 aws-sdk @types/uuidv4 @types/multer
 npm install cookie-parser
 npm install typeorm-naming-strategies
+npm install @nestjs/cache-manager cache-manager
+npm install cache-manager-redis-store
+npm install crypto
 ```
 ### .prettierrc
 ```bash
