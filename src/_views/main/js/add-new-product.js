@@ -72,7 +72,54 @@ function previewImages() {
   }
 }
 
-// async function loadCategories() {
-//   const response = await fetch('/categories/large');
-//   const data = response.json();
-// }
+loadCategories();
+const largeCategoryOptionEl = document.querySelector('#unp-category-large');
+const middleCategoryOptionEl = document.querySelector('#unp-category-middle');
+const smallCategoryOptionEl = document.querySelector('#unp-category-small');
+
+async function loadCategories() {
+  const response = await fetch('/categories/large');
+  const largeCategories = await response.json();
+
+  // 라지 카테고리 옵션 생성
+  generateCategories(largeCategories, largeCategoryOptionEl);
+
+  // 라지 카테고리 선택 시, 하위 미들 카테고리 옵션 생성
+  largeCategoryOptionEl.addEventListener('change', () => {
+    const largeCategoryId = largeCategoryOptionEl.value;
+    if (largeCategoryId === '0') {
+      middleCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+      smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+      return;
+    }
+    smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+    const selectedLarge = largeCategories.find((e) => e.id === largeCategoryId);
+    generateCategories(selectedLarge.middleCategories, middleCategoryOptionEl);
+  });
+
+  const middleCategories = [];
+  largeCategories.forEach((large) => {
+    middleCategories.push(...large.middleCategories);
+  });
+
+  // 미들 카테고리 선택 시, 하위 스몰 카테고리 옵션 생성
+  middleCategoryOptionEl.addEventListener('change', () => {
+    const middleCategoryId = middleCategoryOptionEl.value;
+    if (middleCategoryId === '0') {
+      smallCategoryOptionEl.innerHTML = '<option>카테고리 선택</option>';
+      return;
+    }
+    const selectedMiddle = middleCategories.find((e) => e.id === middleCategoryId);
+    generateCategories(selectedMiddle.smallCategories, smallCategoryOptionEl);
+  });
+}
+
+// 카테고리 옵션 생성 함수
+function generateCategories(categories, categoryElement) {
+  categories.forEach((category) => {
+    const optionElement = document.createElement('option');
+    optionElement.value = category.id;
+    optionElement.textContent = category.name;
+    categoryElement.appendChild(optionElement);
+  });
+}
