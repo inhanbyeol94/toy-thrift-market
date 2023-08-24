@@ -29,11 +29,11 @@ export class MainDocumentService {
     const newDocument = this.documentRepository.create({ title, content, isSecret, member: exisingMember, board: existingBoard });
     await this.documentRepository.save(newDocument);
 
-    // 슬랙 메시지 보내기
-    const slackMessage = `${boardName}게시판에 새로운 게시물이 등록되었습니다: ${title}`;
-    // sendSlackMessage(slackMessage);
-    this.slackService.sendSlackMessage(slackMessage);
-
+    if (boardName === '문의하기') {
+      // 슬랙 메시지 보내기
+      const slackMessage = `${boardName}게시판에 새 게시물이 등록되었습니다: "${title}"`;
+      this.slackService.sendSlackMessage(slackMessage);
+    }
     return { message: '게시물이 작성되었습니다.' };
   }
   // 게시물 목록조회
