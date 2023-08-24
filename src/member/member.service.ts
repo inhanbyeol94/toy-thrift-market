@@ -1,4 +1,5 @@
-import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { IClientVerifyIdentity } from 'src/_common/interfaces/clientVerifyIdentity.interface';
 import { CreateMemberDto } from '../_common/dtos/members.dto';
 import { Repository } from 'typeorm';
 import { Member } from '../_common/entities/member.entity';
@@ -10,6 +11,8 @@ import { UploadService } from '../upload/upload.service';
 import { DeleteDto } from '../_common/dtos/delete.dto';
 import { JwtService } from '@nestjs/jwt';
 import { IToken } from '../_common/interfaces/token.interface';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class MemberService {
@@ -17,9 +20,15 @@ export class MemberService {
     @InjectRepository(Member) private membersRepository: Repository<Member>,
     private uploadService: UploadService,
     private jwtService: JwtService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
   //회원가입
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
+    const findByVerifyData: IClientVerifyIdentity = await this.cacheManager.get(createMember.tel);
+    console.log(typeof findByVerifyData.sequence, typeof createMember.sequence);
+    if (!findByVerifyData || +findByVerifyData.sequence !== createMember.sequence || findByVerifyData.type !== 200)
+      throw new HttpException('핸드폰 인증이 완료되지 않았습니다.', 403);
+
     const { email, nickname, tel } = createMember;
     // 존재하는 이메일이 있을때
     const existingEmail = await this.membersRepository.findOne({ where: { email } });
@@ -29,7 +38,7 @@ export class MemberService {
     if (existingNickname) throw new HttpException('이미 존재하는 닉네임 입니다.', 403);
     // 존재하는 전화번호가 있을때
     const existingTel = await this.membersRepository.findOne({ where: { tel } });
-    if (existingTel) throw new HttpException('이미 존재하는 전화번호 입니다.', 403);
+    if (existingTel) throw new HttpException('이미 사용중인 휴대폰 번호 입니다.', 403);
     // 암호 복호화
     createMember.password = await bcrypt.hash(createMember.password, 10);
     const newMember = this.membersRepository.create(createMember);

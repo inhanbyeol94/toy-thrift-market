@@ -38,8 +38,18 @@
                   <input class="form-control" type="text" id="subAddress" placeholder="우리아파트 101동 201호">
                 </div>
                 <div class="col-sm-6">
-                  <label class="form-label" for="tel">휴대폰 번호</label>
-                  <input class="form-control" type="tel" placeholder="010-1234-5678" id="tel" oninput="autoHyphen2(this)" maxlength="13">
+                  <label class="form-label" for="tel">휴대폰 번호 <span style="color: red; font-size: 12px;" id="verifyText"></span></label>
+                  <div class="d-flex">
+                    <input class="form-control" type="tel" placeholder="010-1234-5678" id="tel" oninput="autoHyphen2(this)" maxlength="13">
+                    <button class="btn btn-outline-secondary ms-2" type="button" id="identityBtn">인증 발송</button>
+                  </div>
+                </div>
+                <div class="col-sm-6" id="codeBox" style="display:none">
+                  <label class="form-label" for="tel">인증번호</label>
+                  <div class="d-flex">
+                    <input class="form-control" type="tel" placeholder="123456" id="code" maxlength="6">
+                    <button class="btn btn-outline-secondary ms-2" type="button" id="identityVerifyBtn">인증 확인</button>
+                  </div>
                 </div>
                 <div class="col-12 text-end">
                   <button class="btn btn-primary" id="signupBtn"><i class="ci-user me-2 ms-n1"></i>등록</button>

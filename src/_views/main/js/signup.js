@@ -6,7 +6,60 @@ const confirmPassword = document.getElementById('confirmPassword');
 const address = document.getElementById('address');
 const subAddress = document.getElementById('subAddress');
 const tel = document.getElementById('tel');
+const code = document.getElementById('code');
 const signupBtn = document.getElementById('signupBtn');
+const identityBtn = document.getElementById('identityBtn');
+const identityVerifyBtn = document.getElementById('identityVerifyBtn');
+const codeBox = document.getElementById('codeBox');
+const verifyText = document.getElementById('verifyText');
+
+let sequence = 0;
+
+identityBtn.addEventListener('click', async () => {
+  const telRegexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+
+  if (!tel.value) return alert('핸드폰 번호를 입력해주세요.');
+  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다.\n하이픈을 포함한 휴대폰 번호를 입력해주세요.');
+  const api = await fetch('/identities', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ phone: tel.value, type: 200 }),
+  });
+
+  const { status } = await api;
+  const result = await api.json();
+
+  alert(result.message);
+
+  if (status === 200) {
+    sequence = result.sequence;
+    codeBox.style.display = 'block';
+    identityBtn.remove();
+    tel.readOnly = true;
+  }
+});
+
+identityVerifyBtn.addEventListener('click', async () => {
+  if (!code.value) return alert('인증번호를 입력해주세요.');
+
+  const api = await fetch('/identities/verify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ phone: tel.value, code: code.value, sequence }),
+  });
+
+  const { status } = await api;
+  const result = await api.json();
+
+  alert(result.message);
+
+  if (status === 200) {
+    sequence = result.sequence;
+    codeBox.remove();
+    identityVerifyBtn.remove();
+    verifyText.innerText = '인증 완료';
+  }
+});
 
 signupBtn.addEventListener('click', async () => {
   /* 필수 값 검증 */
@@ -17,7 +70,7 @@ signupBtn.addEventListener('click', async () => {
   if (!confirmPassword.value.trim()) return alert('확인 패스워드를 입력해 주세요.');
   if (!address.value.trim()) return alert('주소를 입력해 주세요.');
   if (!subAddress.value.trim()) return alert('상세 주소를 입력해주세요.');
-  if (!tel.value.trim()) return alert('연락처를 입력해주세요.');
+  if (!tel.value.trim()) return alert('휴대폰 번호를 입력해주세요.');
 
   /* 정규식 검사 */
   const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -30,7 +83,7 @@ signupBtn.addEventListener('click', async () => {
   if (!passwordRegexp.test(password.value)) return alert('패스워드는 영문, 숫자, 특수문자를 최소 1가지 이상 조합해야 합니다.');
   if (!nameRegexp.test(name.value)) return alert('이름은 한글만 입력이 가능합니다.');
   if (!nicknameRegexp.test(nickname.value)) return alert('닉네임은 한글, 영문, 숫자만 조합이 가능합니다.');
-  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다. 하이픈을 포함한 010으로 시작하는 휴대폰 번호를 입력해주세요.');
+  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다.\n하이픈을 포함한 휴대폰 번호를 입력해주세요.');
 
   /* 패스워드, 확인 패스워드 일치여부 검사 */
   if (password.value !== confirmPassword.value) return alert('패스워드와 확인 패스워드가 일치하지 않습니다.');
@@ -83,7 +136,9 @@ class createUser {
     this.name = name.value;
     this.nickname = nickname.value;
     this.password = password.value;
-    this.address = (address.value + subAddress.value).trim();
+    this.address = address.value;
+    this.subAddress = subAddress.value;
     this.tel = tel.value;
+    this.sequence = sequence;
   }
 }

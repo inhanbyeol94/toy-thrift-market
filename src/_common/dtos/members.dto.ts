@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 class CreateMemberDto {
   @IsNotEmpty()
@@ -42,9 +42,9 @@ class CreateMemberDto {
   @IsNotEmpty()
   subAddress: string;
 
-  @IsBoolean()
   @IsNotEmpty()
-  isAdmin: boolean;
+  @IsNumber()
+  sequence: number;
 }
 
 export { CreateMemberDto };

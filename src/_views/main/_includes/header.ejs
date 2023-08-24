@@ -39,50 +39,30 @@
       <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
       <header class="bg-light shadow-sm navbar-sticky">
         <div class="navbar navbar-expand-lg navbar-light">
-          <div class="container">
-            <a class="navbar-brand d-none d-sm-block flex-shrink-0 me-4 order-lg-1" href="/"><img src="/main/img/logo-dark.png" width="50" alt="Cartzilla" /></a
-            ><a class="navbar-brand d-sm-none me-2 order-lg-1" href="/"><img src="/main/img/logo-icon.png" width="74" alt="Cartzilla" /></a>
-            <!-- Toolbar-->
-            <div class="navbar-toolbar d-flex align-items-center order-lg-3">
-              <div class="input-group" style="width: 100%">
-                <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                <input class="form-control rounded-start" type="text" placeholder="상품을 입력해주세요." />
-              </div>
-              <% if(isLogin) { %>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button
-              ><a class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"
-                ><span class="navbar-tool-tooltip">Favorites</span>
-                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div
-              ></a>
-              <div class="navbar-tool dropdown ms-2">
-                <a class="navbar-tool-icon-box border dropdown-toggle" href="dashboard-sales.html"
-                  ><img src="<%= profileImage %>" width="100%" height="100%" style="object-fit: cover" alt="Createx Studio" /></a
-                ><a class="navbar-tool-text ms-n1" href="#"><small><%= nickname %></small><%= name %></a>
-                <div class="dropdown-menu dropdown-menu-end">
-                  <div style="min-width: 14rem">
-                    <h6 class="dropdown-header">Account</h6>
-                    <a class="dropdown-item d-flex align-items-center" href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a
-                    ><a class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i class="ci-basket opacity-60 me-2"></i>Purchases</a
-                    ><a class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"
-                      ><i class="ci-heart opacity-60 me-2"></i>Favorites<span class="fs-xs text-muted ms-auto">4</span></a
-                    >
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Seller Dashboard</h6>
-                    <a class="dropdown-item d-flex align-items-center" href="dashboard-sales.html"
-                      ><i class="ci-dollar opacity-60 me-2"></i>Sales<span class="fs-xs text-muted ms-auto">$1,375.00</span></a
-                    ><a class="dropdown-item d-flex align-items-center" href="dashboard-products.html"
-                      ><i class="ci-package opacity-60 me-2"></i>Products<span class="fs-xs text-muted ms-auto">5</span></a
-                    ><a class="dropdown-item d-flex align-items-center" href="dashboard-add-new-product.html"
-                      ><i class="ci-cloud-upload opacity-60 me-2"></i>Add New Product</a
-                    ><a class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item d-flex align-items-center" href="#" id="logoutBtn"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
-                  </div>
-                </div>
-              </div>
-              <% } else { %>
-              <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
-              <% } %>
+            <div class="container"><a class="navbar-brand d-none d-sm-block flex-shrink-0 me-4 order-lg-1" href="/"><img src="/main/img/logo-dark.png" width="50" alt="Cartzilla"></a><a class="navbar-brand d-sm-none me-2 order-lg-1" href="/"><img src="/main/img/logo-icon.png" width="74" alt="Cartzilla"></a>
+                <!-- Toolbar-->
+                <div class="navbar-toolbar d-flex align-items-center order-lg-3">
+                    <div class="input-group" style="width:100%">
+                        <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
+                        <input class="form-control rounded-start" type="text" placeholder="상품을 입력해주세요.">
+                    </div>
+                    <% if(isLogin) { %>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"><span class="navbar-tool-tooltip">Favorites</span>
+                            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a>
+                        <div class="navbar-tool dropdown ms-2">
+                            <a class="navbar-tool-icon-box border dropdown-toggle" href="dashboard-sales.html"><img src="<%= profileImage %>" width="100%" height="100%" style="object-fit: cover" alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="#"><small><%= nickname %></small><%= name %></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <div style="min-width: 14rem;">
+                                    <h6 class="dropdown-header">Account</h6><a class="dropdown-item d-flex align-items-center" href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a><a class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i class="ci-basket opacity-60 me-2"></i>Purchases</a><a class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"><i class="ci-heart opacity-60 me-2"></i>Favorites<span class="fs-xs text-muted ms-auto">4</span></a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Seller Dashboard</h6><a class="dropdown-item d-flex align-items-center" href="dashboard-sales.html"><i class="ci-dollar opacity-60 me-2"></i>Sales<span class="fs-xs text-muted ms-auto">$1,375.00</span></a><a class="dropdown-item d-flex align-items-center" href="/my-products"><i class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-xs text-muted ms-auto">5</span></a><a class="dropdown-item d-flex align-items-center" href="/mypage/products/new"><i class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a><a class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item d-flex align-items-center" href="#" id="logoutBtn"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
+                    <% } %>
             </div>
             <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
               <!-- Search-->

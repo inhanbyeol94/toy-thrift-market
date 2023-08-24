@@ -3,7 +3,7 @@ import { AdminMemberService } from './admin-member.service';
 import { IMessage } from '../_common/interfaces/message.interface';
 import { UpdateAdminMemberDto } from '../_common/dtos/updateAdminMember.dto';
 import { Member } from '../_common/entities';
-import { CreateMemberDto } from '../_common/dtos/members.dto';
+import { AddMemberDto } from '../_common/dtos/add-member.dto';
 
 @Controller('admin-members')
 export class AdminMemberController {
@@ -18,7 +18,7 @@ export class AdminMemberController {
   // 회원(Member) 추가
   @Post()
   @HttpCode(201)
-  async createMember(@Body() resisterData: CreateMemberDto): Promise<IMessage> {
+  async createMember(@Body() resisterData: AddMemberDto): Promise<IMessage> {
     return await this.adminMemberService.createMember(resisterData);
   }
 
