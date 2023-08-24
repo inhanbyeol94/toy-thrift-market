@@ -1,8 +1,8 @@
 import { HttpException, NotFoundException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AddMemberDto } from 'src/_common/dtos/add-member.dto';
 import { Repository } from 'typeorm';
 import { Member } from '../_common/entities';
-import { CreateMemberDto } from '../_common/dtos/members.dto';
 import { IMessage } from '../_common/interfaces/message.interface';
 import * as bcrypt from 'bcrypt';
 
@@ -14,7 +14,7 @@ export class AdminMemberService {
     return await this.membersRepository.find();
   }
   // 회원(Member) 추가
-  async createMember(createMember: CreateMemberDto): Promise<IMessage> {
+  async createMember(createMember: AddMemberDto): Promise<IMessage> {
     const { email, nickname, tel } = createMember;
 
     // 이미 등록된 email 이 있는지 검증
