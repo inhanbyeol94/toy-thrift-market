@@ -131,8 +131,8 @@ export class ViewController {
     return this.viewService.requiredAuth('나중애', '찜목록', payload);
   }
 
-  @Get('mypage')
-  @Render('main/mypage.ejs')
+  @Get('myprofile')
+  @Render('main/myprofile.ejs')
   memberGet(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '프로필', payload);
