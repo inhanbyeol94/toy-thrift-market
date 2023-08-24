@@ -17,8 +17,9 @@ export class ProductService {
   ) {}
 
   // 상품 추가
-  async create(_product: CreateProductDto, productImages, memberId, smallCategoryId): Promise<IMessage> {
-    const { name, price, content } = _product;
+  async create(_product: CreateProductDto, files: any, memberId: number): Promise<IMessage> {
+    const { smallCategoryId, name, price, content } = _product;
+    const productImages = files.length ? files.map((file) => file.location) : null;
     const count = 1;
     const newProduct = this.productRepository.create({
       member: { id: memberId },

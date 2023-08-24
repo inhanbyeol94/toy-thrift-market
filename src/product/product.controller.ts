@@ -15,11 +15,9 @@ export class ProductController {
   // 상품 추가
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() product: CreateProductDto, @Req() req): Promise<IMessage> {
-    const memberId = 32;
-    const smallCategoryId = 24;
-    const productImages = req.files.length ? req.files.map((file) => file.location) : null;
-    await this.productService.create(product, productImages, memberId, smallCategoryId);
+  async create(@Body() _product: CreateProductDto, @Req() req: IRequest): Promise<IMessage> {
+    const { id: memberId } = req.user;
+    await this.productService.create(_product, req.files, memberId);
     return { message: '상품이 추가되었습니다.' };
   }
 
