@@ -14,11 +14,13 @@ import { CommentModule } from './comment/comment.module';
 import { SlackModule } from './slack/slack.module';
 import { UploadModule } from './upload/upload.module';
 import { ProductModule } from './product/product.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
+    JwtModule,
     ViewModule,
     MemberModule,
     AuthModule,

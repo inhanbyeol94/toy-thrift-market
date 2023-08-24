@@ -205,14 +205,11 @@ loadComment();
 const commentSubmitBtn = document.getElementById('commentSubmitBtn');
 commentSubmitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
-  const memberIdInput = document.getElementById('memberId');
   const contentInput = document.getElementById('contentInput');
-
-  const memberId = memberIdInput.value;
   const content = contentInput.value;
 
-  if (!memberId || !content) {
-    alert('멤버 아이디와 댓글 내용을 모두 입력해주세요.');
+  if (!content) {
+    alert('댓글 내용을 입력해주세요.');
     return;
   }
 
@@ -223,7 +220,6 @@ commentSubmitBtn.addEventListener('click', async (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        memberId: parseInt(memberId),
         content: content,
         documentId: id,
       }),
