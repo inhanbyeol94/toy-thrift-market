@@ -17,6 +17,7 @@ import { ProductModule } from './product/product.module';
 import { IdentityModule } from './identity/identity.module';
 import * as redisStore from 'cache-manager-redis-store';
 import { CacheModule } from '@nestjs/cache-manager';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { CacheModule } from '@nestjs/cache-manager';
         };
       },
     }),
+    JwtModule,
     ViewModule,
     MemberModule,
     AuthModule,

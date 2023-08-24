@@ -15,9 +15,7 @@ export class CreateDocumentDto {
   @IsNotEmpty()
   isSecret: boolean;
 
-  @IsNumber()
-  @IsNotEmpty()
-  memberId: number;
+  // memberId: number;
 
   @IsNumber()
   @IsNotEmpty()

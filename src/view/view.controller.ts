@@ -137,4 +137,11 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '프로필', payload);
   }
+
+  @Get('my-products')
+  @Render('main/my-products.ejs')
+  getMyProducts(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '내 상품', payload);
+  }
 }
