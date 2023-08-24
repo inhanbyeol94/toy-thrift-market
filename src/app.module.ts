@@ -7,6 +7,11 @@ import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
 import { CategoryModule } from './category/category.module';
 import { AdminMemberModule } from './admin-member/admin-member.module';
+import { BoardModule } from './board/board.module';
+import { AdminBoardModule } from './admin-board/admin-board.module';
+import { MainDocumentModule } from './main-document/main-document.module';
+import { CommentModule } from './comment/comment.module';
+import { SlackModule } from './slack/slack.module';
 import { UploadModule } from './upload/upload.module';
 
 @Module({
@@ -18,6 +23,11 @@ import { UploadModule } from './upload/upload.module';
     AuthModule,
     CategoryModule,
     AdminMemberModule,
+    BoardModule,
+    AdminBoardModule,
+    MainDocumentModule,
+    CommentModule,
+    SlackModule,
     UploadModule,
   ],
   controllers: [],
