@@ -21,6 +21,8 @@ export class MainDocumentService {
     const { title, content, isSecret, memberId, boardId } = documentData;
     const existingBoard = await this.boardRepository.findOne({ where: { id: boardId } });
     if (!existingBoard) throw new HttpException('해당 게시판이 존재하지 않습니다.', 404);
+    const boardName = existingBoard.name;
+
     const exisingMember = await this.memberRepository.findOne({ where: { id: memberId } });
     if (!exisingMember) throw new HttpException('해당 멤버가 존재하지 않습니다.', 404);
 
@@ -28,7 +30,7 @@ export class MainDocumentService {
     await this.documentRepository.save(newDocument);
 
     // 슬랙 메시지 보내기
-    const slackMessage = `${boardId}번 게시판에 새로운 게시물이 등록되었습니다: ${title}`;
+    const slackMessage = `${boardName}게시판에 새로운 게시물이 등록되었습니다: ${title}`;
     // sendSlackMessage(slackMessage);
     this.slackService.sendSlackMessage(slackMessage);
 
