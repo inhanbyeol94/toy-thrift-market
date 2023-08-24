@@ -5,6 +5,8 @@ import { IMessage } from 'src/_common/interfaces/message.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Comment, Document, Member } from 'src/_common/entities';
+import { SlackService } from '../slack/slack.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CommentService {
@@ -12,6 +14,8 @@ export class CommentService {
     @InjectRepository(Document) private documentRepository: Repository<Document>,
     @InjectRepository(Comment) private commentRepository: Repository<Comment>,
     @InjectRepository(Member) private memberRepository: Repository<Member>,
+    private slackService: SlackService,
+    private configService: ConfigService,
   ) {}
   // 댓글 작성
   async createComment(data: CreateCommentDto): Promise<IMessage> {
@@ -19,11 +23,20 @@ export class CommentService {
     // console.log(memberId, documentId);
     const existingDocument = await this.documentRepository.findOne({ where: { id: documentId } });
     if (!existingDocument) throw new HttpException('해당 게시물이 존재하지 않습니다.', 404);
+    const DocTitle = existingDocument.title;
+    const DocId = existingDocument.id;
     const exisingMember = await this.memberRepository.findOne({ where: { id: memberId } });
     if (!exisingMember) throw new HttpException('해당 멤버가 존재하지 않습니다.', 404);
+    const writerNickname = exisingMember.nickname;
 
     const newComment = this.commentRepository.create({ content, member: exisingMember, document: existingDocument });
     await this.commentRepository.save(newComment);
+
+    // 슬랙 메시지 보내기
+    const port = this.configService.get<string>('HOST');
+    const slackMessage = `"${DocTitle}" 문의글에 답글이 등록되었습니다. \n - 작성자: ${writerNickname} \n - URL: http://${port}/document?id=${DocId}`;
+    this.slackService.sendSlackMessage(slackMessage);
+
     return { message: '댓글이 작성되었습니다.' };
   }
   // 댓글 조회
