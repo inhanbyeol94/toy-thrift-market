@@ -1,16 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from '../_common/dtos/create-product.dto';
 import { UpdateProductDto } from '../_common/dtos/update-product.dto';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 import { Product } from 'src/_common/entities';
 import { SearchProductDto } from 'src/_common/dtos/search-product.dto';
+import { AuthGuard } from 'src/_common/guards/auth.guard';
+import { IRequest } from 'src/_common/interfaces/request.interface';
 
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   // 상품 추가
+  @UseGuards(AuthGuard)
   @Post()
   async create(@Body() product: CreateProductDto, @Req() req): Promise<IMessage> {
     const memberId = 32;
@@ -26,11 +29,12 @@ export class ProductController {
     return await this.productService.findAll();
   }
 
-  // 내 상품 조회 --> 멤버 컨트롤러로 가야할까?
+  // 내 상품 조회
+  @UseGuards(AuthGuard)
   @Get('my-products')
-  async findByMemberId(): Promise<Product[]> {
-    const memberId = 44; // FIXME: 로그인한 회원의 id를 받게 수정
-    return await this.productService.findByMemberId(memberId);
+  async findByMemberId(@Req() req: IRequest): Promise<Product[]> {
+    const { id } = req.user;
+    return await this.productService.findByMemberId(id);
   }
 
   // 상품 검색
@@ -40,10 +44,11 @@ export class ProductController {
   }
 
   // 찜한 상품 조회
+  @UseGuards(AuthGuard)
   @Get('picks')
-  async getPickedProducts() {
-    const memberId = 32; // FIXME: 로그인한 회원의 id를 받게 수정
-    return await this.productService.findPickedProducts(memberId);
+  async getPickedProducts(@Req() req: IRequest) {
+    const { id } = req.user;
+    return await this.productService.findPickedProducts(id);
   }
 
   // 상품 조회
@@ -53,12 +58,14 @@ export class ProductController {
   }
 
   // 상품 수정
+  @UseGuards(AuthGuard)
   @Patch(':id')
   async update(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto): Promise<IMessage> {
     return await this.productService.update(id, updateProductDto);
   }
 
   // 상품 삭제
+  @UseGuards(AuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<IMessage> {
     return await this.productService.remove(id);
