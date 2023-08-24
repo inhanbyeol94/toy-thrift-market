@@ -19,7 +19,6 @@ export class AdminBoardController {
 
   // 게시판 조회
   @Get()
-  @UseGuards(AdminGuard)
   @HttpCode(200)
   async findBoards(): Promise<Board[]> {
     return await this.adminBoardService.findBoards();
