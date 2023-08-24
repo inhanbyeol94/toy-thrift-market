@@ -8,12 +8,15 @@ import * as bcrypt from 'bcrypt';
 import * as AWS from 'aws-sdk';
 import { UploadService } from '../upload/upload.service';
 import { DeleteDto } from '../_common/dtos/delete.dto';
+import { JwtService } from '@nestjs/jwt';
+import { IToken } from '../_common/interfaces/token.interface';
 
 @Injectable()
 export class MemberService {
   constructor(
     @InjectRepository(Member) private membersRepository: Repository<Member>,
     private uploadService: UploadService,
+    private jwtService: JwtService,
   ) {}
   //회원가입
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
@@ -42,7 +45,7 @@ export class MemberService {
     };
   }
   // 회원정보 수정
-  async updateMember(id: number, name: string, nickname: string, tel: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IMessage> {
+  async updateMember(id: number, name: string, nickname: string, tel: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IToken> {
     console.log(nickname);
     const member = await this.membersRepository.findOne({ where: { id } });
     if (!member) {
@@ -68,8 +71,13 @@ export class MemberService {
       member.address = address;
       member.subAddress = subAddress;
       member.profileImage = imageUpload.Location;
-      await this.membersRepository.save(member);
-      return { message: '회원 정보가 수정되었습니다.' };
+
+      const upData = await this.membersRepository.save(member);
+      const payload = { id: upData.id, email: upData.email, nickname: upData.nickname, name: upData.name, isAdmin: upData.isAdmin, profileImage: upData.profileImage };
+      return {
+        access_token: this.jwtService.sign(payload, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_TIME, secret: process.env.ACCESS_SECRET_KEY }),
+        message: '회원 정보가 수정되었습니다.',
+      };
     }
 
     member.name = name;
@@ -77,8 +85,12 @@ export class MemberService {
     member.tel = tel;
     member.address = address;
     member.subAddress = subAddress;
-    await this.membersRepository.save(member);
-    return { message: '회원 정보가 수정되었습니다.' };
+    const upData = await this.membersRepository.save(member);
+    const payload = { id: upData.id, email: upData.email, nickname: upData.nickname, name: upData.name, isAdmin: upData.isAdmin, profileImage: upData.profileImage };
+    return {
+      access_token: this.jwtService.sign(payload, { expiresIn: process.env.JWT_ACCESS_EXPIRATION_TIME, secret: process.env.ACCESS_SECRET_KEY }),
+      message: '회원 정보가 수정되었습니다.',
+    };
   }
 
   // 비밀번호 변경
