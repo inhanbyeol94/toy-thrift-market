@@ -8,9 +8,5 @@ export class CreateCommentDto {
 
   @IsNumber()
   @IsNotEmpty()
-  memberId: number;
-
-  @IsNumber()
-  @IsNotEmpty()
   documentId: number;
 }

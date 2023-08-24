@@ -12,6 +12,7 @@ export class TokenValidMiddleware implements NestMiddleware {
     if (requestAccessToken) {
       try {
         req.user = this.jwtService.verify(requestAccessToken, { secret: process.env.ACCESS_SECRET_KEY });
+        // console.log(req.user);
         return next();
       } catch (error) {
         res.clearCookie('access_token');

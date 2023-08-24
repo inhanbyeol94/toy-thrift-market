@@ -1,18 +1,22 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { MainDocumentService } from './main-document.service';
 import { CreateDocumentDto } from '../_common/dtos/create-document.dto';
 import { UpdateDocumentDto } from '../_common/dtos/update-document.dto';
 import { IMessage } from '../_common/interfaces/message.interface';
 import { Document } from '../_common/entities';
+import { IRequest } from 'src/_common/interfaces/request.interface';
+import { AuthGuard } from 'src/_common/guards/auth.guard';
 
 @Controller('documents')
 export class MainDocumentController {
   constructor(private documentService: MainDocumentService) {}
   // 게시물 작성
   @Post()
+  @UseGuards(AuthGuard)
   @HttpCode(201)
-  async createDocument(@Body() documentData: CreateDocumentDto): Promise<IMessage> {
-    return await this.documentService.createDocument(documentData);
+  async createDocument(@Body() documentData: CreateDocumentDto, @Req() req: IRequest): Promise<IMessage> {
+    const { id } = req.user;
+    return await this.documentService.createDocument(documentData, id);
   }
   // 게시물 목록조회
   @Get(':boardId')
@@ -24,7 +28,6 @@ export class MainDocumentController {
   @Get('detail/:id')
   @HttpCode(200)
   async getOneDocument(@Param('id') id: number): Promise<Document> {
-    console.log(id);
     return await this.documentService.getOneDocument(id);
   }
   // 게시물 수정

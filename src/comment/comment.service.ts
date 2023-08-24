@@ -18,14 +18,14 @@ export class CommentService {
     private configService: ConfigService,
   ) {}
   // 댓글 작성
-  async createComment(data: CreateCommentDto): Promise<IMessage> {
-    const { content, memberId, documentId } = data;
+  async createComment(data: CreateCommentDto, id: number): Promise<IMessage> {
+    const { content, documentId } = data;
     // console.log(memberId, documentId);
     const existingDocument = await this.documentRepository.findOne({ where: { id: documentId } });
     if (!existingDocument) throw new HttpException('해당 게시물이 존재하지 않습니다.', 404);
     const DocTitle = existingDocument.title;
     const DocId = existingDocument.id;
-    const exisingMember = await this.memberRepository.findOne({ where: { id: memberId } });
+    const exisingMember = await this.memberRepository.findOne({ where: { id } });
     if (!exisingMember) throw new HttpException('해당 멤버가 존재하지 않습니다.', 404);
     const writerNickname = exisingMember.nickname;
 

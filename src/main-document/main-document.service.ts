@@ -18,13 +18,13 @@ export class MainDocumentService {
     private configService: ConfigService,
   ) {}
   // 게시물 작성
-  async createDocument(documentData: CreateDocumentDto): Promise<IMessage> {
-    const { title, content, isSecret, memberId, boardId } = documentData;
+  async createDocument(documentData: CreateDocumentDto, id: number): Promise<IMessage> {
+    const { title, content, isSecret, boardId } = documentData;
     const existingBoard = await this.boardRepository.findOne({ where: { id: boardId } });
     if (!existingBoard) throw new HttpException('해당 게시판이 존재하지 않습니다.', 404);
     const boardName = existingBoard.name;
 
-    const exisingMember = await this.memberRepository.findOne({ where: { id: memberId } });
+    const exisingMember = await this.memberRepository.findOne({ where: { id } });
     if (!exisingMember) throw new HttpException('해당 멤버가 존재하지 않습니다.', 404);
     const writerNickname = exisingMember.nickname;
 
