@@ -6,7 +6,7 @@ import { NextFunction, Response } from 'express';
 export class ViewAdminMiddleware implements NestMiddleware {
   async use(req: IRequest, res: Response, next: NextFunction) {
     if (!req.user) return res.redirect('/login');
-    if (!req.user.isAdmin) return res.render('main/403', { title: '나중애', subtitle: '접근 제한' });
+    if (!req.user.isAdmin) return res.render('main/403', { title: '나중애', subtitle: '접근 제한', isLogin: false });
     return next();
   }
 }
