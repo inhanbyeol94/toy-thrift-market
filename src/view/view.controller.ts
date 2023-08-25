@@ -144,4 +144,11 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '내 상품', payload);
   }
+
+  @Get('product/:id')
+  @Render('main/product-detail.ejs')
+  getProductDetail(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 상세', payload);
+  }
 }
