@@ -18,7 +18,7 @@ export class IdentityService {
 
     const sequenceCode = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
 
-    await this.cacheManager.set(verifyData.phone, { code: authCode, type: verifyData.type, sequence: sequenceCode }, { ttl: 300 });
+    await this.cacheManager.set(verifyData.phone, { code: authCode, type: verifyData.type, sequence: sequenceCode, verify: false }, { ttl: 300 });
     return { message: await smsSend(verifyData.phone, `[나중애] 요청하신 인증번호는 ${authCode}입니다.\n5분 내 인증을 완료해 주세요.`), sequence: sequenceCode };
   }
 
@@ -36,7 +36,7 @@ export class IdentityService {
     if (findByVerifyData.code !== verifyData.code) throw new HttpException('인증번호가 일치하지 않습니다.', 403);
 
     const sequenceCode = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
-    await this.cacheManager.set(verifyData.phone, { ...findByVerifyData, sequence: sequenceCode }, { ttl: 600 });
+    await this.cacheManager.set(verifyData.phone, { ...findByVerifyData, sequence: sequenceCode, verify: true }, { ttl: 600 });
 
     return { message: '인증이 완료되었습니다.', sequence: sequenceCode };
   }
