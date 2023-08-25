@@ -32,6 +32,7 @@ export class MainDocumentController {
   }
   // 게시물 수정
   @Patch('edit/:id')
+  @UseGuards(AuthGuard)
   @HttpCode(200)
   async updateDocument(@Param('id') docId: number, @Body() data: UpdateDocumentDto, @Req() req: IRequest): Promise<IMessage> {
     const { id } = req.user;
@@ -39,6 +40,7 @@ export class MainDocumentController {
   }
   // 게시물 삭제
   @Delete(':id')
+  @UseGuards(AuthGuard)
   @HttpCode(200)
   async deleteDocument(@Param('id') docId: number, @Req() req: IRequest): Promise<IMessage> {
     const { id } = req.user;

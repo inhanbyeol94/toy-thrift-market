@@ -39,4 +39,11 @@ export class AdminBoardController {
   async deleteBoard(@Param('id') boardId: number): Promise<IMessage> {
     return await this.adminBoardService.deleteBoard(boardId);
   }
+
+  // 게시판 상세 조회
+  @Get('/:id')
+  @HttpCode(200)
+  async findOneBoards(@Param('id') id: number): Promise<Board> {
+    return await this.adminBoardService.findOneBoards(id);
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors, Req, Res } from '@nestjs/common';
+import { Controller, HttpCode, Get, Post, Body, Patch, Param, Delete, UploadedFile, UseInterceptors, Req, Res, UseGuards } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { CreateMemberDto } from '../_common/dtos/members.dto';
 import { IMessage } from '../_common/interfaces/message.interface';
@@ -9,6 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { DeleteDto } from '../_common/dtos/delete.dto';
 import { IRequest } from '../_common/interfaces/request.interface';
 import { Response } from 'express';
+import { AuthGuard } from 'src/_common/guards/auth.guard';
 @Controller('members')
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}
@@ -49,5 +50,13 @@ export class MemberController {
   async deleteMember(@Req() req: IRequest, @Body() password: DeleteDto): Promise<IMessage> {
     const { id } = req.user;
     return await this.memberService.deleteMember(id, password);
+  }
+
+  // 현재 사용자 확인
+  @Get('current-user')
+  @UseGuards(AuthGuard)
+  async getCurrentUser(@Req() req: IRequest) {
+    const user = req.user;
+    return user;
   }
 }
