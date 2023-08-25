@@ -50,18 +50,20 @@ export class MainDocumentService {
     return document;
   }
   // 게시물 수정
-  async updateDocument(id: number, data: UpdateDocumentDto): Promise<IMessage> {
-    const document = await this.documentRepository.findOne({ where: { id: id } });
+  async updateDocument(docId: number, data: UpdateDocumentDto, id: number): Promise<IMessage> {
+    const document = await this.documentRepository.findOne({ where: { id: docId } });
     if (!document) throw new NotFoundException('해당하는 게시물이 없습니다.');
+    if (id != document.member.id) throw new HttpException('작성자가 아닙니다.', 404);
     document.title = data.title;
     document.content = data.content;
     await this.documentRepository.save(document);
     return { message: '게시물이 수정되었습니다.' };
   }
   // 게시물 삭제
-  async deleteDocument(id: number): Promise<IMessage> {
-    const document = this.documentRepository.findOne({ where: { id } });
+  async deleteDocument(docId: number, id: number): Promise<IMessage> {
+    const document = await this.documentRepository.findOne({ where: { id: docId } });
     if (!document) throw new NotFoundException('해당하는 게시물이 없습니다.');
+    if (id != document.member.id) throw new HttpException('작성자가 아닙니다.', 404);
     await this.documentRepository.softDelete(id);
     return { message: '게시물이 삭제되었습니다. ' };
   }

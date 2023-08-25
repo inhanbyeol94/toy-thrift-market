@@ -33,13 +33,15 @@ export class MainDocumentController {
   // 게시물 수정
   @Patch('edit/:id')
   @HttpCode(200)
-  async updateDocument(@Param('id') id: number, @Body() data: UpdateDocumentDto): Promise<IMessage> {
-    return this.documentService.updateDocument(id, data);
+  async updateDocument(@Param('id') docId: number, @Body() data: UpdateDocumentDto, @Req() req: IRequest): Promise<IMessage> {
+    const { id } = req.user;
+    return this.documentService.updateDocument(docId, data, id);
   }
   // 게시물 삭제
   @Delete(':id')
   @HttpCode(200)
-  async deleteDocument(@Param('id') id: number): Promise<IMessage> {
-    return this.documentService.deleteDocument(id);
+  async deleteDocument(@Param('id') docId: number, @Req() req: IRequest): Promise<IMessage> {
+    const { id } = req.user;
+    return this.documentService.deleteDocument(docId, id);
   }
 }
