@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Res, Req, Query } from '@nestjs/common';
+import { Controller, Get, Render, Req, Query } from '@nestjs/common';
 import { IRequest } from 'src/_common/interfaces/request.interface';
 import { ViewService } from 'src/view/view.service';
 import { IView } from '../_common/interfaces/view.interface';
@@ -145,6 +145,13 @@ export class ViewController {
     return this.viewService.requiredAuth('나중애', '내 상품', payload);
   }
 
+  @Get('search')
+  @Render('main/search.ejs')
+  async search(@Req() req: IRequest): Promise<any> {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '검색 결과', payload);
+  }
+  
   // 메인 대시보드 관리
   @Get('admins/main-dashboard/manage')
   @Render('admin/main-dashboard-manage.ejs')
