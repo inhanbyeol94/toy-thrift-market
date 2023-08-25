@@ -118,7 +118,7 @@ export class ViewController {
 
   // 상품 추가 페이지
   @Get('mypage/products/new')
-  @Render('main/add-new-product.ejs')
+  @Render('main/product-new.ejs')
   addProduct(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '상품 추가', payload);
@@ -150,5 +150,12 @@ export class ViewController {
   getProductDetail(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '상품 상세', payload);
+  }
+
+  @Get('product/:id/edit')
+  @Render('main/product-edit.ejs')
+  getProductEdit(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 수정', payload);
   }
 }
