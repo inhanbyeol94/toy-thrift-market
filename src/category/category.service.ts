@@ -55,7 +55,7 @@ export class CategoryService {
     if (existingMiddleCategory) throw new HttpException('이미 등록된 카테고리입니다.', 404);
     await this.middleCategoryRepository.save({
       name: createMiddleCategory.name,
-      largeCategory: createMiddleCategory.largeCategoryId,
+      largeCategory: { id: createMiddleCategory.largeCategoryId },
     });
     return { message: '카테고리(중)가 등록되었습니다.' };
   }
