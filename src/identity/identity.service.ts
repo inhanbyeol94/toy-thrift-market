@@ -26,8 +26,6 @@ export class IdentityService {
     const findByVerifyData: IClientVerifyIdentity = await this.cacheManager.get(verifyData.phone);
     if (!findByVerifyData) throw new HttpException('인증 시간이 만료되었거나, 잘못된 요청입니다.', 403);
 
-    console.log(verifyData.sequence, findByVerifyData.sequence);
-
     if (verifyData.sequence !== +findByVerifyData.sequence) {
       await this.cacheManager.del(verifyData.phone);
       throw new HttpException('잘못된 요청입니다.', 403);
