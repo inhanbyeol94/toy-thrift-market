@@ -5,14 +5,24 @@ const submitDocBtn = document.getElementById('submitDocBtn');
 submitDocBtn.addEventListener('click', async () => {
   const title = document.getElementById('title').value;
   const content = document.getElementById('content').value;
-  // const memberIdInput = document.getElementById('memberId').value;
-  // const memberId = parseInt(memberIdInput, 10);
   const isSecret = document.getElementById('isSecret').checked;
+  if (!title) {
+    alert('글 제목을 입력해주세요.');
+    return;
+  }
+  if (!content) {
+    alert('글 내용을 입력해주세요.');
+    return;
+  }
+  if (!isSecret) {
+    alert('비밀글 여부를 선택해주세요.');
+    return;
+  }
+
   const newDoc = {
     title,
     content,
     isSecret,
-    // memberId,
     boardId,
   };
 

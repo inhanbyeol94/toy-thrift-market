@@ -69,4 +69,10 @@ export class ProductController {
   async remove(@Param('id') id: number): Promise<IMessage> {
     return await this.productService.remove(id);
   }
+
+  // 인기상품 조회
+  @Get('pick/popular')
+  async getPopularProducts() {
+    return await this.productService.findPopularProducts();
+  }
 }

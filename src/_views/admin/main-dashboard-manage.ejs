@@ -1,0 +1,102 @@
+<%- include('_includes/header') %>
+  <%- include('_includes/sidebar') %>
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>메인 대시보드 관리 페이지</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">메인 대시보드 관리</a></li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section dashboard">
+        <div class="row">
+
+          <div class="col-lg-8">
+            <div class="row">
+
+              <div class="col-12">
+                <div class="card top-selling overflow-auto">
+                  <div class="card-body pb-0">
+                    <div>
+                      <h5 class="card-title">메인 이미지</h5>
+                      <div class="ps-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="mainImage">
+                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG | 대문 이미지</div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div>
+                      <h5 class="card-title">메인 제목 편집</h5>
+                      <input type="text" class="form-control" id="main_title" placeholder="메인 제목">
+                    </div>
+                    <hr>
+                    <div>
+                      <h5 class="card-title">서브 제목 편집</h5>
+                      <input type="text" class="form-control" id="sub_title" placeholder="서브 제목">
+                    </div>
+                    <hr>
+                    <div>
+                      <h5 class="card-title">하단 탭 편집</h5>
+                    </div>
+                    <div id="bottom_tab_color" class="mb-3">
+                      <label class="mb-2">배경 색</label>
+                      <p><input type="color" value="#4B50BF"></p>
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                      <label>제목 </label>
+                      <input type="text" class="form-control mt-3" placeholder="하단 탭 제목">
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                      <label>column 1</label>
+                      <div class="ps-3 mt-3 mb-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl1Image">
+                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
+                      </div>
+                      <input type="text" class="form-control mt-3" id="cl1Title" placeholder="제목">
+                      <input type="text" class="form-control mt-3" id="cl1content" placeholder="설명">
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                      <label>column 2</label>
+                      <div class="ps-3 mt-3 mb-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl2Image">
+                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
+                      </div>
+                      <input type="text" class="form-control mt-3" id="cl2Title" placeholder="제목">
+                      <input type="text" class="form-control mt-3" id="cl2content" placeholder="설명">
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                      <label>column 3</label>
+                      <div class="ps-3 mt-3 mb-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl3Image">
+                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
+                      </div>
+                      <input type="text" class="form-control mt-3" id="cl3Title" placeholder="제목">
+                      <input type="text" class="form-control mt-3" id="cl3content" placeholder="설명">
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                      <label>column 4</label>
+                      <div class="ps-3 mt-3 mb-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl4Image">
+                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
+                      </div>
+                      <input type="text" class="form-control mt-3" id="cl4Title" placeholder="제목">
+                      <input type="text" class="form-control mt-3" id="cl4content" placeholder="설명">
+                    </div>
+                    <hr>
+                    <div class="form-group mt-10 mb-3">
+                      <button type="button" class="btn btn-primary mt-10" id="dashboardEdit">편집 완료</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include('_includes/footer') %>
+      <!-- <script src="/admin/assets/js/main-dashboard-manage.js"></script> -->

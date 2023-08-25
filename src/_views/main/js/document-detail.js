@@ -10,8 +10,22 @@ const loadDoc = async () => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
+    .then(async (data) => {
+      // 보드정보 가져오기
+      const boardResponse = await fetch(`/admin-boards/${data.board.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const boardData = await boardResponse.json();
+
+      // 댓글 박스 숨김 여부 결정
+      const commentBox = document.getElementById('commentBox');
+      if (!boardData.commentAuthority) {
+        commentBox.style.display = 'none';
+      }
+
       const title = document.getElementById('title');
       const content = document.getElementById('content');
       const nickname = document.getElementById('documentWriter');
@@ -102,7 +116,6 @@ const loadComment = () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const commentContainer = document.getElementById('commentContainer');
       data.forEach((comment) => {
         const commentCard = document.createElement('div');

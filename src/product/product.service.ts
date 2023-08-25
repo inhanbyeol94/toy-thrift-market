@@ -98,4 +98,20 @@ export class ProductService {
     await this.productRepository.delete(id);
     return { message: '상품이 삭제되었습니다.' };
   }
+
+  // 인기상품 조회
+  async findPopularProducts() {
+    const popularProducts = await this.productRepository
+      .createQueryBuilder('Product')
+      .leftJoinAndSelect('Product.picks', 'Pick')
+      .leftJoinAndSelect('Pick.member', 'PickMember')
+      .leftJoinAndSelect('Product.productImages', 'ProductImage')
+      .select(['Product', 'COUNT(Pick.id) as pickCount', 'ProductImage'])
+      .groupBy('Product.id')
+      .orderBy('PickCount', 'DESC')
+      .limit(10)
+      .getRawMany();
+
+    return popularProducts;
+  }
 }
