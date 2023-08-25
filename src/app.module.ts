@@ -18,6 +18,7 @@ import { IdentityModule } from './identity/identity.module';
 import * as redisStore from 'cache-manager-redis-store';
 import { CacheModule } from '@nestjs/cache-manager';
 import { JwtModule } from '@nestjs/jwt';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { JwtModule } from '@nestjs/jwt';
     UploadModule,
     ProductModule,
     IdentityModule,
+    SearchModule,
   ],
   controllers: [],
   providers: [],
