@@ -14,7 +14,7 @@ export class MiddleCategory {
     onDelete: 'CASCADE',
     nullable: false,
   })
-  largeCategory: number;
+  largeCategory: LargeCategory;
 
   @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory)
   smallCategories: SmallCategory[];
