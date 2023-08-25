@@ -50,17 +50,19 @@ export class CommentService {
     return comment;
   }
   // 댓글 수정
-  async updateComment(id: number, data: UpdateCommentDto): Promise<IMessage> {
-    const comment = await this.commentRepository.findOne({ where: { id: id } });
+  async updateComment(commentId: number, data: UpdateCommentDto, id: number): Promise<IMessage> {
+    const comment = await this.commentRepository.findOne({ where: { id: commentId } });
     if (!comment) throw new NotFoundException('해당하는 댓글이 없습니다.');
+    if (id != comment.member.id) throw new HttpException('작성자가 아닙니다.', 404);
     comment.content = data.content;
     await this.commentRepository.save(comment);
     return { message: '댓글이 수정되었습니다.' };
   }
   // 댓글 삭제
-  async deleteComment(id: number): Promise<IMessage> {
-    const comment = await this.commentRepository.findOne({ where: { id: id } });
+  async deleteComment(commentId: number, id: number): Promise<IMessage> {
+    const comment = await this.commentRepository.findOne({ where: { id: commentId } });
     if (!comment) throw new NotFoundException('해당하는 댓글이 없습니다.');
+    if (id != comment.member.id) throw new HttpException('작성자가 아닙니다.', 404);
     await this.commentRepository.softDelete(id);
     return { message: '댓글이 삭제되었습니다. ' };
   }

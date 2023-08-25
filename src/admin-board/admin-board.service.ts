@@ -50,4 +50,11 @@ export class AdminBoardService {
     await this.boardsRepository.softDelete(boardId);
     return { message: '게시판 삭제가 완료되었습니다.' };
   }
+
+  // 게시판 상세조회
+  async findOneBoards(id: number): Promise<Board> {
+    const board = await this.boardsRepository.findOne({ where: { id } });
+    if (!board) throw new HttpException('게시판을 찾지 못했습니다.', 404);
+    return board;
+  }
 }

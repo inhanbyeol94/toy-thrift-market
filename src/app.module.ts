@@ -19,10 +19,14 @@ import * as redisStore from 'cache-manager-redis-store';
 import { CacheModule } from '@nestjs/cache-manager';
 import { JwtModule } from '@nestjs/jwt';
 import { SearchModule } from './search/search.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AdminMainboardModule } from './admin-mainboard/admin-mainboard.module';
+import * as process from 'process';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
     CacheModule.registerAsync({
       isGlobal: true,
@@ -50,6 +54,7 @@ import { SearchModule } from './search/search.module';
     ProductModule,
     IdentityModule,
     SearchModule,
+    AdminMainboardModule,
   ],
   controllers: [],
   providers: [],

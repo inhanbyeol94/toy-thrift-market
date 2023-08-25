@@ -1,23 +1,18 @@
 <%- include('_includes/header') %>
   <!-- Hero section-->
-  <section class="bg-accent bg-position-top-center bg-repeat-0 py-5" style="background-image: url(main/img/home/marketplace-hero.jpg);">
+  <section class="bg-accent bg-position-top-center bg-repeat-0 py-5"
+    style="background-image: url(main/img/home/marketplace-hero.jpg);">
     <div class="pb-lg-5 mb-lg-3">
       <div class="container py-lg-5 my-lg-5">
         <div class="row mb-4 mb-sm-5">
           <div class="col-lg-7 col-md-9 text-center text-sm-start">
-            <h1 class="text-white lh-base"><span class='fw-light'>Over</span> 1,500 <span class='fw-light'>curated</span> Design <span class='fw-light'>resources</span>, Images, Graphic <span class='fw-light'>&amp;</span> Website <span class='fw-light'>templates</span></h1>
-            <h2 class="h5 text-white fw-light">High quality items created by our global community</h2>
+            <h1 class="text-white lh-base"><span class='fw-light' style="color: gold; font-weight: bolder">나</span> 의
+              <span class='fw-light' style="color: gold; font-weight: bolder">중</span> 고 <span class='fw-light'
+                style="color: gold; font-weight: bolder">애</span>물단지 입니다!
+              <h2 class="h5 text-white fw-light">다양한 상품들을 보시고 좋은 상품들을 구매해 보세요!!</h2>
           </div>
         </div>
-        <div class="row pb-lg-5 mb-4 mb-sm-5">
-          <div class="col-lg-6 col-md-8">
-            <div class="input-group input-group-lg flex-nowrap"><i class="ci-search position-absolute top-50 translate-middle-y ms-3"></i>
-              <input class="form-control rounded-start" type="text" placeholder="Start your search">
-              <button class="btn btn-primary btn-lg dropdown-toggle fs-base" type="button" data-bs-toggle="dropdown">All categories</button>
-              <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item" href="#">Photos</a><a class="dropdown-item" href="#">Graphics</a><a class="dropdown-item" href="#">UI Design</a><a class="dropdown-item" href="#">Web Themes</a><a class="dropdown-item" href="#">Add-Ons</a></div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -25,29 +20,41 @@
   <section class="container position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10" style="z-index: 10;">
     <div class="card px-lg-2 border-0 shadow-lg">
       <div class="card-body px-4 pt-5 pb-4">
-        <h2 class="h3 text-center">Discover featured products</h2>
-        <p class="text-muted text-center">Every week we hand-pick some of the best items from our collection</p>
+        <h2 class="h3 text-center" style="font-weight: bolder">⭐핫딜 상품⭐</h2>
+        <p class="text-muted text-center">멋진 회원님을 위해 인기있는 상품들만 조회해드렸어요!🤩</p>
         <!-- Carousel-->
         <div class="tns-carousel pt-4">
-          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;gutter&quot;: 15, &quot;controls&quot;: false, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3}, &quot;992&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 30}}}">
+          <div class="tns-carousel-inner" id="PopularProductList"
+            data-carousel-options="{&quot;items&quot;: 2, &quot;gutter&quot;: 15, &quot;controls&quot;: false, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3}, &quot;992&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 30}}}">
             <!-- Product-->
             <div>
               <div class="card product-card-alt">
                 <div class="product-thumb">
                   <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/02.jpg" alt="Product">
+                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                      href="marketplace-single.html"><i class="ci-eye"></i></a>
+                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                        class="ci-cart"></i></button>
+                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                    src="/main/img/marketplace/products/02.jpg" alt="Product">
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
+                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in
+                      <a class="product-meta fw-medium" href="#">Graphics</a>
+                    </div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i>
                     </div>
                   </div>
-                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Floating Phone and Tablet Mockup (PSD)</a></h3>
+                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Floating Phone and Tablet
+                      Mockup (PSD)</a></h3>
                   <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>109<span class="fs-xs ms-1">Sales</span></div>
+                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>109<span
+                        class="fs-xs ms-1">Sales</span></div>
                     <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$15.<small>00</small></div>
                   </div>
                 </div>
@@ -58,19 +65,29 @@
               <div class="card product-card-alt">
                 <div class="product-thumb">
                   <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/03.jpg" alt="Product">
+                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                      href="marketplace-single.html"><i class="ci-eye"></i></a>
+                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                        class="ci-cart"></i></button>
+                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                    src="/main/img/marketplace/products/03.jpg" alt="Product">
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in
+                      <a class="product-meta fw-medium" href="#">Graphics</a>
+                    </div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
                     </div>
                   </div>
-                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Project Devices Showcase (PSD)</a></h3>
+                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Project Devices Showcase
+                      (PSD)</a></h3>
                   <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>95<span class="fs-xs ms-1">Sales</span></div>
+                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>95<span
+                        class="fs-xs ms-1">Sales</span></div>
                     <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$18.<small>00</small></div>
                   </div>
                 </div>
@@ -81,19 +98,28 @@
               <div class="card product-card-alt">
                 <div class="product-thumb">
                   <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/08.jpg" alt="Product">
+                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                      href="marketplace-single.html"><i class="ci-eye"></i></a>
+                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                        class="ci-cart"></i></button>
+                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                    src="/main/img/marketplace/products/08.jpg" alt="Product">
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
+                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a
+                        class="product-meta fw-medium" href="#">Graphics</a></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
                     </div>
                   </div>
-                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Business Card Branding Mockup</a></h3>
+                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Business Card Branding
+                      Mockup</a></h3>
                   <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>316<span class="fs-xs ms-1">Sales</span></div>
+                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>316<span
+                        class="fs-xs ms-1">Sales</span></div>
                     <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$17.<small>00</small></div>
                   </div>
                 </div>
@@ -104,19 +130,28 @@
               <div class="card product-card-alt">
                 <div class="product-thumb">
                   <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/07.jpg" alt="Product">
+                  <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                      href="marketplace-single.html"><i class="ci-eye"></i></a>
+                    <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                        class="ci-cart"></i></button>
+                  </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                    src="/main/img/marketplace/products/07.jpg" alt="Product">
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a
+                        class="product-meta fw-medium" href="#">Graphics</a></div>
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
                     </div>
                   </div>
-                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Gravity Device Mockups (PSD)</a></h3>
+                  <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Gravity Device Mockups
+                      (PSD)</a></h3>
                   <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>234<span class="fs-xs ms-1">Sales</span></div>
+                    <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>234<span
+                        class="fs-xs ms-1">Sales</span></div>
                     <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$16.<small>00</small></div>
                   </div>
                 </div>
@@ -131,7 +166,7 @@
   <section class="container pb-5 mb-lg-3">
     <!-- Heading-->
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-      <h2 class="h3 mb-0 pt-3 me-2">The most recent releases</h2>
+      <h2 class="h3 mb-0 pt-3 me-2">카테고리별 상품을 보고싶다면 💚</h2>
       <div class="pt-3">
         <select class="form-select me-2">
           <option>All categories</option>
@@ -152,19 +187,28 @@
         <div class="card product-card-alt">
           <div class="product-thumb">
             <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/01.jpg" alt="Product">
+            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                href="marketplace-single.html"><i class="ci-eye"></i></a>
+              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                  class="ci-cart"></i></button>
+            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+              src="/main/img/marketplace/products/01.jpg" alt="Product">
           </div>
           <div class="card-body">
             <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">UI Design</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
+              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a
+                  class="product-meta fw-medium" href="#">UI Design</a></div>
+              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Square Style Mobile UI Kit (Sketch)</a></h3>
+            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Square Style Mobile UI Kit
+                (Sketch)</a></h3>
             <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>153<span class="fs-xs ms-1">Sales</span></div>
+              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>153<span
+                  class="fs-xs ms-1">Sales</span></div>
               <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$24.<small>00</small></div>
             </div>
           </div>
@@ -175,19 +219,29 @@
         <div class="card product-card-alt">
           <div class="product-thumb">
             <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/04.jpg" alt="Product">
+            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                href="marketplace-single.html"><i class="ci-eye"></i></a>
+              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                  class="ci-cart"></i></button>
+            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+              src="/main/img/marketplace/products/04.jpg" alt="Product">
           </div>
           <div class="card-body">
             <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
+              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a
+                  class="product-meta fw-medium" href="#">Graphics</a></div>
+              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Flat-line E-Commerce Icons (AI)</a></h3>
+            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Flat-line E-Commerce Icons (AI)</a>
+            </h3>
             <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>26<span class="fs-xs ms-1">Sales</span></div>
+              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>26<span class="fs-xs ms-1">Sales</span>
+              </div>
               <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$18.<small>00</small></div>
             </div>
           </div>
@@ -198,19 +252,28 @@
         <div class="card product-card-alt">
           <div class="product-thumb">
             <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/09.jpg" alt="Product">
+            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                href="marketplace-single.html"><i class="ci-eye"></i></a>
+              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                  class="ci-cart"></i></button>
+            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+              src="/main/img/marketplace/products/09.jpg" alt="Product">
           </div>
           <div class="card-body">
             <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a class="product-meta fw-medium" href="#">UI Design</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a
+                  class="product-meta fw-medium" href="#">UI Design</a></div>
+              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Isometric Device Mockups (PSD)</a></h3>
+            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Isometric Device Mockups (PSD)</a>
+            </h3>
             <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>36<span class="fs-xs ms-1">Sales</span></div>
+              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>36<span class="fs-xs ms-1">Sales</span>
+              </div>
               <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$16.<small>00</small></div>
             </div>
           </div>
@@ -221,229 +284,209 @@
         <div class="card product-card-alt">
           <div class="product-thumb">
             <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/10.jpg" alt="Product">
+            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                href="marketplace-single.html"><i class="ci-eye"></i></a>
+              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                  class="ci-cart"></i></button>
+            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+              src="/main/img/marketplace/products/10.jpg" alt="Product">
           </div>
           <div class="card-body">
             <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">theDesigner </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">theDesigner </a>in <a
+                  class="product-meta fw-medium" href="#">Graphics</a></div>
+              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i
+                  class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
               </div>
             </div>
             <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Coffe Paper Cup Mockup</a></h3>
             <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>57<span class="fs-xs ms-1">Sales</span></div>
+              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>57<span class="fs-xs ms-1">Sales</span>
+              </div>
               <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$10.<small>00</small></div>
             </div>
+            </diProductv>
           </div>
         </div>
-      </div>
-      <!-- Product-->
-      <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
-        <div class="card product-card-alt">
-          <div class="product-thumb">
-            <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/06.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
+        <!-- Product-->
+        <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
+          <div class="card product-card-alt">
+            <div class="product-thumb">
+              <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
+              <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                  href="marketplace-single.html"><i class="ci-eye"></i></a>
+                <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                    class="ci-cart"></i></button>
+              </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                src="/main/img/marketplace/products/06.jpg" alt="Product">
+            </div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a
+                    class="product-meta fw-medium" href="#">Graphics</a></div>
+                <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i>
+                </div>
+              </div>
+              <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Travel &amp; Landmark Icon Pack
+                  (AI)</a></h3>
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>21<span
+                    class="fs-xs ms-1">Sales</span>
+                </div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$17.<small>00</small></div>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Travel &amp; Landmark Icon Pack (AI)</a></h3>
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>21<span class="fs-xs ms-1">Sales</span></div>
-              <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$17.<small>00</small></div>
-            </div>
           </div>
         </div>
-      </div>
-      <!-- Product-->
-      <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
-        <div class="card product-card-alt">
-          <div class="product-thumb">
-            <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/05.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a class="product-meta fw-medium" href="#">UI Design</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+        <!-- Product-->
+        <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
+          <div class="card product-card-alt">
+            <div class="product-thumb">
+              <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
+              <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                  href="marketplace-single.html"><i class="ci-eye"></i></a>
+                <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                    class="ci-cart"></i></button>
+              </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                src="/main/img/marketplace/products/05.jpg" alt="Product">
+            </div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">Createx Std. </a>in <a
+                    class="product-meta fw-medium" href="#">UI Design</a></div>
+                <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                </div>
+              </div>
+              <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Minimal Mobile App UI Kit
+                  (Sketch)</a></h3>
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>117<span
+                    class="fs-xs ms-1">Sales</span></div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$23.<small>00</small></div>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Minimal Mobile App UI Kit (Sketch)</a></h3>
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>117<span class="fs-xs ms-1">Sales</span></div>
-              <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$23.<small>00</small></div>
-            </div>
           </div>
         </div>
-      </div>
-      <!-- Product-->
-      <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
-        <div class="card product-card-alt">
-          <div class="product-thumb">
-            <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/11.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
+        <!-- Product-->
+        <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
+          <div class="card product-card-alt">
+            <div class="product-thumb">
+              <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
+              <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                  href="marketplace-single.html"><i class="ci-eye"></i></a>
+                <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                    class="ci-cart"></i></button>
+              </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                src="/main/img/marketplace/products/11.jpg" alt="Product">
+            </div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a
+                    class="product-meta fw-medium" href="#">Graphics</a></div>
+                <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i><i
+                    class="star-rating-icon ci-star"></i>
+                </div>
+              </div>
+              <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Printed T-Shirt Mockup (PSD)</a>
+              </h3>
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>94<span
+                    class="fs-xs ms-1">Sales</span>
+                </div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$12.<small>00</small></div>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Printed T-Shirt Mockup (PSD)</a></h3>
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>94<span class="fs-xs ms-1">Sales</span></div>
-              <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$12.<small>00</small></div>
-            </div>
           </div>
         </div>
-      </div>
-      <!-- Product-->
-      <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
-        <div class="card product-card-alt">
-          <div class="product-thumb">
-            <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-            <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-              <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-            </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/12.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
-              <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a class="product-meta fw-medium" href="#">Graphics</a></div>
-              <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+        <!-- Product-->
+        <div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter">
+          <div class="card product-card-alt">
+            <div class="product-thumb">
+              <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
+              <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2"
+                  href="marketplace-single.html"><i class="ci-eye"></i></a>
+                <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i
+                    class="ci-cart"></i></button>
+              </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img
+                src="/main/img/marketplace/products/12.jpg" alt="Product">
+            </div>
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-start pb-2">
+                <div class="text-muted fs-xs me-1">by <a class="product-meta fw-medium" href="#">pixels </a>in <a
+                    class="product-meta fw-medium" href="#">Graphics</a></div>
+                <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i
+                    class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                </div>
+              </div>
+              <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Corporate Branding Mockup (PSD)</a>
+              </h3>
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>122<span
+                    class="fs-xs ms-1">Sales</span></div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$18.<small>00</small></div>
               </div>
             </div>
-            <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Corporate Branding Mockup (PSD)</a></h3>
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-              <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>122<span class="fs-xs ms-1">Sales</span></div>
-              <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$18.<small>00</small></div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- More button-->
-    <div class="text-center"><a class="btn btn-outline-accent" href="marketplace-category.html">View more products<i class="ci-arrow-right fs-ms ms-1"></i></a></div>
+      <!-- More button-->
+      <div class="text-center"><a class="btn btn-outline-accent" href="marketplace-category.html">상품 더보기<i
+            class="ci-arrow-right fs-ms ms-1"></i></a></div>
   </section>
   <!-- Seller of the month-->
-  <section class="border-top py-5">
-    <div class="container py-lg-2">
-      <h2 class="h3 mb-3 pb-3 pb-lg-4 text-center text-lg-start">Seller of the month</h2>
-      <div class="row">
-        <div class="col-lg-4 text-center text-lg-start pb-3 pt-lg-2">
-          <div class="d-inline-block text-start">
-            <div class="d-flex align-items-center pb-3">
-              <div class="img-thumbnail rounded-circle flex-shrink-0" style="width: 6.375rem;"><img class="rounded-circle" src="/main/img/marketplace/account/avatar.png" alt="Createx Studio"></div>
-              <div class="ps-3">
-                <h3 class="fs-lg mb-0">Createx Studio</h3><span class="d-block text-muted fs-ms pt-1 pb-2">Member since November 2019</span><a class="btn btn-primary btn-sm" href="marketplace-vendor.html">View products</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="tns-carousel">
-            <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;gutter&quot;: 16, &quot;controls&quot;: false, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3}}}">
-              <div>
-                <div class="card product-card-alt">
-                  <div class="product-thumb">
-                    <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                    <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                      <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                    </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/13.jpg" alt="Product">
-                  </div>
-                  <div class="card-body">
-                    <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Hardcover Book Catalog Mockup</a></h3>
-                    <div class="d-flex flex-wrap justify-content-between align-items-center">
-                      <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>39<span class="fs-xs ms-1">Sales</span></div>
-                      <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$12.<small>00</small></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="card product-card-alt">
-                  <div class="product-thumb">
-                    <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                    <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                      <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                    </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/14.jpg" alt="Product">
-                  </div>
-                  <div class="card-body">
-                    <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Top View Smartwatch 3D Render</a></h3>
-                    <div class="d-flex flex-wrap justify-content-between align-items-center">
-                      <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>28<span class="fs-xs ms-1">Sales</span></div>
-                      <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$14.<small>00</small></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="card product-card-alt">
-                  <div class="product-thumb">
-                    <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
-                    <div class="product-card-actions"><a class="btn btn-light btn-icon btn-shadow fs-base mx-2" href="marketplace-single.html"><i class="ci-eye"></i></a>
-                      <button class="btn btn-light btn-icon btn-shadow fs-base mx-2" type="button"><i class="ci-cart"></i></button>
-                    </div><a class="product-thumb-overlay" href="marketplace-single.html"></a><img src="/main/img/marketplace/products/07.jpg" alt="Product">
-                  </div>
-                  <div class="card-body">
-                    <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">Gravity Device Mockups (PSD)</a></h3>
-                    <div class="d-flex flex-wrap justify-content-between align-items-center">
-                      <div class="fs-sm me-2"><i class="ci-download text-muted me-1"></i>234<span class="fs-xs ms-1">Sales</span></div>
-                      <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">$16.<small>00</small></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
   <!-- Marketplace features-->
-  <section class="bg-accent bg-size-cover bg-position-center pt-5 pb-4 pb-lg-5" style="background-image: url(main/img/marketplace/features/features-bg.jpg);">
+  <section class="bg-accent bg-size-cover bg-position-center pt-5 pb-4 pb-lg-5"
+    style="background-image: url(main/img/marketplace/features/features-bg.jpg);">
     <div class="container pt-lg-3">
-      <h2 class="h3 mb-3 pb-4 text-light text-center">Why our marketplace?</h2>
+      <h2 class="h3 mb-3 pb-4 text-light text-center">나중애란 무엇인가요?</h2>
       <div class="row pt-lg-2 text-center">
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/quality.png" width="52" alt="Quality Guarantee">
+          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/quality.png"
+              width="52" alt="Quality Guarantee">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">Quality Guarantee</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">Quality checked by our team</p>
+              <h6 class="text-light fs-base mb-1">나의 중고 애물단지</h6>
+              <p class="text-light fs-ms opacity-70 mb-0">내가 많이 아끼는물품이지만 이제는 사용성이 없어 다른사람에게 상품을 소개하고 판매하는 서비스입니다. </p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/support.png" width="52" alt="Customer Support">
+          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/support.png"
+              width="52" alt="Customer Support">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">Customer Support</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">Friendly 24/7 customer support</p>
+              <h6 class="text-light fs-base mb-1">회원 피드백 100%</h6>
+              <p class="text-light fs-ms opacity-70 mb-0">서비스를 이용하시면서 불편한 사항이 있다면! 언제든 문의해주세요.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/updates.png" width="52" alt="Free Updates">
+          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/updates.png"
+              width="52" alt="Free Updates">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">Lifetime Free Updates</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">Never pay for an update</p>
+              <h6 class="text-light fs-base mb-1">이벤트</h6>
+              <p class="text-light fs-ms opacity-70 mb-0">정기적인 이벤트를 통해 더욱 더 획기적인 아이템을 Get 해보세요!</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/secure.png" width="52" alt="Secure Payments">
+          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/secure.png"
+              width="52" alt="Secure Payments">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">Secure Payments</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">We posess SSL / Secure сertificate</p>
+              <h6 class="text-light fs-base mb-1">보안</h6>
+              <p class="text-light fs-ms opacity-70 mb-0">검증된 회원들만 서비스를 이용할수 있습니다. </p>
             </div>
           </div>
         </div>
@@ -451,44 +494,7 @@
     </div>
   </section>
   <!-- Blog posts carousel-->
-  <section class="py-5">
-    <div class="container py-lg-3">
-      <h2 class="h3 text-center">From the blog</h2>
-      <p class="text-muted text-center mb-3 pb-4">Latest marketplace news, success stories and tutorials</p>
-      <div class="tns-carousel">
-        <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;gutter&quot;: 15, &quot;controls&quot;: false, &quot;nav&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3}, &quot;992&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 30}}}">
-          <div>
-            <div class="card"><a class="blog-entry-thumb" href="blog-single.html"><img class="card-img-top" src="/main/img/blog/05.jpg" alt="Post"></a>
-              <div class="card-body">
-                <h2 class="h6 blog-entry-title"><a href="blog-single.html">We start selling WordPress themes soon</a></h2>
-                <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim...</p>
-                <div class="fs-xs text-nowrap"><a class="blog-entry-meta-link text-nowrap" href="#">Nov 23</a><span class="blog-entry-meta-divider mx-2"></span><a class="blog-entry-meta-link text-nowrap" href="blog-single.html#comments"><i class="ci-message"></i>19</a></div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"><a class="blog-entry-thumb" href="blog-single.html"><img class="card-img-top" src="/main/img/blog/06.jpg" alt="Post"></a>
-              <div class="card-body">
-                <h2 class="h6 blog-entry-title"><a href="blog-single.html">Shoot like a pro. Tips &amp; tricks</a></h2>
-                <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim...</p>
-                <div class="fs-xs text-nowrap"><a class="blog-entry-meta-link text-nowrap" href="#">Oct 10</a><span class="blog-entry-meta-divider mx-2"></span><a class="blog-entry-meta-link text-nowrap" href="blog-single.html#comments"><i class="ci-message"></i>28</a></div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card"><a class="blog-entry-thumb" href="blog-single.html"><img class="card-img-top" src="/main/img/blog/07.jpg" alt="Post"></a>
-              <div class="card-body">
-                <h2 class="h6 blog-entry-title"><a href="blog-single.html">Designing engaging mobile experiences</a></h2>
-                <p class="fs-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim...</p>
-                <div class="fs-xs text-nowrap"><a class="blog-entry-meta-link text-nowrap" href="#">Sep 15</a><span class="blog-entry-meta-divider mx-2"></span><a class="blog-entry-meta-link text-nowrap" href="blog-single.html#comments"><i class="ci-message"></i>46</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- More button-->
-      <div class="text-center pt-4 mt-md-2"><a class="btn btn-outline-accent" href="blog-grid-sidebar.html">Ream more posts<i class="ci-arrow-right fs-ms ms-1"></i></a></div>
-    </div>
-  </section>
-</main>
-<%- include('_includes/footer') %>
+
+  </main>
+  <%- include('_includes/footer') %>
+    <script src="../main/js/popular.js" defer></script>

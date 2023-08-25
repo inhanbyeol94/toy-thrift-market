@@ -36,6 +36,7 @@ export class Document {
   @ManyToOne(() => Board, (board) => board.documents, {
     onDelete: 'CASCADE',
     nullable: false,
+    eager: true,
   })
   board: Board;
 

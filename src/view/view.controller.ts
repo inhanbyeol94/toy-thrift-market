@@ -151,4 +151,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '검색 결과', payload);
   }
+  
+  // 메인 대시보드 관리
+  @Get('admins/main-dashboard/manage')
+  @Render('admin/main-dashboard-manage.ejs')
+  mainDash(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '메인 대시보드 관리', payload);
+  }
 }
