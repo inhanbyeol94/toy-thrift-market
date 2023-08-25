@@ -10,6 +10,7 @@ export class ProductImage {
   imageUrl: string;
 
   @ManyToOne(() => Product, (product) => product.productImages, {
+    onDelete: 'CASCADE',
     nullable: false,
   })
   product: Product;
