@@ -26,7 +26,7 @@ async function loadProducts() {
                       <div class="d-inline-block text-accent">${price}원</div>
                       <!-- 버튼 -->
                       <div class="d-flex justify-content-center justify-content-sm-start pt-3">
-                          <button class="btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
+                          <button data-product-id=${id} class=" product-edit-button btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
                           <button data-product-id=${id} class="product-delete-button btn bg-faded-danger btn-icon" type="button" data-bs-toggle="tooltip" title="Delete"><i class="ci-trash text-danger"></i></button>
                       </div>
                       </div>
@@ -37,6 +37,7 @@ async function loadProducts() {
     });
 
     addEventDeleteBtn();
+    addEventEditBtn();
 
     // 상품 개수
     const productNumber = result.length;
@@ -65,6 +66,39 @@ async function deleteProduct(productId) {
   const response = await fetch(`/products/${productId}`, {
     method: 'DELETE',
   });
+
+  if (response.ok) {
+    location.reload();
+  } else {
+    const result = await response.json();
+    console.error('Error deleting product:', result.error);
+    alert('An error occurred while deleting the product.');
+  }
+}
+
+// 상품 수정 버튼
+function addEventEditBtn() {
+  const productEditButtons = document.querySelectorAll('.product-edit-button');
+  productEditButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 수정 페이지로 이동
+      const productId = button.getAttribute('data-product-id');
+      location.href = `/product/${productId}/edit`;
+      // editProduct(productId);
+    });
+  });
+}
+
+// 상품 수정 함수
+async function editProduct(productId) {
+  const response = await fetch(`/products/${productId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  // const result = await response.json();
 
   if (response.ok) {
     location.reload();
