@@ -25,8 +25,8 @@ form.addEventListener('submit', async (e) => {
     if (!response.ok) {
       throw new Error('Failed to post products');
     }
-
-    location.href = '/';
+    const result = await response.json();
+    location.href = `/product/${result.id}`;
   } catch (error) {
     console.error('Error posting products:', error);
   }

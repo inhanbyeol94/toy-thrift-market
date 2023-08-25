@@ -17,7 +17,7 @@ export class ProductService {
   ) {}
 
   // 상품 추가
-  async create(_product: CreateProductDto, files: any, memberId: number): Promise<IMessage> {
+  async create(_product: CreateProductDto, files: any, memberId: number): Promise<{ id: number }> {
     const { smallCategoryId, name, price, content } = _product;
     const productImages = files ? files.map((file) => file.location) : null;
     const count = 1;
@@ -34,7 +34,7 @@ export class ProductService {
     if (productImages) {
       this.productImageService.create(product.id, productImages);
     }
-    return { message: '상품이 추가되었습니다.' };
+    return { id: product.id };
   }
 
   // 상품 전체 조회
