@@ -93,4 +93,11 @@ export class CategoryController {
   async deleteSmallCategory(@Param('id') id: number): Promise<IMessage> {
     return this.categoryService.deleteSmallCategory(id);
   }
+
+  // 카테고리 (소)의 상위 미들, 라지 카테고리 조회
+  @Get('small/:id/parent')
+  @HttpCode(200)
+  async getParentBySmallCategoryId(@Param('id') id: number): Promise<SmallCategory> {
+    return this.categoryService.findParentBySmallCategoryId(id);
+  }
 }

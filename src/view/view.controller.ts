@@ -118,7 +118,7 @@ export class ViewController {
 
   // 상품 추가 페이지
   @Get('mypage/products/new')
-  @Render('main/add-new-product.ejs')
+  @Render('main/product-new.ejs')
   addProduct(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '상품 추가', payload);
@@ -145,13 +145,27 @@ export class ViewController {
     return this.viewService.requiredAuth('나중애', '내 상품', payload);
   }
 
+  @Get('product/:id')
+  @Render('main/product-detail.ejs')
+  getProductDetail(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 상세', payload);
+  }
+
+  @Get('product/:id/edit')
+  @Render('main/product-edit.ejs')
+  getProductEdit(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '상품 수정', payload);
+  }
+
   @Get('search')
   @Render('main/search.ejs')
   async search(@Req() req: IRequest): Promise<any> {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '검색 결과', payload);
   }
-  
+
   // 메인 대시보드 관리
   @Get('admins/main-dashboard/manage')
   @Render('admin/main-dashboard-manage.ejs')

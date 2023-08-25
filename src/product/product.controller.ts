@@ -15,11 +15,11 @@ export class ProductController {
   // 상품 추가
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() _product: CreateProductDto, @Req() req: IRequest): Promise<IMessage> {
+  async create(@Body() _product: CreateProductDto, @Req() req: IRequest): Promise<{ id: number }> {
     const { id: memberId } = req.user;
     const _files = req.files;
-    await this.productService.create(_product, _files, memberId);
-    return { message: '상품이 추가되었습니다.' };
+    const { id } = await this.productService.create(_product, _files, memberId);
+    return { id };
   }
 
   // 상품 전체 조회

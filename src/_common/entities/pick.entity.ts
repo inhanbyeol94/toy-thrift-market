@@ -18,6 +18,7 @@ export class Pick {
 
   @ManyToOne(() => Product, (product) => product.picks, {
     nullable: false,
+    onDelete: 'CASCADE',
   })
   product: Product;
 

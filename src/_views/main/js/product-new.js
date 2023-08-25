@@ -25,8 +25,8 @@ form.addEventListener('submit', async (e) => {
     if (!response.ok) {
       throw new Error('Failed to post products');
     }
-
-    location.href = '/';
+    const result = await response.json();
+    location.href = `/product/${result.id}`;
   } catch (error) {
     console.error('Error posting products:', error);
   }
@@ -91,13 +91,10 @@ async function loadCategories() {
   // 라지 카테고리 선택 시, 하위 미들 카테고리 옵션 생성
   largeCategoryOptionEl.addEventListener('change', () => {
     const largeCategoryId = largeCategoryOptionEl.value;
-    if (largeCategoryId === '0') {
-      middleCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
-      NO_CATEGORY_OPTION;
-      smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
-      return;
-    }
-    smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
+    emptyMiddleOptions();
+    emptySmallOptions();
+    if (largeCategoryId === '0') return;
+
     const selectedLarge = largeCategories.find((e) => e.id === largeCategoryId);
     generateCategories(selectedLarge.middleCategories, middleCategoryOptionEl);
   });
@@ -110,10 +107,9 @@ async function loadCategories() {
   // 미들 카테고리 선택 시, 하위 스몰 카테고리 옵션 생성
   middleCategoryOptionEl.addEventListener('change', () => {
     const middleCategoryId = middleCategoryOptionEl.value;
-    if (middleCategoryId === '0') {
-      smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
-      return;
-    }
+    emptySmallOptions();
+    if (middleCategoryId === '0') return;
+
     const selectedMiddle = middleCategories.find((e) => e.id === middleCategoryId);
     generateCategories(selectedMiddle.smallCategories, smallCategoryOptionEl);
   });
@@ -127,4 +123,12 @@ function generateCategories(categories, categoryElement) {
     optionElement.textContent = category.name;
     categoryElement.appendChild(optionElement);
   });
+}
+
+function emptyMiddleOptions() {
+  middleCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
+}
+
+function emptySmallOptions() {
+  smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
 }

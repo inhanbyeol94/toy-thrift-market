@@ -29,7 +29,7 @@ export class Product {
   member_id: number;
 
   @Column({ nullable: false })
-  small_Category_id: number;
+  small_category_id: number;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -37,10 +37,10 @@ export class Product {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Pick, (pick) => pick.product)
+  @OneToMany(() => Pick, (pick) => pick.product, { cascade: true })
   picks: Pick[];
 
-  @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true })
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true, cascade: true })
   productImages: Product[];
 
   @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
