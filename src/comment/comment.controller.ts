@@ -32,14 +32,18 @@ export class CommentController {
   }
   // 댓글 수정
   @Patch(':id')
+  @UseGuards(AuthGuard)
   @HttpCode(200)
-  async updateComment(@Param('id') id: number, @Body() data: UpdateCommentDto): Promise<IMessage> {
-    return await this.commentService.updateComment(id, data);
+  async updateComment(@Param('id') commentId: number, @Body() data: UpdateCommentDto, @Req() req: IRequest): Promise<IMessage> {
+    const { id } = req.user;
+    return await this.commentService.updateComment(commentId, data, id);
   }
   // 댓글 삭제
   @Delete(':id')
+  @UseGuards(AuthGuard)
   @HttpCode(200)
-  async deleteComment(@Param('id') id: number): Promise<IMessage> {
-    return await this.commentService.deleteComment(id);
+  async deleteComment(@Param('id') commentId: number, @Req() req: IRequest): Promise<IMessage> {
+    const { id } = req.user;
+    return await this.commentService.deleteComment(commentId, id);
   }
 }
