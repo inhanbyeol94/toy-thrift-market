@@ -25,7 +25,6 @@ export class MemberService {
   //회원가입
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
     const findByVerifyData: IClientVerifyIdentity = await this.cacheManager.get(createMember.tel);
-    console.log(typeof findByVerifyData.sequence, typeof createMember.sequence);
     if (!findByVerifyData || findByVerifyData.verify !== true || findByVerifyData.type !== 200) throw new HttpException('핸드폰 인증이 완료되지 않았습니다.', 403);
 
     const { email, nickname, tel } = createMember;
@@ -42,6 +41,7 @@ export class MemberService {
     createMember.password = await bcrypt.hash(createMember.password, 10);
     const newMember = this.membersRepository.create(createMember);
     await this.membersRepository.save(newMember);
+    await this.cacheManager.del(createMember.tel);
     return { message: '회원가입이 완료되었습니다.' };
   }
   // 회원정보 조회
