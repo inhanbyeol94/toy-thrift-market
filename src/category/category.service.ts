@@ -130,4 +130,8 @@ export class CategoryService {
     await this.smallCategoryRepository.delete(id);
     return { message: '카테고리(소)가 삭제되었습니다. ' };
   }
+
+  async findParentBySmallCategoryId(id: number): Promise<SmallCategory> {
+    return this.smallCategoryRepository.findOne({ where: { id }, relations: ['middleCategory', 'middleCategory.largeCategory'] });
+  }
 }
