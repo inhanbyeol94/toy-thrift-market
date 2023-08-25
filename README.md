@@ -63,7 +63,8 @@ npm install @nestjs/cache-manager cache-manager
 npm install cache-manager-redis-store
 npm install crypto
 npm install @slack/web-api moment node-schedule
-npm install -D "@types/node-schedule
+npm install -D @types/node-schedule
+npm install @nestjs/mongoose mongoose
 ```
 
 <br>
