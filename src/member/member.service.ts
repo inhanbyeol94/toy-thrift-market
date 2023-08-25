@@ -26,8 +26,7 @@ export class MemberService {
   async createMember(createMember: CreateMemberDto): Promise<IMessage> {
     const findByVerifyData: IClientVerifyIdentity = await this.cacheManager.get(createMember.tel);
     console.log(typeof findByVerifyData.sequence, typeof createMember.sequence);
-    if (!findByVerifyData || +findByVerifyData.sequence !== createMember.sequence || findByVerifyData.type !== 200)
-      throw new HttpException('핸드폰 인증이 완료되지 않았습니다.', 403);
+    if (!findByVerifyData || findByVerifyData.verify !== true || findByVerifyData.type !== 200) throw new HttpException('핸드폰 인증이 완료되지 않았습니다.', 403);
 
     const { email, nickname, tel } = createMember;
     // 존재하는 이메일이 있을때
