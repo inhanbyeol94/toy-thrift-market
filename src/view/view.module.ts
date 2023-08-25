@@ -1,5 +1,7 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Product } from 'src/_common/entities';
 import { TokenValidMiddleware } from 'src/_common/middlewares/token.valid.middleware';
 import { ViewAdminMiddleware } from 'src/_common/middlewares/view.admin.middleware';
 import { ViewAuthMiddleware } from 'src/_common/middlewares/view.auth.middleware';
@@ -7,6 +9,7 @@ import { ViewController } from './view.controller';
 import { ViewService } from './view.service';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([Product])],
   controllers: [ViewController],
   providers: [ViewService, JwtService],
 })
