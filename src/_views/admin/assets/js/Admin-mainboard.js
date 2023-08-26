@@ -20,36 +20,58 @@ const clcontentFour = document.getElementById('cl4content');
 async function maindashBoard() {
   try {
     const res = await fetch('/admin-mainboards', { method: 'GET' });
+
     if (!res.ok) {
       console.error('Response status:', res.status);
       throw new Error('정보를 가져오는데 실패하였습니다.');
     }
 
-    const dashBoard = await res.json();
+    const [dashBoard] = await res.json();
     console.log(dashBoard);
-    imageTag.setAttribute('src', dashBoard[0].image);
-    maintitleTag.value = dashBoard[0].mainTitle;
-    subtitleTag.value = dashBoard[0].subtitle;
+    imageTag.setAttribute('src', dashBoard.image);
+    maintitleTag.value = dashBoard.mainTitle;
+    subtitleTag.value = dashBoard.subTitle;
+    bottomtaptitleTag.value = dashBoard.bottomTitle;
+    bottomtapcolorTag.value = dashBoard.bottomtapColor;
 
-    bottomtaptitleTag.innerHTML = dashBoard[0].bottomTitle;
+    bottomcliconOne.value = dashBoard.columns[0].icon;
+    cltitleOne.value = dashBoard.columns[0].title;
+    clcontentOne.value = dashBoard.columns[0].content;
 
-    bottomcliconOne.value = dashBoard[0].columns[0].icon;
-    cltitleOne.value = dashBoard[0].title;
-    clcontentOne.value = dashBoard[0].content;
+    bottomcliconTwo.value = dashBoard.columns[1].icon;
+    cltitleTwo.value = dashBoard.columns[1].title;
+    clcontentTwo.value = dashBoard.columns[1].title;
 
-    bottomcliconTwo.value = dashBoard[0].icon2;
-    cltitleTwo.value = dashBoard[0].title2;
-    clcontentTwo.value = dashBoard[0].title2;
+    bottomcliconThree.value = dashBoard.columns[2].icon;
+    cltitleThree.value = dashBoard.columns[2].title;
+    clcontentThree.value = dashBoard.columns[2].content;
 
-    bottomcliconThree.value = dashBoard[0].icon3;
-    cltitleThree.value = dashBoard[0].title3;
-    clcontentThree.value = dashBoard[0].content3;
+    bottomcliconFour.value = dashBoard.columns[3].icon;
+    cltitleFour.value = dashBoard.columns[3].title;
+    clcontentFour.value = dashBoard.columns[3].content;
 
-    bottomcliconFour.value = dashBoard[0].icon4;
-    cltitleFour.value = dashBoard[0].title4;
-    clcontentFour.value = dashBoard[0].content4;
+    let formData = new FormData();
+    formData.append('imageTag', dashBoard.image);
+    formData.append('maintitleTag', maintitleTag.value);
+    formData.append('subtitleTag', subtitleTag.value);
+    formData.append('bottomtaptitleTag', bottomtaptitleTag.value);
+    formData.append('bottomtapcolorTag', bottomtapcolorTag.value);
+    formData.append('bottomcliconOne', bottomcliconOne.value);
+    formData.append('cltitleOne', cltitleOne.value);
+    formData.append('clcontentOne', clcontentOne.value);
+    formData.append('bottomcliconTwo', bottomcliconTwo.value);
+    formData.append('cltitleTwo', cltitleTwo.value);
+    formData.append('clcontentTwo', clcontentTwo.value);
+    formData.append('bottomcliconThree', bottomcliconThree.value);
+    formData.append('bottomcliconTwo', bottomcliconTwo.value);
+    formData.append('cltitleThree', cltitleThree.value);
+    formData.append('clcontentThree', clcontentThree.value);
+    formData.append('bottomcliconFour', bottomcliconFour.value);
+    formData.append('cltitleFour', cltitleFour.value);
+    formData.append('clcontentFour', clcontentFour.value);
   } catch (error) {
     console.error(error);
   }
 }
 maindashBoard();
+// document.getElementById('dashboardEdit').addEventListener('click');
