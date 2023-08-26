@@ -15,7 +15,7 @@ import { JwtService } from '@nestjs/jwt';
 })
 export class ProductModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(UploadMiddleware).forRoutes({ path: '/products', method: RequestMethod.POST });
+    consumer.apply(UploadMiddleware).forRoutes({ path: '/products', method: RequestMethod.POST }, { path: '/products/:id', method: RequestMethod.PATCH });
     consumer.apply(TokenValidMiddleware).forRoutes(ProductController);
   }
 }

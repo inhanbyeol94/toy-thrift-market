@@ -59,8 +59,9 @@ export class ProductController {
   // 상품 수정
   @UseGuards(AuthGuard)
   @Patch(':id')
-  async update(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto): Promise<IMessage> {
-    return await this.productService.update(id, updateProductDto);
+  async update(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto, @Req() req: IRequest): Promise<IMessage> {
+    const _files = req.files;
+    return await this.productService.update(id, updateProductDto, _files);
   }
 
   // 상품 삭제

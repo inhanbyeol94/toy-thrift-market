@@ -80,13 +80,17 @@ export class ProductService {
   }
 
   // 상품 수정
-  async update(id: number, updateProductDto: UpdateProductDto): Promise<IMessage> {
-    const { name, price, content } = updateProductDto;
+  async update(id: number, updateProductDto: UpdateProductDto, files: any): Promise<IMessage> {
+    const { name, price, content, smallCategoryId: small_category_id } = updateProductDto;
+    const productImages = files ? files.map((file) => file.location) : null;
+
     const existingProduct = await this.findOne(id);
     if (!existingProduct) throw new NotFoundException('상품이 존재하지 않습니다.');
-
-    const updatedProduct = { ...existingProduct, name, price, content };
+    const updatedProduct = { ...existingProduct, name, price, content, small_category_id };
     await this.productRepository.save(updatedProduct);
+    if (productImages) {
+      this.productImageService.create(existingProduct.id, productImages);
+    }
     return { message: '상품이 수정되었습니다.' };
   }
 
