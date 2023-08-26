@@ -558,7 +558,6 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
-
 }
 .img-thumbnail {
   padding: 0.3125rem;
@@ -17817,3 +17816,9 @@ html:not([dir='rtl']) .range-slider-ui.noUi-horizontal .noUi-handle {
   font-weight: 700;
 }
 /*# sourceMappingURL=theme.min.css.map */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개씩 두 줄로 배치 */
+  grid-gap: 20px; /* 상품 간의 간격 설정 */
+}
