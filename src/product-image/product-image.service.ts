@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductImage } from 'src/_common/entities';
+import { IMessage } from 'src/_common/interfaces/message.interface';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -18,19 +19,8 @@ export class ProductImageService {
     );
   }
 
-  // findAll() {
-  //   return `This action returns all productImage`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} productImage`;
-  // }
-
-  // update(id: number, updateProductImageDto: UpdateProductImageDto) {
-  //   return `This action updates a #${id} productImage`;
-  // }
-
-  remove(id: number) {
-    return `This action removes a #${id} productImage`;
+  async remove(id: number): Promise<IMessage> {
+    await this.productImageRepository.delete(id);
+    return { message: '이미지가 삭제되었습니다.' };
   }
 }
