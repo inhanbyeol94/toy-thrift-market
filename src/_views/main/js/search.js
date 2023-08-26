@@ -1,9 +1,46 @@
 const productList = document.getElementById('productList');
+const prevBtn = document.getElementById('pagePrevBtn');
+const nextBtn = document.getElementById('pageNextBtn');
+const mobileCurrentPage = document.getElementById('mobileCurrentPage');
+const pageLists = document.getElementById('pageLists');
 
-const test = async () => {
+const viewSearchData = async () => {
   const api = await fetch(`/searches${window.location.search}`);
   const result = await api.json();
-  console.log(result);
+
+  const currentPage = result.page;
+  const lastPage = Math.ceil(result.count / 12);
+  const maxPage = Math.ceil(lastPage / 5) * 5;
+
+  /* 현재 페이지가 최소값일 경우 이전 버튼 삭제 */
+  if (currentPage === 1) {
+    prevBtn.remove();
+  } else {
+    prevBtn.setAttribute('href', '/search?' + window.location.search.replace('&page=' + currentPage, '').replace('?', '') + '&page=' + (currentPage - 1));
+  }
+
+  /* 현재 페이지가 최대값일 경우 다음 버튼 삭제 */
+  if (currentPage === lastPage) {
+    nextBtn.remove();
+  } else {
+    nextBtn.setAttribute('href', '/search?' + window.location.search.replace('&page=' + currentPage, '').replace('?', '') + '&page=' + (currentPage + 1));
+  }
+
+  mobileCurrentPage.innerText = `${maxPage - 4} / ${maxPage}`;
+
+  for (let i = Math.ceil(currentPage / 5) * 5 - 4; i <= Math.ceil(currentPage / 5) * 5; i++) {
+    if (i <= lastPage) {
+      if (i == currentPage) {
+        pageLists.innerHTML += `<li class="page-item d-none d-sm-block active" aria-current="page"><a class="page-link" href="${
+          '/search?' + window.location.search.replace('&page=' + currentPage, '').replace('?', '') + '&page=' + i
+        }">${i}</a></li>`;
+      } else {
+        pageLists.innerHTML += `<li class="page-item d-none d-sm-block" aria-current="page"><a class="page-link" href="${
+          '/search?' + window.location.search.replace('&page=' + currentPage, '').replace('?', '') + '&page=' + i
+        }">${i}</a></li>`;
+      }
+    }
+  }
 
   result.data.forEach((info) => {
     productList.innerHTML += `          <!-- Product-->
@@ -28,4 +65,4 @@ const test = async () => {
   });
 };
 
-test();
+viewSearchData();
