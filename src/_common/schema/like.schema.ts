@@ -14,6 +14,8 @@ export class MainPage {
   mainImage: string;
   @Prop()
   bottomTitle: string;
+  @Prop()
+  bottomtapColor: string;
   // @Prop()
   // columns: [
   //   {
