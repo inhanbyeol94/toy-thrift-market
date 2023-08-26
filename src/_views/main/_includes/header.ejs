@@ -69,82 +69,22 @@
           <!-- Categories dropdown-->
           <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown" style="font-size: 15px"><i class="ci-menu align-middle mt-n1 me-2"></i>상품 카테고리</a>
-              <ul class="dropdown-menu py-1">
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Photos</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">All Photos<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
+              <ul class="dropdown-menu py-1" id="headerLargeCategory">
+                <!-- 카테고리 (대) -->
+                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">남성 의류</a>
+                  <ul class="dropdown-menu" id="headerMiddleCategory">
+                    <!-- 카테고리 (중) -->
+                    <li class="dropdown-item product-title fw-medium"><a href="/search?largeCategory=15">전체<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
                     <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Abstract</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Animals</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Architecture</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Beauty &amp; Fashion</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Business</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Education</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Food &amp; Drink</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Holidays</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Industrial</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">People</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Sports</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Technology</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Graphics</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="#">All Graphics<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Icons</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Illustartions</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Patterns</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Textures</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Web Elements</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">UI Design</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">All UI Design<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">PSD Templates</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Sketch Templates</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Adobe XD Templates</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Figma Templates</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Web Themes</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">All Web Themes<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">WordPress Themes</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Bootstrap Themes</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">eCommerce Templates</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Muse Templates</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Plugins</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Fonts</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">All Fonts<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Blackletter</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Display</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Non Western</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Sans Serif</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Script</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Serif</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Slab Serif</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Symbols</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Add-Ons</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">All Add-Ons<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Photoshop Add-Ons</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Illustrator Add-Ons</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Sketch Plugins</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Procreate Brushes</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">InDesign Palettes</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Lightroom Presets</a></li>
-                    <li><a class="dropdown-item" href="marketplace-category.html">Other Software</a></li>
+                    <!-- 카테고리 (소) -->
+                    <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">상의</a>
+                      <ul class="dropdown-menu" id="headerSmallCategory">
+                        <li class="dropdown-item product-title fw-medium"><a href="marketplace-category.html">전체<i class="ci-arrow-right fs-xs ms-1"></i></a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="marketplace-category.html">상의</a></li>
+                        <li><a class="dropdown-item" href="marketplace-category.html">하의</a></li>
+                      </ul>
+                    </li>
                   </ul>
                 </li>
               </ul>
