@@ -9,3 +9,17 @@ logoutBtn.addEventListener('click', async () => {
 
   if (status == 200) return (window.location.href = '/');
 });
+
+const loadCategories = async () => {
+  fetch('/categories/large', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+};
+loadCategories();
