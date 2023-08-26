@@ -53,3 +53,62 @@ async function maindashBoard() {
   }
 }
 maindashBoard();
+
+const editMainBoardBtn = document.getElementById('dashboardEdit');
+editMainBoardBtn.addEventListener('click', () => {
+  const imageTag = imageTag.value;
+  const maintitleTag = maintitleTag.value;
+  const subtitleTag = subtitleTag.value;
+  const bottomtapcolorTag = bottomtapcolorTag.value;
+  const bottomtaptitleTag = bottomtaptitleTag.value;
+  const bottomcliconOne = bottomcliconOne.value;
+  const cltitleOne = cltitleOne.value;
+  const clcontentOne = clcontentOne.value;
+  const bottomcliconTwo = bottomcliconTwo.value;
+  const cltitleTwo = cltitleTwo.value;
+  const clcontentTwo = clcontentTwo.value;
+  const bottomcliconThree = bottomcliconThree.value;
+  const cltitleThree = cltitleThree.value;
+  const clcontentThree = clcontentThree.value;
+  const bottomcliconFour = bottomcliconFour.value;
+  const cltitleFour = cltitleFour.value;
+  const clcontentFour = clcontentFour.value;
+  const editMainBoardData = {
+    mainTitle: maintitleTag,
+    subTitle: subtitleTag,
+    bottomTap: bottomtapcolorTag,
+    mainImage: imageTag,
+    bottomTitle: bottomtaptitleTag,
+    columns: [
+      {
+        icon: bottomcliconOne,
+        title: cltitleOne,
+        content: clcontentOne,
+        bottomcliconTwo: cl2Icon,
+        cltitleTwo: cl2Title,
+        clcontentTwo: clcontentOne,
+        bottomcliconThree: cl3Icon,
+        cltitleThree: cl3Title,
+        clcontentThree: clcontentOne,
+        bottomcliconFour: cl4Icon,
+        cltitleFour: cl4Title,
+        content4: clcontentFour,
+      },
+    ],
+  };
+
+  fetch('admin-mainboards', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(editMainBoardData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('수정이 완료되었습니다.', data);
+    })
+    .catch((error) => {
+      console.error('수정 중 오류가 발생했습니다.', error);
+    });
+});
