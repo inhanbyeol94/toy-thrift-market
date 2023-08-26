@@ -35,10 +35,10 @@ const loadmainboardInfo = async () => {
       col2content.innerText = data[0].columns[1].content;
       col3content.innerText = data[0].columns[2].content;
       col4content.innerText = data[0].columns[3].content;
-      // col1Icon.innerHTML = `<img src=${data[0].columns[0].icon} width="52" alt="Quality Guarantee" id="col1Icon">`;
-      // col2Icon.innerHTML = `<img src=${data[0].columns[1].icon} width="52" alt="Quality Guarantee" id="col2Icon">`;
-      // col3Icon.innerHTML = `<img src=${data[0].columns[2].icon} width="52" alt="Quality Guarantee" id="col3Icon">`;
-      // col4Icon.innerHTML = `<img src=${data[0].columns[3].icon} width="52" alt="Quality Guarantee" id="col4Icon">`;
+      col1Icon.innerHTML = `<i class=${data[0].columns[0].icon}></i>`;
+      col2Icon.innerHTML = `<i class=${data[0].columns[1].icon}></i>`;
+      col3Icon.innerHTML = `<i class=${data[0].columns[2].icon}></i>`;
+      col4Icon.innerHTML = `<i class=${data[0].columns[3].icon}></i>`;
     });
 };
 loadmainboardInfo();
