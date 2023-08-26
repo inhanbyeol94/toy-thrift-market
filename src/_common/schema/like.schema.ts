@@ -14,14 +14,24 @@ export class MainPage {
   mainImage: string;
   @Prop()
   bottomTitle: string;
-  @Prop()
-  columns: [
+  // @Prop()
+  // columns: [
+  //   {
+  //     icon: string;
+  //     title: string;
+  //     content: string;
+  //   },
+  // ];
+  @Prop([
     {
-      icon: string;
-      title: string;
-      content: string;
+      icon: String,
+      title: String,
+      content: String,
     },
-  ];
+  ])
+  columns: { icon: string; title: string; content: string }[];
+
+  isAdmin: boolean;
 }
 export const MainPageSchema = SchemaFactory.createForClass(MainPage);
 // 1. 몽구스 연결 확인부터 하기
