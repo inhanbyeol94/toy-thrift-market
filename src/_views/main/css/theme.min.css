@@ -8285,7 +8285,7 @@ fieldset:disabled .btn {
 }
 .bg-accent {
   --cz-bg-opacity: 1;
-  background-color: rgba(var(--cz-accent-rgb), var(--cz-bg-opacity)) !important;
+  background-color: rgba(var(--cz-accent-rgb), var(--cz-bg-opacity));
 }
 .bg-secondary {
   --cz-bg-opacity: 1;
