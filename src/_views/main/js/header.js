@@ -1,16 +1,13 @@
-const logoutBtn = document.getElementById('logoutBtn');
+const headerSearchInput = document.getElementById('headerSearchInput');
 
-logoutBtn.addEventListener('click', async () => {
-  const api = await fetch('/auth', {
-    method: 'DELETE',
-  });
-
-  const { status } = await api;
-
-  if (status == 200) return (window.location.href = '/');
+headerSearchInput.addEventListener('keydown', (e) => {
+  if (e.keyCode == 13) {
+    if (!headerSearchInput.value) return alert('상품명을 입력해주세요.');
+    window.location.href = '/search?product=' + headerSearchInput.value;
+  }
 });
 
-const loadCategories = async () => {
+const headerLoadCategories = async () => {
   const response = await fetch('/categories/large');
   const data = await response.json();
 
@@ -78,4 +75,14 @@ const loadCategories = async () => {
   });
 };
 
-loadCategories();
+headerLoadCategories();
+
+async function logout() {
+  const api = await fetch('/auth', {
+    method: 'DELETE',
+  });
+
+  const { status } = await api;
+
+  if (status == 200) return (window.location.href = '/');
+}
