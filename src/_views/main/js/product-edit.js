@@ -194,10 +194,10 @@ function appendImagePreview(image, isExistingImage, file) {
   img.src = imageUrl;
   img.style.width = '100px';
   img.style.height = '100px';
+  img.setAttribute('data-image-id', image.id);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = `<i class="ci-close"></i>`;
-  deleteBtn.setAttribute('data-image-id', '0');
 
   // isExistingImage => true : 기존 이미지, false(else) : 새로운 이미지
   if (isExistingImage) {
@@ -232,3 +232,70 @@ function appendImagePreview(image, isExistingImage, file) {
 
   document.getElementById('imagePreview').appendChild(imgContainer);
 }
+
+// ============================ 순서 로직 ============================ //\
+
+const previewEl = document.querySelector('#imagePreview');
+
+// 변수 초기화
+let picked = null;
+let pickedIndex = null;
+
+// 드래그 스타트
+previewEl.addEventListener('dragstart', (e) => {
+  const target = e.target;
+  console.log('드래그 스타트');
+  // 드래그 시작한 요소와 그 요소의 인덱스 저장
+  picked = target;
+
+  // previewEl의 자식 div 배열중 target의 부모 div의 index 구하기, 미리보기에서 이미지의 인덱스 구하기
+  pickedIndex = [...target.parentNode.parentNode.children].indexOf(target.parentNode);
+});
+
+// 드래그 오버
+previewEl.addEventListener('dragover', (e) => {
+  console.log('드래그 오버');
+  // dragover 이벤트의 기본 동작 방지(드롭을 허용하도록 설정)
+  e.preventDefault();
+  if (e.target.parentNode !== e.currentTarget) return;
+});
+// 드롭
+previewEl.addEventListener('drop', async (e) => {
+  console.log('드랍');
+
+  const target = e.target;
+  // 드랍 위치에 있는 요소의 인덱스 구하기
+  const index = [...target.parentNode.children].indexOf(target);
+  // 원래 위치(pickedIndex)와 비교하여 뒤로 옮겼다면 after() 메서드를, 앞으로 옮겼다면 before() 메서드를 사용하여 실제 DOM에서 위치 변경
+  index > pickedIndex ? target.parentNode.after(picked) : target.parentNode.before(picked);
+
+  const imageId = picked.getAttribute('data-image-id');
+  console.log('🚀 --------------------------------------------------🚀');
+  console.log('🚀 🔶 previewEl.addEventListener 🔶 picked:', picked);
+  console.log('🚀 --------------------------------------------------🚀');
+  // 바로 전 또는 다음 컬럼 id 가져오기. 만약 없다면 '0'으로 설정.
+  const prev = picked.previousSibling?.getAttribute('data-image-id') || 0;
+  console.log('🚀 ----------------------------------------------------------------------------------🚀');
+  console.log('🚀 🔶 previewEl.addEventListener 🔶 picked.previousSibling:', picked.previousSibling);
+  console.log('🚀 ----------------------------------------------------------------------------------🚀');
+  // const next = picked.nextSibling?.getAttribute('data-image-id') || 0;
+  return;
+  const response = await fetch(`/product-images/position`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      prev,
+      next,
+      id: imageId,
+    }),
+  });
+  const { status } = response;
+  const { message } = await response.json();
+
+  if (status) {
+    alert(message);
+    return window.location.reload();
+  }
+});
