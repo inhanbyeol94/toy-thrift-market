@@ -6,10 +6,12 @@
       <div class="container py-lg-5 my-lg-5">
         <div class="row mb-4 mb-sm-5">
           <div class="col-lg-7 col-md-9 text-center text-sm-start">
-            <h1 class="text-white lh-base"><span class='fw-light' style="color: gold; font-weight: bolder">나</span> 의
+            <h1 class="text-white lh-base" id="mainTitle"><span class='fw-light'
+                style="color: gold; font-weight: bolder">나</span> 의
               <span class='fw-light' style="color: gold; font-weight: bolder">중</span> 고 <span class='fw-light'
                 style="color: gold; font-weight: bolder">애</span>물단지 입니다!
-              <h2 class="h5 text-white fw-light">다양한 상품들을 보시고 좋은 상품들을 구매해 보세요!!</h2>
+            </h1>
+            <h2 class="h5 text-white fw-light" id="subTitle">다양한 상품들을 보시고 좋은 상품들을 구매해 보세요!!</h2>
           </div>
         </div>
 
@@ -46,44 +48,44 @@
   <!-- Seller of the month-->
 
   <!-- Marketplace features-->
-  <section class="bg-accent bg-size-cover bg-position-center pt-5 pb-4 pb-lg-5"
-    style="background-image: url(main/img/marketplace/features/features-bg.jpg);">
+  <section class="bg-accent bg-size-cover bg-position-center pt-5 pb-4 pb-lg-5" style="background-color: black;">
     <div class="container pt-lg-3">
-      <h2 class="h3 mb-3 pb-4 text-light text-center">나중애란 무엇인가요?</h2>
+      <h2 class="h3 mb-3 pb-4 text-light text-center" id="bottomTitle">나중애란 무엇인가요?</h2>
       <div class="row pt-lg-2 text-center">
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/quality.png"
-              width="52" alt="Quality Guarantee">
+          <div class="d-inline-flex align-items-center text-start">
+            <img src="/main/img/marketplace/features/quality.png" width="52" alt="Quality Guarantee" id="col1Icon">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">나의 중고 애물단지</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">내가 많이 아끼는물품이지만 이제는 사용성이 없어 다른사람에게 상품을 소개하고 판매하는 서비스입니다. </p>
+              <h6 class="text-light fs-base mb-1" id="col1Title">나의 중고 애물단지</h6>
+              <p class="text-light fs-ms opacity-70 mb-0" id="col1content">내가 많이 아끼는물품이지만 이제는 사용성이 없어 다른사람에게 상품을 소개하고
+                판매하는 서비스입니다. </p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/support.png"
-              width="52" alt="Customer Support">
+          <div class="d-inline-flex align-items-center text-start">
+            <img src="/main/img/marketplace/features/support.png" width="52" alt="Customer Support" id="col2Icon">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">회원 피드백 100%</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">서비스를 이용하시면서 불편한 사항이 있다면! 언제든 문의해주세요.</p>
+              <h6 class="text-light fs-base mb-1" id="col2Title">회원 피드백 100%</h6>
+              <p class="text-light fs-ms opacity-70 mb-0" id="col2content">서비스를 이용하시면서 불편한 사항이 있다면! 언제든 문의해주세요.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/updates.png"
-              width="52" alt="Free Updates">
+          <div class="d-inline-flex align-items-center text-start">
+            <img src="/main/img/marketplace/features/updates.png" width="52" alt="Free Updates" id="col3Icon">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">이벤트</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">정기적인 이벤트를 통해 더욱 더 획기적인 아이템을 Get 해보세요!</p>
+              <h6 class="text-light fs-base mb-1" id="col3Title">이벤트</h6>
+              <p class="text-light fs-ms opacity-70 mb-0" id="col3content">정기적인 이벤트를 통해 더욱 더 획기적인 아이템을 Get 해보세요!</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 mb-grid-gutter">
-          <div class="d-inline-flex align-items-center text-start"><img src="/main/img/marketplace/features/secure.png"
-              width="52" alt="Secure Payments">
+          <div class="d-inline-flex align-items-center text-start">
+            <img src="/main/img/marketplace/features/secure.png" width="52" alt="Secure Payments" id="col4Icon">
             <div class="ps-3">
-              <h6 class="text-light fs-base mb-1">보안</h6>
-              <p class="text-light fs-ms opacity-70 mb-0">검증된 회원들만 서비스를 이용할수 있습니다. </p>
+              <h6 class="text-light fs-base mb-1" id="col4Title">보안</h6>
+              <p class="text-light fs-ms opacity-70 mb-0" id="col4content">검증된 회원들만 서비스를 이용할수 있습니다. </p>
             </div>
           </div>
         </div>
@@ -96,3 +98,4 @@
   <%- include('_includes/footer') %>
     <script src="../main/js/popular.js"></script>
     <script src="../main/js/recent-product-bycategory.js"></script>
+    <script src="../main/js/main-dashboard-manage.js"></script>
