@@ -1,21 +1,30 @@
-import { Controller, HttpCode, Post, Body, Req, UseGuards, Get, Patch } from '@nestjs/common';
+import { Controller, HttpCode, Post, Body, Req, UseGuards, Get, Patch, Param, UseInterceptors, Res } from '@nestjs/common';
 import { AdminMainboardService } from './admin-mainboard.service';
 import { MainPage } from '../_common/schema/like.schema';
 import { IMessage } from '../_common/interfaces/message.interface';
 import { IRequest } from '../_common/interfaces/request.interface';
-import { AuthGuard } from '../_common/guards/auth.guard';
 import { AdminGuard } from '../_common/guards/admin.guard';
+import { MainBoardDto } from '../_common/dtos/mainboard.dto';
 
 @Controller('admin-mainboards')
 export class AdminMainPageController {
   constructor(private readonly adminMainPageService: AdminMainboardService) {}
-  // 생성 Test
+  // 생성
   @Post()
   @UseGuards(AdminGuard)
   @HttpCode(201)
-  async createPost(@Body() mainList: any): Promise<IMessage> {
-    console.log(mainList);
-    await this.adminMainPageService.createPost(mainList);
+  async createPost(@Body() mainList: any, @Req() req: IRequest): Promise<IMessage> {
+    const files = req.files[0]?.location;
+    await this.adminMainPageService.upsertMainpage(mainList, files);
+    return { message: '생성 완료' };
+  }
+  /** 수정  **/
+  @Patch()
+  @UseGuards(AdminGuard)
+  @HttpCode(200)
+  async updatePost(@Body() mainList: MainBoardDto, @Req() req: IRequest): Promise<IMessage> {
+    const files = req.files[0]?.location;
+    await this.adminMainPageService.upsertMainpage(mainList, files);
     return { message: '생성 완료' };
   }
 
@@ -27,10 +36,10 @@ export class AdminMainPageController {
   }
 
   // 메인페이지 수정
-  @Patch()
+  // @Patch(':id')
   // @UseGuards(AdminGuard)
-  @HttpCode(200)
-  async editmainBoard(@Body() updateBoard: any): Promise<IMessage> {
-    return await this.adminMainPageService.editmainBoard(updateBoard);
-  }
+  // @HttpCode(200)
+  // async editmainBoard(@Param('id') id: string, @Body() updateBoard: any): Promise<IMessage> {
+  //   return await this.adminMainPageService.editmainBoard(id, updateBoard);
+  // }
 }
