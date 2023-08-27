@@ -41,7 +41,7 @@ export class Product {
   picks: Pick[];
 
   @OneToMany(() => ProductImage, (productImage) => productImage.product, { eager: true, cascade: true })
-  productImages: Product[];
+  productImages: ProductImage[];
 
   @ManyToOne(() => SmallCategory, (smallCategory) => smallCategory.products, {
     nullable: false,
