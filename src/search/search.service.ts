@@ -11,7 +11,7 @@ export class SearchService {
   async searchProduct(data: ISearchQuery): Promise<any> {
     console.log(data.product);
     const take = 12;
-    const result = await this.searchRepository.find({
+    const [result, count] = await this.searchRepository.findAndCount({
       take,
       skip: ((data.page || 1) - 1) * take,
       where: {
@@ -21,6 +21,6 @@ export class SearchService {
       relations: ['smallCategory', 'smallCategory.middleCategory', 'smallCategory.middleCategory.largeCategory', 'member'],
     });
 
-    return { data: result };
+    return { data: result, count, page: Number(data.page) || 1 };
   }
 }

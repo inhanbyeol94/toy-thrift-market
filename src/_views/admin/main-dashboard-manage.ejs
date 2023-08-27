@@ -23,8 +23,8 @@
                     <div>
                       <h5 class="card-title">메인 이미지</h5>
                       <div class="ps-3">
+                        <img id="imgView">
                         <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="mainImage">
-                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG | 대문 이미지</div>
                       </div>
                     </div>
                     <hr>
@@ -41,47 +41,35 @@
                     <div>
                       <h5 class="card-title">하단 탭 편집</h5>
                     </div>
-                    <div id="bottom_tab_color" class="mb-3">
+                    <div class="mb-3">
                       <label class="mb-2">배경 색</label>
-                      <p><input type="color" value="#4B50BF"></p>
+                      <p><input id="bottom_tab_color" type="color" value="#4B50BF"></p>
                     </div>
                     <div class="form-group mt-3 mb-3">
                       <label>제목 </label>
-                      <input type="text" class="form-control mt-3" placeholder="하단 탭 제목">
+                      <input id="bottom_title" type="text" class="form-control mt-3" placeholder="하단 탭 제목">
                     </div>
                     <div class="form-group mt-3 mb-3">
-                      <label>column 1</label>
-                      <div class="ps-3 mt-3 mb-3">
-                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl1Image">
-                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
-                      </div>
+                      <label>컬럼1</label>
+                      <input type="text" class="form-control mt-3" id="cl1Icon" placeholder="아이콘">
                       <input type="text" class="form-control mt-3" id="cl1Title" placeholder="제목">
                       <input type="text" class="form-control mt-3" id="cl1content" placeholder="설명">
                     </div>
                     <div class="form-group mt-3 mb-3">
-                      <label>column 2</label>
-                      <div class="ps-3 mt-3 mb-3">
-                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl2Image">
-                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
-                      </div>
+                      <label>컬럼2</label>
+                      <input type="text" class="form-control mt-3" id="cl2Icon" placeholder="아이콘">
                       <input type="text" class="form-control mt-3" id="cl2Title" placeholder="제목">
                       <input type="text" class="form-control mt-3" id="cl2content" placeholder="설명">
                     </div>
                     <div class="form-group mt-3 mb-3">
-                      <label>column 3</label>
-                      <div class="ps-3 mt-3 mb-3">
-                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl3Image">
-                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
-                      </div>
+                      <label>컬럼3</label>
+                      <input type="text" class="form-control mt-3" id="cl3Icon" placeholder="아이콘">
                       <input type="text" class="form-control mt-3" id="cl3Title" placeholder="제목">
                       <input type="text" class="form-control mt-3" id="cl3content" placeholder="설명">
                     </div>
                     <div class="form-group mt-3 mb-3">
-                      <label>column 4</label>
-                      <div class="ps-3 mt-3 mb-3">
-                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="cl4Image">
-                        <div class="p mb-0 fs-ms text-muted">JPG, GIF or PNG</div>
-                      </div>
+                      <label>컬럼4</label>
+                      <input type="text" class="form-control mt-3" id="cl4Icon" placeholder="아이콘">
                       <input type="text" class="form-control mt-3" id="cl4Title" placeholder="제목">
                       <input type="text" class="form-control mt-3" id="cl4content" placeholder="설명">
                     </div>
@@ -99,4 +87,4 @@
       </section>
     </main>
     <%- include('_includes/footer') %>
-      <!-- <script src="/admin/assets/js/main-dashboard-manage.js"></script> -->
+       <script src="/admin/assets/js/Admin-mainboard.js"></script>

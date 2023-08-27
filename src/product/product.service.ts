@@ -113,9 +113,36 @@ export class ProductService {
       .select(['Product', 'COUNT(Pick.id) as pickCount', 'ProductImage'])
       .groupBy('Product.id')
       .orderBy('PickCount', 'DESC')
-      .limit(10)
+      .limit(6)
       .getRawMany();
 
     return popularProducts;
+  }
+
+  // 카테고리 별 상품 조회
+  async getRecentProductsByCategory(categoryId: number) {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
+      .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+      .orderBy('product.createdAt', 'DESC')
+      .limit(20)
+      .getMany();
+
+    return products;
+  }
+
+  // 최신 상품 전체 조회
+  async findAllRecent(): Promise<Product[]> {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .orderBy('product.createdAt', 'DESC')
+      .limit(20)
+      .getMany();
+    if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');
+    return products;
   }
 }
