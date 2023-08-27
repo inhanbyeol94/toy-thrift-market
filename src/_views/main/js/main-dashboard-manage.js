@@ -8,6 +8,8 @@ const loadmainboardInfo = async () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+
+      const mainSection = document.querySelector('.bg-accent');
       const mainTitle = document.getElementById('mainTitle');
       const subTitle = document.getElementById('subTitle');
       const bottomTitle = document.getElementById('bottomTitle');
@@ -24,6 +26,7 @@ const loadmainboardInfo = async () => {
       const col4Title = document.getElementById('col4Title');
       const col4content = document.getElementById('col4content');
 
+      mainSection.style.backgroundImage = `url(${data[0].mainImage})`;
       mainTitle.innerText = data[0].mainTitle;
       subTitle.innerText = data[0].subTitle;
       bottomTitle.innerText = data[0].bottomTitle;
