@@ -5,6 +5,8 @@ export type MainPageDocument = Document & MainPage;
 @Schema()
 export class MainPage {
   @Prop()
+  target: number;
+  @Prop()
   mainTitle: string;
   @Prop()
   subTitle: string;
