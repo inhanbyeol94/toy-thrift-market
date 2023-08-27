@@ -34,7 +34,7 @@ async function maindashBoard() {
     imgView.setAttribute('src', dashBoard[0].mainImage);
     maintitleTag.value = dashBoard[0].mainTitle;
     subtitleTag.value = dashBoard[0].subTitle;
-    bottomtapcolorTag.value = dashBoard[0].bottomtapColor;
+    bottomtapcolorTag.value = dashBoard[0].bottomColor;
     bottomtaptitleTag.value = dashBoard[0].bottomTitle;
 
     bottomcliconOne.value = dashBoard[0].icon1;
