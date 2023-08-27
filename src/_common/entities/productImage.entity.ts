@@ -9,6 +9,9 @@ export class ProductImage {
   @Column()
   imageUrl: string;
 
+  @Column()
+  position: number;
+
   @ManyToOne(() => Product, (product) => product.productImages, {
     onDelete: 'CASCADE',
     nullable: false,
