@@ -75,4 +75,16 @@ export class ProductController {
   async getPopularProducts() {
     return await this.productService.findPopularProducts();
   }
+
+  // 카테고리 별 상품 조회
+  @Get('largecategory/recent/:id')
+  async getRecentProductsByCategory(@Param('id') categoryId: number) {
+    return await this.productService.getRecentProductsByCategory(categoryId);
+  }
+
+  // 최신 상품 전체 조회
+  @Get('get/main/all/recent')
+  async findAllRecent(): Promise<Product[]> {
+    return await this.productService.findAllRecent();
+  }
 }

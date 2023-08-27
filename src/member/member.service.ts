@@ -54,7 +54,6 @@ export class MemberService {
   }
   // 회원정보 수정
   async updateMember(id: number, name: string, nickname: string, tel: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IToken> {
-    console.log(nickname);
     const member = await this.membersRepository.findOne({ where: { id } });
     if (!member) {
       throw new NotFoundException('회원이 존재하지 않습니다.');
