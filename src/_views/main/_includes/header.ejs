@@ -32,8 +32,7 @@
         <link rel="stylesheet" media="screen" href="/main/vendor/tiny-slider/dist/tiny-slider.css" />
         <!-- Main Theme Styles + Bootstrap-->
         <link rel="stylesheet" media="screen" href="/main/css/theme.min.css">
-        <!--Project JS-->
-        <script src="/main/js/header.js" defer></script>
+
 </head>
 <!-- Body-->
 
@@ -51,17 +50,17 @@
           <div class="navbar-toolbar d-flex align-items-center order-lg-3">
             <div class="input-group" style="width:100%">
               <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-              <input class="form-control rounded-start" type="text" placeholder="상품을 입력해주세요.">
+              <input class="form-control rounded-start" type="text" placeholder="상품명을 입력해주세요." id="headerSearchInput">
             </div>
             <% if(isLogin) { %>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a
-                class="navbar-tool d-none d-lg-flex" href="dashboard-favorites.html"><span
+                class="navbar-tool d-none d-lg-flex" href="/pick"><span
                   class="navbar-tool-tooltip">Favorites</span>
                 <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div>
               </a>
               <div class="navbar-tool dropdown ms-2">
-                <a class="navbar-tool-icon-box border dropdown-toggle" href="dashboard-sales.html"><img
+                <a class="navbar-tool-icon-box border dropdown-toggle" ><img
                     src="<%= profileImage %>" width="100%" height="100%" style="object-fit: cover"
                     alt="Createx Studio"></a><a class="navbar-tool-text ms-n1" href="#"><small>
                     <%= nickname %>
@@ -70,25 +69,30 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                   <div style="min-width: 14rem;">
-                    <h6 class="dropdown-header">Account</h6><a class="dropdown-item d-flex align-items-center"
-                      href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a><a
-                      class="dropdown-item d-flex align-items-center" href="dashboard-purchases.html"><i
-                        class="ci-basket opacity-60 me-2"></i>Purchases</a><a
-                      class="dropdown-item d-flex align-items-center" href="dashboard-favorites.html"><i
-                        class="ci-heart opacity-60 me-2"></i>Favorites<span
-                        class="fs-xs text-muted ms-auto">4</span></a>
+                    <h6 class="dropdown-header">정보</h6><a class="dropdown-item d-flex align-items-center"
+                      href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a>
+
+                    <% if(isAdmin) { %>
+                    <a class="dropdown-item d-flex align-items-center" href="/admins">
+                      <i class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
+                    <% } %>
+                    <a
+                      class="dropdown-item d-flex align-items-center" href="/pick"><i
+                        class="ci-heart opacity-60 me-2"></i>찜 목록<span
+                        class="fs-xs text-muted ms-auto"></span></a>
+                    <a class="dropdown-item d-flex align-items-center" href="#"
+                       onclick="logout()"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Seller Dashboard</h6><a class="dropdown-item d-flex align-items-center"
-                      href="dashboard-sales.html"><i class="ci-dollar opacity-60 me-2"></i>Sales<span
-                        class="fs-xs text-muted ms-auto">$1,375.00</span></a><a
+                    <h6 class="dropdown-header">상품</h6><a
                       class="dropdown-item d-flex align-items-center" href="/my-products"><i
-                        class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-xs text-muted ms-auto">5</span></a><a
+                        class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-xs text-muted ms-auto"></span></a><a
                       class="dropdown-item d-flex align-items-center" href="/mypage/products/new"><i
-                        class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a><a
-                      class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i
-                        class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item d-flex align-items-center" href="#"
-                      id="logoutBtn"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
+                        class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">결제</h6>
+                    <a
+                            class="dropdown-item d-flex align-items-center" href="dashboard-payouts.html"><i
+                              class="ci-currency-exchange opacity-60 me-2"></i>결제 관리 (미연동)</a>
                   </div>
                 </div>
               </div>
@@ -115,4 +119,6 @@
           </div>
         </div>
       </div>
+      <!--Project JS-->
+      <script src="/main/js/header.js"></script>
     </header>
