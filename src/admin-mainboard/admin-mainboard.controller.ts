@@ -18,6 +18,15 @@ export class AdminMainPageController {
     await this.adminMainPageService.upsertMainpage(mainList, files);
     return { message: '생성 완료' };
   }
+  /** 수정  **/
+  @Patch()
+  @UseGuards(AdminGuard)
+  @HttpCode(200)
+  async updatePost(@Body() mainList: MainBoardDto, @Req() req: IRequest): Promise<IMessage> {
+    const files = req.files[0]?.location;
+    await this.adminMainPageService.upsertMainpage(mainList, files);
+    return { message: '생성 완료' };
+  }
 
   // 메인페이지 조회
   @Get()
