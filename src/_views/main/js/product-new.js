@@ -1,21 +1,40 @@
 const form = document.querySelector('form');
 const imageUpload = document.querySelector('#imageUpload');
+const largeCategoryOptionEl = document.querySelector('#unp-category-large');
+const middleCategoryOptionEl = document.querySelector('#unp-category-middle');
+const smallCategoryOptionEl = document.querySelector('#unp-category-small');
+const NO_CATEGORY_OPTION = '<option value="0">카테고리 선택</option>';
+const productNameEl = document.querySelector('#unp-product-name');
+const contentEl = document.querySelector('#unp-product-description');
+const priceEl = document.querySelector('#unp-standard-price');
+const phoneNumberEl = document.querySelector('#phone-number');
+const accountHolderEl = document.querySelector('#account-holder');
+const bankAccountNumberEl = document.querySelector('#bank-account-number');
+const residentRegistrationNumberEl = document.querySelector('#resident-registration-number');
 let formData = new FormData();
 
 //-- 상품 추가하기
 form.addEventListener('submit', async (e) => {
   try {
     e.preventDefault();
+    if (smallCategoryOptionEl.value === '0') return alert('카테고리를 선택해주세요.');
     const smallCategoryId = smallCategoryOptionEl.value;
-    const productName = document.querySelector('#unp-product-name').value;
-    const content = document.querySelector('#unp-product-description').value;
-    const price = document.querySelector('#unp-standard-price').value;
-    if (smallCategoryId === '0') return alert('카테고리를 선택해주세요.');
+    const productName = productNameEl.value;
+    const content = contentEl.value;
+    const price = priceEl.value;
+    const phoneNumber = phoneNumberEl.value;
+    const accountHolder = accountHolderEl.value;
+    const bankAccount = bankAccountNumberEl.value;
+    const residentRegistrationNumber = residentRegistrationNumberEl.value;
 
     formData.append('smallCategoryId', smallCategoryId);
     formData.append('name', productName);
     formData.append('content', content);
     formData.append('price', price);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('accountHolder', accountHolder);
+    formData.append('bankAccount', bankAccount);
+    formData.append('residentRegistrationNumber', residentRegistrationNumber);
 
     const response = await fetch(`/products`, {
       method: 'POST',
@@ -76,10 +95,6 @@ function previewImages() {
 }
 
 loadCategories();
-const largeCategoryOptionEl = document.querySelector('#unp-category-large');
-const middleCategoryOptionEl = document.querySelector('#unp-category-middle');
-const smallCategoryOptionEl = document.querySelector('#unp-category-small');
-const NO_CATEGORY_OPTION = '<option value="0">카테고리 선택</option>';
 
 async function loadCategories() {
   const response = await fetch('/categories/large');
