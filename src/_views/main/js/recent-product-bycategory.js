@@ -57,13 +57,12 @@ const createProductCard = (product) => {
   card.innerHTML = `
             <div class="card product-card-alt">
               <div class="product-thumb">
-                <button class="btn-wishlist btn-sm" type="button"><i class="ci-heart"></i></button>
                 <a class="product-thumb-overlay" href="/product/${product.id}"></a><img
-                  src=${product.productImages[0].imageUrl} alt="Product">
+                  src=${product.productImages[0].imageUrl} alt="Product" style="height:295px; object-fit: cover">
               </div>
               <div class="card-body">
                 <h3 class="product-title fs-sm mb-2"><a href="/product/${product.id}">${product.name}</a></h3>
-                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">₩ ${product.price}</div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2" style="font-size:14px;">${product.price.toLocaleString()}원</div>
               </div>
             </div>
           </div>

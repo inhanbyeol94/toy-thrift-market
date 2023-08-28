@@ -19,7 +19,7 @@ const loadPopularProducts = async () => {
               </div>
               <div class="card-body">
                 <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">${product.name}</a></h3>
-                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">₩ ${product.price}</div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2">₩ ${product.price.toLocaleString()}원</div>
               </div>
             </div>
         `;
