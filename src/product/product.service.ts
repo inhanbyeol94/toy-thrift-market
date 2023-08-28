@@ -18,16 +18,15 @@ export class ProductService {
 
   // 상품 추가
   async create(_product: CreateProductDto, files: any, memberId: number): Promise<{ id: number }> {
-    const { smallCategoryId, name, price, content } = _product;
+    const { smallCategoryId, name, price, content, bankAccount } = _product;
     const productImages = files ? files.map((file) => file.location) : null;
-    const count = 1;
     const newProduct = this.productRepository.create({
       member: { id: memberId },
       smallCategory: { id: smallCategoryId },
       name,
       price,
       content,
-      count,
+      bankAccount,
     });
     const product = await this.productRepository.save(newProduct);
     // 이미지 추가
@@ -121,16 +120,18 @@ export class ProductService {
 
   // 인기상품 조회
   async findPopularProducts() {
-    const popularProducts = await this.productRepository
-      .createQueryBuilder('Product')
-      .leftJoinAndSelect('Product.picks', 'Pick')
-      .leftJoinAndSelect('Pick.member', 'PickMember')
-      .leftJoinAndSelect('Product.productImages', 'ProductImage')
-      .select(['Product', 'COUNT(Pick.id) as pickCount', 'ProductImage'])
-      .groupBy('Product.id')
-      .orderBy('PickCount', 'DESC')
-      .limit(6)
-      .getRawMany();
+    const query = `
+    SELECT 
+        product.*, 
+        (SELECT COUNT(*) FROM pick WHERE pick.product_id = product.id) as pickCount,
+        (SELECT image_Url FROM product_image WHERE product_image.product_id = product.id ORDER BY position ASC LIMIT 1) as product_image
+    FROM 
+        product
+    ORDER BY 
+        pickCount DESC;
+  `;
+
+    const popularProducts = await this.productRepository.query(query);
 
     return popularProducts;
   }
@@ -143,7 +144,10 @@ export class ProductService {
       .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
       .leftJoinAndSelect('product.productImages', 'productImage')
       .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
-      .orderBy('product.createdAt', 'DESC')
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
       .limit(20)
       .getMany();
 
@@ -155,7 +159,10 @@ export class ProductService {
     const products = await this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.productImages', 'productImage')
-      .orderBy('product.createdAt', 'DESC')
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
       .limit(20)
       .getMany();
     if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');

@@ -16,4 +16,20 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   content: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  bankAccount: number;
+
+  @IsNotEmpty()
+  @IsString()
+  accountHolder: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  phoneNumber: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  residentRegistrationNumber: number;
 }

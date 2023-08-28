@@ -23,7 +23,7 @@ export class Product {
   content: string;
 
   @Column()
-  count: number;
+  bankAccount: number;
 
   @Column({ nullable: false })
   member_id: number;
