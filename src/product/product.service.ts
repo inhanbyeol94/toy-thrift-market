@@ -18,16 +18,15 @@ export class ProductService {
 
   // 상품 추가
   async create(_product: CreateProductDto, files: any, memberId: number): Promise<{ id: number }> {
-    const { smallCategoryId, name, price, content } = _product;
+    const { smallCategoryId, name, price, content, bankAccount } = _product;
     const productImages = files ? files.map((file) => file.location) : null;
-    const count = 1;
     const newProduct = this.productRepository.create({
       member: { id: memberId },
       smallCategory: { id: smallCategoryId },
       name,
       price,
       content,
-      count,
+      bankAccount,
     });
     const product = await this.productRepository.save(newProduct);
     // 이미지 추가
