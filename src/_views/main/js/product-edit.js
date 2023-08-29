@@ -28,6 +28,7 @@ async function loadProduct() {
   productImages.forEach((image) => {
     appendImagePreview(image, true);
   });
+  positionChange();
 }
 
 // 카테고리 세팅 함수
@@ -105,13 +106,25 @@ function emptySmallOptions() {
 
 const form = document.querySelector('form');
 const imageUpload = document.querySelector('#imageUpload');
-let formData = new FormData();
 
 //-- 상품 수정하기 버튼
 form.addEventListener('submit', async (e) => {
   try {
     e.preventDefault();
     let formData = new FormData();
+
+    // 미리보기에서 인덱스 값 추출
+    const previewEl = document.querySelector('#imagePreview');
+    const firstImageEl = previewEl.firstChild.firstChild;
+    let newFirstImageId = firstImageEl.getAttribute('data-image-id');
+
+    // 새 이미지가 대표 이미지여서 id값을 못 찾을 경우
+    if (newFirstImageId === 'undefined') {
+      newFirstImageId = 0;
+      const index = firstImageEl.getAttribute('data-image-index');
+      let file = imageFiles.splice(index, 1)[0]; // 인덱스가 index인 요소를 제거하고 그 요소를 반환
+      imageFiles.unshift(file); // 제거된 요소를 배열의 시작 부분에 추가합니다.
+    }
 
     // 이미지 배열의 모든 파일을 formData에 추가
     for (let file of imageFiles) {
@@ -127,6 +140,8 @@ form.addEventListener('submit', async (e) => {
     formData.append('name', productName);
     formData.append('content', content);
     formData.append('price', price);
+    formData.append('newFirstImageId', newFirstImageId);
+
     console.log('productId :', productId);
 
     // fetch 상품 수정 요청
@@ -146,7 +161,7 @@ form.addEventListener('submit', async (e) => {
 
 let imageFiles = []; // 이미지 파일들을 담을 배열
 
-// formData에 이미지 할당
+// change 이벤트
 imageUpload.addEventListener('change', async (e) => {
   console.log(e.target.files[0].type);
   const files = e.target.files;
@@ -164,10 +179,9 @@ imageUpload.addEventListener('change', async (e) => {
       return;
     }
 
-    formData.append('images', file);
-
     // add the file to our array
     imageFiles.push(file);
+    const fileIndex = imageFiles.indexOf(file);
 
     // Load new images to preview
     const reader = new FileReader();
@@ -176,7 +190,7 @@ imageUpload.addEventListener('change', async (e) => {
       const data = {
         imageUrl: reader.result,
       };
-      appendImagePreview(data, false, file);
+      appendImagePreview(data, false, file, fileIndex);
     };
 
     reader.readAsDataURL(file);
@@ -186,11 +200,13 @@ imageUpload.addEventListener('change', async (e) => {
 // ============================ 이미지 로직 ============================ //
 
 // 이미지 미리보기에 이미지와 삭제버튼 함께 추가
-function appendImagePreview(image, isExistingImage, file) {
+function appendImagePreview(image, isExistingImage, file, fileIndex) {
   const imgContainer = document.createElement('div');
   const img = document.createElement('img');
   const imageUrl = image.imageUrl;
 
+  imgContainer.draggable = true;
+  imgContainer.setAttribute('class', 'image-container');
   img.src = imageUrl;
   img.style.width = '100px';
   img.style.height = '100px';
@@ -216,6 +232,8 @@ function appendImagePreview(image, isExistingImage, file) {
       }
     });
   } else {
+    addDragEvents(imgContainer);
+    img.setAttribute('data-image-index', fileIndex);
     deleteBtn.addEventListener('click', (e) => {
       e.preventDefault();
       imgContainer.remove();
@@ -235,67 +253,52 @@ function appendImagePreview(image, isExistingImage, file) {
 
 // ============================ 순서 로직 ============================ //\
 
-const previewEl = document.querySelector('#imagePreview');
+function positionChange() {
+  const imageContainers = document.querySelectorAll('.image-container');
+  imageContainers.forEach((imgContainer) => {
+    addDragEvents(imgContainer);
+  });
+}
 
-// 변수 초기화
 let picked = null;
 let pickedIndex = null;
 
-// 드래그 스타트
-previewEl.addEventListener('dragstart', (e) => {
-  const target = e.target;
-  console.log('드래그 스타트');
-  // 드래그 시작한 요소와 그 요소의 인덱스 저장
-  picked = target;
+function addDragEvents(imgContainer) {
+  // 🛑드래그 스타트
+  imgContainer.addEventListener('dragstart', (e) => {
+    const target = e.target;
 
-  // previewEl의 자식 div 배열중 target의 부모 div의 index 구하기, 미리보기에서 이미지의 인덱스 구하기
-  pickedIndex = [...target.parentNode.parentNode.children].indexOf(target.parentNode);
-});
+    // 드래그 시작한 요소와 그 요소의 인덱스 저장
+    // 여기서 target은 이미지가 아니라, 이미지와 삭제 버튼 등을 포함하는 상위 요소(div or container)가 되어야 함.
 
-// 드래그 오버
-previewEl.addEventListener('dragover', (e) => {
-  console.log('드래그 오버');
-  // dragover 이벤트의 기본 동작 방지(드롭을 허용하도록 설정)
-  e.preventDefault();
-  if (e.target.parentNode !== e.currentTarget) return;
-});
-// 드롭
-previewEl.addEventListener('drop', async (e) => {
-  console.log('드랍');
+    if (target.tagName !== 'IMG') return;
+    picked = target.parentNode; // 부모 노드 할당 (div)
 
-  const target = e.target;
-  // 드랍 위치에 있는 요소의 인덱스 구하기
-  const index = [...target.parentNode.children].indexOf(target);
-  // 원래 위치(pickedIndex)와 비교하여 뒤로 옮겼다면 after() 메서드를, 앞으로 옮겼다면 before() 메서드를 사용하여 실제 DOM에서 위치 변경
-  index > pickedIndex ? target.parentNode.after(picked) : target.parentNode.before(picked);
-
-  const imageId = picked.getAttribute('data-image-id');
-  console.log('🚀 --------------------------------------------------🚀');
-  console.log('🚀 🔶 previewEl.addEventListener 🔶 picked:', picked);
-  console.log('🚀 --------------------------------------------------🚀');
-  // 바로 전 또는 다음 컬럼 id 가져오기. 만약 없다면 '0'으로 설정.
-  const prev = picked.previousSibling?.getAttribute('data-image-id') || 0;
-  console.log('🚀 ----------------------------------------------------------------------------------🚀');
-  console.log('🚀 🔶 previewEl.addEventListener 🔶 picked.previousSibling:', picked.previousSibling);
-  console.log('🚀 ----------------------------------------------------------------------------------🚀');
-  // const next = picked.nextSibling?.getAttribute('data-image-id') || 0;
-  return;
-  const response = await fetch(`/product-images/position`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      prev,
-      next,
-      id: imageId,
-    }),
+    // previewEl의 자식 div 배열중 target의 부모 div의 index 구하기, 미리보기에서 이미지의 인덱스 구하기
+    pickedIndex = [...picked.parentNode.children].indexOf(picked);
   });
-  const { status } = response;
-  const { message } = await response.json();
 
-  if (status) {
-    alert(message);
-    return window.location.reload();
-  }
-});
+  // 🛑드래그 오버
+  imgContainer.addEventListener('dragover', (e) => {
+    // dragover 이벤트의 기본 동작 방지(드롭을 허용하도록 설정)
+    e.preventDefault();
+    if (e.target.parentNode !== e.currentTarget) return;
+  });
+
+  // 🛑드롭
+  imgContainer.addEventListener('drop', async (e) => {
+    e.preventDefault();
+
+    if (e.target.tagName !== 'IMG') {
+      return;
+    }
+
+    const target = e.target;
+
+    // 드랍 위치(에 있는 요소의) 인덱스 구하기
+    const index = [...target.parentNode.parentNode.children].indexOf(target.parentNode);
+
+    // 원래 위치(pickedIndex)와 비교하여 뒤로 옮겼다면 after() 메서드를, 앞으로 옮겼다면 before() 메서드를 사용하여 실제 DOM에서 위치 변경
+    index > pickedIndex ? target.parentNode.after(picked) : target.parentNode.before(picked);
+  });
+}
