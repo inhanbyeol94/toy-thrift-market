@@ -12,12 +12,14 @@ const accountHolderEl = document.querySelector('#account-holder');
 const bankAccountNumberEl = document.querySelector('#bank-account-number');
 const residentRegistrationNumberEl = document.querySelector('#resident-registration-number');
 let formData = new FormData();
+let hasNoImage = true;
 
 //-- 상품 추가하기
 form.addEventListener('submit', async (e) => {
   try {
     e.preventDefault();
     if (smallCategoryOptionEl.value === '0') return alert('카테고리를 선택해주세요.');
+    if (hasNoImage) return alert('최소 1장의 이미지를 업로드하세요');
     const smallCategoryId = smallCategoryOptionEl.value;
     const productName = productNameEl.value;
     const content = contentEl.value;
@@ -70,6 +72,7 @@ imageUpload.addEventListener('change', async (e) => {
       alert('jpeg 또는 png 파일만 업로드 가능합니다!');
       return;
     }
+    hasNoImage = true;
     formData.append('images', file);
   }
 });
