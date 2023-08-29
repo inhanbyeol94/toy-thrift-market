@@ -1,4 +1,4 @@
-import { Controller, Param, Delete, HttpCode, Patch, Body } from '@nestjs/common';
+import { Controller, Param, Delete, HttpCode } from '@nestjs/common';
 import { ProductImageService } from './product-image.service';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 
