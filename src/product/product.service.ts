@@ -86,6 +86,9 @@ export class ProductService {
     // const product = await this.productRepository.findOne({ relations: { productImages: true }, where: { id } });
     const product = await this.productRepository
       .createQueryBuilder('product')
+      .leftJoin('product.member', 'member')
+      .addSelect(['member.name', 'member.profileImage'])
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
       .leftJoinAndSelect('product.productImages', 'productImage')
       .where('product.id = :id', { id })
       .orderBy('productImage.position', 'ASC')
