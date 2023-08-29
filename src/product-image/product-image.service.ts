@@ -63,4 +63,9 @@ export class ProductImageService {
     await this.productImageRepository.save(newFirstImage);
     return { message: '대표이미지가 수정되었습니다.' };
   }
+
+  async remove(id: number): Promise<IMessage> {
+    await this.productImageRepository.delete(id);
+    return { message: '이미지가 삭제되었습니다.' };
+  }
 }
