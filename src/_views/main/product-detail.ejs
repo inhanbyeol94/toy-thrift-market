@@ -41,7 +41,7 @@
             <!-- Wishlist + Sharing-->
             <div class="d-flex flex-wrap justify-content-between align-items-center border-top pt-3">
               <div class="py-2 me-2">
-                <button class="btn btn-outline-accent" type="button"><i class="ci-heart fs-lg me-2"></i>Add to Favorites</button>
+                <button class="btn btn-outline-accent" type="button" id="pickbutton"><i id="likeColor" class="ci-star-filled fs-lg me-2"></i>찜 하기</button>
               </div>
               <div class="py-2">
                 <i class="ci-share-alt fs-lg align-middle text-muted me-2"></i
@@ -481,4 +481,5 @@
 </main>
 
 <script src="/main/js/product-detail.js" defer></script>
+<script src="/main/js/pick.add.delete.js" defer></script>
 <%- include('_includes/footer') %>
