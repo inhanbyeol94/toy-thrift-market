@@ -19,7 +19,7 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   @IsNumber()
-  bankAccount: number;
+  bankAccountNumber: number;
 
   @IsNotEmpty()
   @IsString()

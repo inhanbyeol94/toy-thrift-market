@@ -23,7 +23,7 @@ export class Product {
   content: string;
 
   @Column()
-  bankAccount: number;
+  bankAccountNumber: number;
 
   @Column({ nullable: false })
   member_id: number;
