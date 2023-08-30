@@ -30,13 +30,32 @@
         <section class="col-lg-8 pt-2 pt-lg-4 pb-4 mb-lg-3">
           <div class="pt-3 px-4 pe-lg-0 ps-xl-5">
             <!-- Product gallery-->
-            <div class="gallery">
+            <div class="gallery" id="product-gallery">
               <a
                 class="gallery-item rounded-3 mb-grid-gutter"
                 href="img/marketplace/single/01.jpg"
                 data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Simple iPhone X Mockups&lt;/h6&gt;'
                 ><img alt="Gallery preview" id="product-image" /><span class="gallery-item-caption">Simple iPhone X Mockups</span></a
               >
+              <div class="row" id="small-image-gallery"></div>
+              <!-- <div class="row">
+                <div class="col-sm-6">
+                  <a
+                    class="gallery-item rounded-3 mb-grid-gutter"
+                    href="img/marketplace/single/02.jpg"
+                    data-sub-html='&lt;h6 class="fs-sm text-light"&gt;UI Psd iPhone X Monochrome&lt;/h6&gt;'
+                    ><img src="img/marketplace/single/02.jpg" alt="Gallery preview" /><span class="gallery-item-caption">UI Psd iPhone X Monochrome</span></a
+                  >
+                </div>
+                <div class="col-sm-6">
+                  <a
+                    class="gallery-item rounded-3 mb-grid-gutter"
+                    href="img/marketplace/single/03.jpg"
+                    data-sub-html='&lt;h6 class="fs-sm text-light"&gt;iPhone 11 Clay Mockup&lt;/h6&gt;'
+                    ><img src="img/marketplace/single/03.jpg" alt="Gallery preview" /><span class="gallery-item-caption">iPhone 11 Clay Mockup</span></a
+                  >
+                </div>
+              </div> -->
             </div>
             <!-- Wishlist + Sharing-->
             <div class="d-flex flex-wrap justify-content-between align-items-center border-top pt-3">
@@ -62,12 +81,14 @@
                 <div class="accordion-item border-bottom">
                   <div class="accordion-header d-flex justify-content-between align-items-center py-3">
                     <div class="form-check" data-bs-toggle="collapse" data-bs-target="#standard-license">
-                      <input class="form-check-input" type="radio" name="license" id="license-std" checked />
-                      <label class="form-check-label fw-medium text-dark" for="license-std">Standard license</label>
+                      <!-- <input class="form-check-input" type="radio" name="license" id="license-std" checked /> -->
+                      <!-- <label class="form-check-label fw-medium text-dark" for="license-std">가격</label> -->
+                      <h2 class="mb-0 fw-normal" id="product-name">제목</h2>
+                      <br />
+                      <h3 class="mb-0 text-accent fw-normal" id="product-price"></h3>
                     </div>
-                    <h5 class="mb-0 text-accent fw-normal">$18.<small>00</small></h5>
                   </div>
-                  <div class="accordion-collapse collapse show" id="standard-license" data-bs-parent="#licenses">
+                  <!-- <div class="accordion-collapse collapse show" id="standard-license" data-bs-parent="#licenses">
                     <div class="accordion-body py-0 pb-2">
                       <ul class="list-unstyled fs-sm">
                         <li class="d-flex align-items-center"><i class="ci-check-circle text-success me-1"></i><span class="fs-ms">Quality verified</span></li>
@@ -75,9 +96,9 @@
                         <li class="d-flex align-items-center"><i class="ci-check-circle text-success me-1"></i><span class="fs-ms">Non-paying users only</span></li>
                       </ul>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="accordion-item">
+                <!-- <div class="accordion-item">
                   <div class="accordion-header d-flex justify-content-between align-items-center py-3">
                     <div class="form-check" data-bs-toggle="collapse" data-bs-target="#extended-license">
                       <input class="form-check-input" type="radio" name="license" id="license-ext" />
@@ -94,22 +115,21 @@
                       </ul>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <hr />
-              <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="button"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
+              <!-- <button class="btn btn-primary btn-shadow d-block w-100 mt-4" type="button"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button> -->
               <div class="bg-secondary rounded p-3 mt-4 mb-2">
                 <a class="d-flex align-items-center" href="#"
-                  ><img class="rounded-circle" src="img/testimonials/01.jpg" width="50" alt="Sara Palson" />
+                  ><img class="rounded-circle" id="member-profile-image" width="50" alt="" />
                   <div class="ps-2">
-                    <span class="fs-ms text-muted">Created by</span>
-                    <h6 class="fs-sm mb-0">Sara Palson</h6>
-                  </div></a
-                >
+                    <span class="fs-ms text-muted">판매자</span>
+                    <h6 class="fs-sm mb-0" id="member-name"></h6></div
+                ></a>
               </div>
-              <div class="bg-secondary rounded p-3 mb-2">
+              <!-- <div class="bg-secondary rounded p-3 mb-2">
                 <i class="ci-download h5 text-muted align-middle mb-0 mt-n1 me-2"></i><span class="d-inline-block h6 mb-0 me-1">715</span><span class="fs-sm">Sales</span>
-              </div>
+              </div> -->
               <div class="bg-secondary rounded p-3 mb-4">
                 <div class="star-rating">
                   <i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i
@@ -126,7 +146,7 @@
                   <span class="text-dark fw-medium">Released</span><span class="text-muted">February 13, 2019</span>
                 </li>
                 <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                  <span class="text-dark fw-medium">Category</span><a class="product-meta" href="#">Graphics</a>
+                  <span class="text-dark fw-medium">Category</span><a class="product-meta" href="#" id="small-category">Graphics</a>
                 </li>
                 <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
                   <span class="text-dark fw-medium">Compatible with</span><span class="text-muted">Photoshop CS5</span>
@@ -146,16 +166,16 @@
   <section class="container mb-4 mb-lg-5">
     <!-- Nav tabs-->
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item"><a class="nav-link p-4 active" href="#details" data-bs-toggle="tab" role="tab">Product details</a></li>
-      <li class="nav-item"><a class="nav-link p-4" href="#reviews" data-bs-toggle="tab" role="tab">Reviews</a></li>
-      <li class="nav-item"><a class="nav-link p-4" href="#comments" data-bs-toggle="tab" role="tab">Comments</a></li>
+      <li class="nav-item"><a class="nav-link p-4 active" href="#details" data-bs-toggle="tab" role="tab">상세 정보</a></li>
+      <li class="nav-item"><a class="nav-link p-4" href="#reviews" data-bs-toggle="tab" role="tab">리뷰</a></li>
+      <!-- <li class="nav-item"><a class="nav-link p-4" href="#comments" data-bs-toggle="tab" role="tab">댓글</a></li> -->
     </ul>
     <div class="tab-content pt-2">
       <!-- Product details tab-->
       <div class="tab-pane fade show active" id="details" role="tabpanel">
         <div class="row">
           <div class="col-lg-8">
-            <p class="fs-md">
+            <p class="fs-md" id="product-content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
               nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
               eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -406,72 +426,6 @@
                 </div>
                 <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Submit a Review</button>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Comments tab-->
-      <div class="tab-pane fade" id="comments" role="tabpanel">
-        <div class="row">
-          <div class="col-lg-8">
-            <!-- comment-->
-            <div class="d-flex align-items-start py-4 border-bottom">
-              <img class="rounded-circle" src="img/testimonials/04.jpg" width="50" alt="Laura Willson" />
-              <div class="ps-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h6 class="fs-md mb-0">Laura Willson</h6>
-                  <a class="nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>Reply</a>
-                </div>
-                <p class="fs-md mb-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat cupidatat non proident, sunt in culpa qui.
-                </p>
-                <span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>Sep 7, 2019</span>
-                <!-- comment reply-->
-                <div class="d-flex align-items-start border-top pt-4 mt-4">
-                  <img class="rounded-circle" src="img/testimonials/01.jpg" width="50" alt="Sara Palson" />
-                  <div class="ps-3">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                      <h6 class="fs-md mb-0">Sara Palson</h6>
-                    </div>
-                    <p class="fs-md mb-1">
-                      Egestas sed sed risus pretium quam vulputate dignissim. A diam sollicitudin tempor id eu nisl. Ut porttitor leo a diam. Bibendum at varius vel
-                      pharetra vel turpis nunc.
-                    </p>
-                    <span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>Sep 13, 2019</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- comment-->
-            <div class="d-flex align-items-start py-4">
-              <img class="rounded-circle" src="img/testimonials/02.jpg" width="50" alt="Benjamin Miller" />
-              <div class="ps-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h6 class="fs-md mb-0">Benjamin Miller</h6>
-                  <a class="nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>Reply</a>
-                </div>
-                <p class="fs-md mb-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat cupidatat non proident, sunt in culpa qui.
-                </p>
-                <span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>Aug 15, 2019</span>
-              </div>
-            </div>
-            <!-- Post comment form-->
-            <div class="card border-0 shadow my-2">
-              <div class="card-body">
-                <div class="d-flex align-items-start">
-                  <img class="rounded-circle border p-2" src="img/marketplace/account/avatar-sm.png" width="50" alt="Createx Studio" />
-                  <form class="needs-validation w-100 ms-3" novalidate>
-                    <div class="mb-3">
-                      <textarea class="form-control" rows="4" placeholder="Write comment..." required></textarea>
-                      <div class="invalid-feedback">Please write your comment.</div>
-                    </div>
-                    <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
-                  </form>
-                </div>
-              </div>
             </div>
           </div>
         </div>

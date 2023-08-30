@@ -18,7 +18,7 @@ export class ProductService {
 
   // 상품 추가
   async create(_product: CreateProductDto, files: any, memberId: number): Promise<{ id: number }> {
-    const { smallCategoryId, name, price, content, bankAccount } = _product;
+    const { smallCategoryId, name, price, content, bankAccountNumber } = _product;
     const productImages = files ? files.map((file) => file.location) : null;
     const newProduct = this.productRepository.create({
       member: { id: memberId },
@@ -26,7 +26,7 @@ export class ProductService {
       name,
       price,
       content,
-      bankAccount,
+      bankAccountNumber,
     });
     const product = await this.productRepository.save(newProduct);
     // 이미지 추가
@@ -86,6 +86,9 @@ export class ProductService {
     // const product = await this.productRepository.findOne({ relations: { productImages: true }, where: { id } });
     const product = await this.productRepository
       .createQueryBuilder('product')
+      .leftJoin('product.member', 'member')
+      .addSelect(['member.name', 'member.profileImage'])
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
       .leftJoinAndSelect('product.productImages', 'productImage')
       .where('product.id = :id', { id })
       .orderBy('productImage.position', 'ASC')
