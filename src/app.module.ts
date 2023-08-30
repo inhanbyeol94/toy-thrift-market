@@ -22,6 +22,7 @@ import { SearchModule } from './search/search.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdminMainboardModule } from './admin-mainboard/admin-mainboard.module';
 import { PickModule } from './pick/pick.module';
+import { PaymembercheckModule } from './paymembercheck/paymembercheck.module';
 import * as process from 'process';
 
 @Module({
@@ -57,6 +58,7 @@ import * as process from 'process';
     SearchModule,
     AdminMainboardModule,
     PickModule,
+    PaymembercheckModule,
   ],
   controllers: [],
   providers: [],

@@ -173,4 +173,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '메인 대시보드 관리', payload);
   }
+
+  // 결제 페이지
+  @Get('payment/:id')
+  @Render('main/payment.ejs')
+  payment(@Req() req: IRequest, @Query('id') id: number): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '결제', payload);
+  }
 }
