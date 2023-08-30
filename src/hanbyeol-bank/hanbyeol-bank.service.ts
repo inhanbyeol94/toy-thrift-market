@@ -10,7 +10,7 @@ const TYPE_ACCOUNT_VERIFICATION = 105;
 @Injectable()
 export class HanbyeolBankService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
-  // 🔥 본인 확인(요청)
+  //  본인 확인(요청)
   async requestIdentityVerification(data: RequestIdentityVerificationDto) {
     const { phoneNumber, accountHolder, residentRegistrationNumber } = data;
     const bodyData = {
@@ -37,18 +37,14 @@ export class HanbyeolBankService {
     }
     const result = await response.json();
     await this.cacheManager.set(phoneNumber, { sequence: result.sequence }, { ttl: 300 });
-    const { sequence: S } = await this.cacheManager.get(phoneNumber);
-    console.log('🚀 🔶 HanbyeolBankService 🔶 requestIdentityVerification 🔶 S:', S);
 
     return result;
   }
 
-  // 🔥 본인 확인(검증)
+  //  본인 확인(검증)
   async verifyIdentity(data: VerifyIdentityDto) {
     const { phoneNumber, verificationCode } = data;
     const { sequence } = await this.cacheManager.get(phoneNumber);
-    console.log('🚀 🔶 HanbyeolBankService 🔶 verifyIdentity 🔶 sequence:', sequence);
-
     const bodyData = {
       phone: phoneNumber,
       code: verificationCode,
@@ -69,24 +65,20 @@ export class HanbyeolBankService {
     }
     const result = await response.json();
     await this.cacheManager.set(phoneNumber, { sequence: result.sequence }, { ttl: 300 });
-    const { sequence: S } = await this.cacheManager.get(phoneNumber);
-    console.log('🚀 🔶 HanbyeolBankService 🔶 verifyIdentity 🔶 S:', S);
     return result;
   }
 
-  // 🔥-계좌 유효성 검사--
+  // 계좌 유효성 검사
   async verifyAccountNumber(data: VerifyAccountNumberDto): Promise<IMessage> {
     const { bankAccountNumber, phoneNumber, accountHolder, residentRegistrationNumber, password } = data;
     const { sequence } = await this.cacheManager.get(phoneNumber);
-    console.log('🚀 🔶 HanbyeolBankService 🔶 verifyAccountNumber 🔶 sequence:', sequence);
-
     const bodyData = {
       name: accountHolder,
       phone: phoneNumber,
       residentRegistrationNumber,
       accountNumber: bankAccountNumber,
       password,
-      sequence: '012848',
+      sequence,
     };
 
     const formBody = querystring.stringify(bodyData);
