@@ -67,7 +67,7 @@ form.addEventListener('submit', async (e) => {
     formData.append('price', price);
     formData.append('phoneNumber', phoneNumber);
     formData.append('accountHolder', accountHolder);
-    formData.append('bankAccount', bankAccount);
+    formData.append('bankAccountNumber', bankAccountNumber);
     formData.append('residentRegistrationNumber', residentRegistrationNumber);
 
     const response = await fetch(`/products`, {
@@ -104,7 +104,7 @@ imageUpload.addEventListener('change', async (e) => {
       alert('jpeg 또는 png 파일만 업로드 가능합니다!');
       return;
     }
-    hasNoImage = true;
+    hasNoImage = false;
     formData.append('images', file);
   }
 });
