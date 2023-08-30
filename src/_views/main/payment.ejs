@@ -1,0 +1,98 @@
+<%- include('_includes/header') %>
+  <div class="page-title-overlap bg-accent pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+      <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+            <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="ci-home"></i>Home</a></li>
+            </li>
+            <li class="breadcrumb-item text-nowrap active" aria-current="page">결제하기</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+        <h1 class="h3 text-light mb-0">결제 하기</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container mb-5 pb-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <!-- Content-->
+        <section class="col-lg-8 pt-2 pt-lg-4 pb-4 mb-3">
+          <div class="pt-2 px-4 pe-lg-0 ps-xl-5">
+            <!-- Header-->
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-3">
+              <div class="py-1"><a class="btn btn-outline-accent btn-sm" href="/"><i
+                    class="ci-arrow-left me-1 ms-n1"></i>쇼핑 계속하기</a></div>
+            </div>
+            <div class="p-4 h-100 ms-auto border-start">
+              <div class="px-lg-2">
+                <div class="text-center mb-4 pb-3 border-bottom">
+                  <h2 class="h6 mb-3 pb-1">본인 인증</h2>
+                  <form class="needs-validation pb-2" method="post" novalidate="">
+                    <div class="mb-3">
+                      <input id="nameIpt" class="form-control" type="text" placeholder="이름" required="">
+                      <div class="invalid-feedback">이름을 입력하세요.</div>
+                    </div>
+                    <div class="mb-3">
+                      <input id="telIpt" class="form-control" type="text" placeholder="010-0000-0000" required="">
+                      <div class="invalid-feedback">휴대폰 번호를 입력하세요.</div>
+                    </div>
+                    <div class="mb-3">
+                      <input id="resistNumber" class="form-control" type="text" placeholder="주민등록번호 ex : 000000-0000000"
+                        required="">
+                      <div class="invalid-feedback">주민등록번호를 입력하세요.</div>
+                    </div>
+                    <div id="codeBox" class="mb-3" style="display: none;">
+                      <input id="codeIpt" class="form-control" type="text" placeholder="인증번호 입력">
+                      <button class="btn btn-outline-secondary ms-2" type="button" id="identityVerifyBtn">인증 확인</button>
+                    </div>
+                    <button id="identifyBtn" class="btn btn-secondary d-block w-100" type="submit">본인확인요청</button>
+                  </form>
+                </div>
+                <div class="px-lg-2">
+                  <div class="text-center mb-4 pb-3 border-bottom">
+                    <h2 class="h6 mb-3 pb-1">결제 정보 입력</h2>
+                    <form class="needs-validation pb-2" method="post" novalidate="">
+                      <form class="needs-validation pb-2" method="post" novalidate="">
+                        <div class="mb-3">
+                          <input id="accountNumItp" class="form-control" type="text"
+                            placeholder="계좌번호 ex : 000000-00-000000" required="">
+                          <div class="invalid-feedback">계좌를 입력하세요.</div>
+                        </div>
+                        <div class="mb-3">
+                          <input id="accuntPasswordIpt" class="form-control" type="password" placeholder="계좌 비밀번호"
+                            required="">
+                          <div class="invalid-feedback">계좌 비밀번호를 입력하세요.</div>
+                        </div>
+
+                        <a type="button" id="paySubmitBtn" class="btn btn-primary btn-shadow d-block w-100 mt-4"
+                          href=""><i class="ci-dollar-circle fs-lg me-2"></i>결제 완료</a>
+                      </form>
+                  </div>
+                </div>
+              </div>
+        </section>
+        <aside class="col-lg-4 ps-xl-5">
+          <hr class="d-lg-none">
+          <div class="p-4 h-100 ms-auto border-start">
+            <div class="px-lg-2">
+              <div class="text-center mb-4 py-3 border-bottom">
+                <h2 class="h6 mb-3 pb-1">구매할 상품</h2>
+              </div>
+              <a class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href=""
+                style="width: 12.5rem;"><img id="productImg" class="rounded-3" src="" alt="Product"></a>
+              <div class="text-center text-sm-start">
+                <h3 id="productName" class="h6 product-title mb-2">Gravity Devices UI Mockup (PSD)
+                </h3>
+                <div id="productPrice" class="d-inline-block text-accent">$15</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <%- include('_includes/footer') %>
+    <script src="/main/js/payment.js" defer></script>
