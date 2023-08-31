@@ -133,3 +133,5 @@ async function tradeComplete(id) {
       });
   }
 }
+const sidebarMenu = document.querySelector('#my-products');
+sidebarMenu.classList.add('active');

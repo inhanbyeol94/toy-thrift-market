@@ -34,3 +34,6 @@ const loadPicks = async () => {
     });
 };
 loadPicks();
+
+const sidebarMenu = document.querySelector('#pick-list');
+sidebarMenu.classList.add('active');
