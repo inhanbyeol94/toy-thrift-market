@@ -172,3 +172,6 @@ document.getElementById('address').addEventListener('click', () => {
     },
   }).open();
 });
+
+const sidebarMenu = document.querySelector('#my-profile');
+sidebarMenu.classList.add('active');

@@ -89,22 +89,5 @@ function addEventEditBtn() {
   });
 }
 
-// 상품 수정 함수
-async function editProduct(productId) {
-  const response = await fetch(`/products/${productId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  // const result = await response.json();
-
-  if (response.ok) {
-    location.reload();
-  } else {
-    const result = await response.json();
-    console.error('Error deleting product:', result.error);
-    alert('An error occurred while deleting the product.');
-  }
-}
+const sidebarMenu = document.querySelector('#my-products');
+sidebarMenu.classList.add('active');
