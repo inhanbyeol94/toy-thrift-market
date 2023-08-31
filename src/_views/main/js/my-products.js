@@ -10,9 +10,15 @@ async function loadProducts() {
     if (!response.ok) {
       throw new Error('Failed to get product');
     }
-    result.forEach((_product) => {
-      const { id, name, productStatus, price, productImages } = _product;
+    console.log(result);
+    for (const _product of result) {
+      const { id, name, price, productImages } = _product;
       const imageUrl = productImages.length ? productImages[0].imageUrl : DEFAULT_PRODUCT_IMAGE;
+
+      const statusResponse = await fetch(`/trade/${id}`);
+      const statusResult = await statusResponse.json();
+      const statusText = statusResult === 1 ? '거래중' : statusResult === 2 ? '거래완료' : '거래없음';
+
       const productEl = document.createElement('div');
       const productHtml = `<div class="d-block d-sm-flex align-items-center py-4 border-bottom">
                       <!-- 링크 이미지 -->
@@ -20,21 +26,23 @@ async function loadProducts() {
                       ><img class="rounded-3" src=${imageUrl} alt="Product"
                       /></a>
                       <div class="text-center text-sm-start">
+                      <div class="status mb-3" style="color:red;" data-product-id=${id}>${statusText}</div>
                       <!-- 제목 -->
-                      <h3 class="h6 product-title mb-2"><a href="/product/${id}">${name}</a></h3>
+                      <h3 class="h6 product-title mb-4"><a href="/product/${id}">${name}</a></h3>
                       <!-- 가격 -->
                       <div class="d-inline-block text-accent">${price}원</div>
                       <!-- 버튼 -->
                       <div class="d-flex justify-content-center justify-content-sm-start pt-3">
                           <button data-product-id=${id} class=" product-edit-button btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
-                          <button data-product-id=${id} class="product-delete-button btn bg-faded-danger btn-icon" type="button" data-bs-toggle="tooltip" title="Delete"><i class="ci-trash text-danger"></i></button>
+                          <button data-product-id=${id} class="product-delete-button btn bg-faded-danger btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Delete"><i class="ci-trash text-danger"></i></button>
+                          <button data-product-id=${id} type="button" id="tradeCompleteBtn" class="btn btn-secondary" onclick=tradeComplete(${id})>거래완료</button>
                       </div>
                       </div>
                   </div>`;
 
       productEl.innerHTML = productHtml; // 에러
       productAreaEl.appendChild(productEl);
-    });
+    }
 
     addEventDeleteBtn();
     addEventEditBtn();
@@ -106,5 +114,22 @@ async function editProduct(productId) {
     const result = await response.json();
     console.error('Error deleting product:', result.error);
     alert('An error occurred while deleting the product.');
+  }
+}
+
+async function tradeComplete(id) {
+  const confirmed = confirm('거래를 완료하시겠습니까?');
+  if (confirmed) {
+    await fetch(`/trade/complete/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        location.reload();
+      });
   }
 }

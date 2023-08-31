@@ -53,7 +53,8 @@ export class ProductService {
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.productImages', 'productImage')
       .where('product.member_id = :memberId', { memberId })
-      .orderBy('productImage.position', 'ASC')
+      .orderBy('product.createdAt', 'DESC')
+      .addOrderBy('productImage.position', 'ASC')
       .getMany();
     return products;
   }
