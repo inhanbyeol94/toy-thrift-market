@@ -24,6 +24,7 @@ import { AdminMainboardModule } from './admin-mainboard/admin-mainboard.module';
 import { PickModule } from './pick/pick.module';
 import { PaymembercheckModule } from './paymembercheck/paymembercheck.module';
 import * as process from 'process';
+import { HanbyeolBankModule } from './hanbyeol-bank/hanbyeol-bank.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import * as process from 'process';
     AdminMainboardModule,
     PickModule,
     PaymembercheckModule,
+    HanbyeolBankModule,
   ],
   controllers: [],
   providers: [],

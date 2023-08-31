@@ -8,43 +8,46 @@
   <div class="h-100 border-end mb-2">
     <div class="d-lg-block collapse" id="account-menu">
       <div class="bg-secondary p-4">
-        <h3 class="fs-sm mb-0 text-muted">Account</h3>
+        <h3 class="fs-sm mb-0 text-muted">정보</h3>
       </div>
       <ul class="list-unstyled mb-0">
         <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-settings opacity-60 me-2"></i>Settings</a>
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" id="my-profile" href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a>
         </li>
         <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-basket opacity-60 me-2"></i>Purchases</a>
+          <a class="nav-link-style d-flex align-items-center px-4 py-3 d-none" id="admin" href=""><i class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" id="pick-list" href="/pick"
+            ><i class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-sm text-muted ms-auto"></span
+          ></a>
         </li>
         <li class="mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="/pick"
-            ><i class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-sm text-muted ms-auto">4</span></a
-          >
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
         </li>
       </ul>
       <div class="bg-secondary p-4">
-        <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+        <h3 class="fs-sm mb-0 text-muted">상품</h3>
       </div>
       <ul class="list-unstyled mb-0">
         <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""
-            ><i class="ci-dollar opacity-60 me-2"></i>Sales<span class="fs-sm text-muted ms-auto">$1,375.00</span></a
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" id="my-products" href="/my-products"
+            ><i class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-sm text-muted ms-auto"></span
+          ></a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" id="product-new" href="/mypage/products/new"
+            ><i class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a
           >
         </li>
         <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/my-products"
-            ><i class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-sm text-muted ms-auto">5</span></a
-          >
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" id="" href=""><i class="ci-bag opacity-60 me-2"></i>구매내역</a>
         </li>
-        <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/mypage/products/new"><i class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a>
-        </li>
-        <li class="border-bottom mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-currency-exchange opacity-60 me-2"></i>Payouts</a>
-        </li>
+        <div class="bg-secondary p-4">
+          <h3 class="fs-sm mb-0 text-muted">결제</h3>
+        </div>
         <li class="mb-0">
-          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-sign-out opacity-60 me-2"></i>Sign out</a>
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href=""><i class="ci-currency-exchange opacity-60 me-2"></i>결제관리(미연동)</a>
         </li>
       </ul>
       <hr />

@@ -12,73 +12,61 @@ const phoneNumberEl = document.querySelector('#phone-number');
 const accountHolderEl = document.querySelector('#account-holder');
 const bankAccountNumberEl = document.querySelector('#bank-account-number');
 const residentRegistrationNumberEl = document.querySelector('#resident-registration-number');
+const verificationCodeEl = document.querySelector('#verification-code');
+const accountPasswordEl = document.querySelector('#account-password');
+const codeSubmitBtn = document.querySelector('#code-submit-button');
+const alertEl = document.querySelector('#alert');
 const phoneNumberRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 const bankAccountNumRegExp = /^\d{6}-\d{2}-\d{6}$/;
 
 let formData = new FormData();
 let hasNoImage = true;
+let isAccountValid = false; // 계좌 유효성 검사 결과를 저장할 전역 변수
 
-// --- 계좌 유효성 검사 ---
-accountVerificationBtn.addEventListener('click', async () => {
+// === 계좌 유효성 검사 ===
+accountVerificationBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  if (!validateInputForAccountVerification()) return;
+  alertEl.classList.replace('d-block', 'd-none');
+  verificationCodeEl.classList.toggle('d-none');
+
   const data = {
     accountHolder: accountHolderEl.value,
     phoneNumber: phoneNumberEl.value,
     residentRegistrationNumber: residentRegistrationNumberEl.value,
   };
 
-  const response = await fetch(`/hanbyeol-banks/identity`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  const result = await response.json();
+  let result = await callAPI(`/hanbyeol-banks/identity`, data);
   console.log(result);
-
-  // 인증번호 인풋 보여주기
+  if (result === null) return; // API 호출 실패 시 로직 종료
 });
 
 // 인증번호 확인 버튼 -> 검증 api 호출
+codeSubmitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+});
 
 // 응답이 성공이면 바로 3번째 호출
 
-//-- 상품 추가하기
+//=== 상품 추가하기 ===
 form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  if (!isAccountValid) {
+    // 계좌번호 유효성 검사가 실패한 경우
+    alert('계좌번호 유효성 검사를 통과하지 못했습니다.');
+    return;
+  }
+
   try {
-    e.preventDefault();
-    const smallCategoryId = smallCategoryOptionEl.value;
-    const productName = productNameEl.value;
-    const content = contentEl.value;
-    const price = priceEl.value;
-    const phoneNumber = phoneNumberEl.value;
-    const accountHolder = accountHolderEl.value;
-    const bankAccountNumber = bankAccountNumberEl.value;
-    const residentRegistrationNumber = residentRegistrationNumberEl.value;
+    validateInputForAddProduct();
+    populateFormData(formData);
 
-    if (smallCategoryId === '0') return alert('카테고리를 선택해주세요.');
-    if (hasNoImage) return alert('최소 1장의 이미지를 업로드하세요');
-    if (!phoneNumberRegExp.test(phoneNumber)) return alert('핸드폰 번호 형식에 일치하지 않습니다.\n하이픈을 포함한 휴대폰 번호를 입력해주세요.');
-    if (!bankAccountNumRegExp.test(bankAccountNumber)) return alert('한별은행 계좌번호 형식에 일치하지 않습니다.');
+    const result = await callAPI('/products', formData);
+    console.log(result);
+    if (result === null) return;
 
-    formData.append('smallCategoryId', smallCategoryId);
-    formData.append('name', productName);
-    formData.append('content', content);
-    formData.append('price', price);
-    formData.append('phoneNumber', phoneNumber);
-    formData.append('accountHolder', accountHolder);
-    formData.append('bankAccountNumber', bankAccountNumber);
-    formData.append('residentRegistrationNumber', residentRegistrationNumber);
-
-    const response = await fetch(`/products`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to post products');
-    }
-    const result = await response.json();
     location.href = `/product/${result.id}`;
   } catch (error) {
     console.error('Error posting products:', error);
@@ -181,4 +169,93 @@ function emptyMiddleOptions() {
 
 function emptySmallOptions() {
   smallCategoryOptionEl.innerHTML = NO_CATEGORY_OPTION;
+}
+
+// 유효성 검사 함수
+function validateInputForAccountVerification() {
+  const phoneNumber = phoneNumberEl.value;
+  const accountHolder = accountHolderEl.value;
+  const bankAccountNumber = bankAccountNumberEl.value;
+  const residentRegistrationNumber = residentRegistrationNumberEl.value;
+  const password = accountPasswordEl.value;
+
+  function showAlert(element, message) {
+    if (!element) {
+      showAlertWithMessage(message);
+      return false;
+    }
+    return true;
+  }
+
+  const isValidInput =
+    showAlert(phoneNumber, '휴대폰번호를 입력해주세요') &&
+    showAlert(accountHolder, '예금주를 입력해주세요') &&
+    showAlert(bankAccountNumber, '계좌번호를 입력해주세요') &&
+    showAlert(residentRegistrationNumber, '주민등록번호를 입력해주세요') &&
+    showAlert(password, '계좌 비밀번호를 입력해주세요');
+
+  if (isValidInput) return true;
+
+  return false; // 모든 필드가 유효하다면 true 반환
+}
+
+function showAlertWithMessage(message) {
+  alertEl.innerHTML = message;
+  alertEl.classList.replace('d-none', 'd-block');
+}
+
+function validateInputForAddProduct() {
+  const smallCategoryId = smallCategoryOptionEl.value;
+  const phoneNumber = phoneNumberEl.value;
+  const bankAccountNumber = bankAccountNumberEl.value;
+
+  if (smallCategoryId === '0') return alert('카테고리를 선택해주세요.');
+  if (hasNoImage) return alert('최소 1장의 이미지를 업로드하세요');
+
+  if (!phoneNumberRegExp.test(phoneNumber)) return alert('핸드폰 번호 형식에 일치하지 않습니다.\n하이픈을 포함한 휴대폰 번호를 입력해주세요.');
+  if (!bankAccountNumRegExp.test(bankAccountNumber)) return alert('한별은행 계좌번호 형식에 일치하지 않습니다.');
+}
+
+function populateFormData(formData) {
+  const smallCategoryId = smallCategoryOptionEl.value;
+  const productName = productNameEl.value;
+  const content = contentEl.value;
+  const price = priceEl.value;
+  const phoneNumber = phoneNumberEl.value;
+  const accountHolder = accountHolderEl.value;
+  const bankAccountNumber = bankAccountNumberEl.value;
+  const residentRegistrationNumber = residentRegistrationNumberEl.value;
+
+  formData.append('smallCategoryId', smallCategoryId);
+  formData.append('name', productName);
+  formData.append('content', content);
+  formData.append('price', price);
+  formData.append('phoneNumber', phoneNumber);
+  formData.append('accountHolder', accountHolder);
+  formData.append('bankAccountNumber', bankAccountNumber);
+  formData.append('residentRegistrationNumber', residentRegistrationNumber);
+
+  return formData;
+}
+
+async function callAPI(url, method = 'POST', bodyData = null) {
+  try {
+    const options = {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    // POST 요청인 경우 body 데이터 추가
+    if (bodyData !== null) options.body = JSON.stringify(bodyData);
+
+    let response = await fetch(url, options);
+
+    // 서버 응답에 문제가 있다면 에러 처리
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
