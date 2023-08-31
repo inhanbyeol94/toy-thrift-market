@@ -14,6 +14,7 @@ export class ReViewService {
     @InjectRepository(Review) private reviewRepository: Repository<Review>,
   ) {}
 
+  //리뷰 생성
   async addReview(productId: number, id: number, createData: CreateReViewDto): Promise<IMessage> {
     const { content } = createData;
     const product = await this.productRepository.findOne({ where: { id: productId } });
@@ -24,7 +25,7 @@ export class ReViewService {
     await this.reviewRepository.save(newReview);
     return { message: '리뷰가 작성되었습니다.' };
   }
-
+  // 리뷰 수정
   async editReview(reviewId: number, id: number, updateData: UpdateReViewDto): Promise<IMessage> {
     const { content } = updateData;
     const review = await this.reviewRepository.findOne({ where: { id: reviewId } });
@@ -32,5 +33,18 @@ export class ReViewService {
     review.content = content;
     await this.reviewRepository.save(review);
     return { message: '리뷰가 수정되었습니다.' };
+  }
+  // 리뷰 조회
+  async getReview(reviewId: number, id: number): Promise<Review> {
+    const review = await this.reviewRepository.findOne({ where: { id: reviewId } });
+    if (!review) throw new NotFoundException('해당하는 리뷰가 없습니다.');
+    return review;
+  }
+  // 리뷰 삭제
+  async deleteReview(reviewId: number, id: number): Promise<IMessage> {
+    const review = await this.reviewRepository.findOne({ where: { id: reviewId } });
+    if (!review) throw new NotFoundException('해당하는 리뷰가 없습니다.');
+    await this.reviewRepository.delete(reviewId);
+    return { message: '리뷰가 삭제되었습니다.' };
   }
 }
