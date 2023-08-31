@@ -176,13 +176,21 @@
                     <span class="input-group-text">
                       <i class="ci-locked"></i>
                     </span>
-                    <input class="form-control" type="password" id="resident-registration-number" required/>
+                    <input class="form-control" type="password" id="account-password" required/>
                   </div>
                 </div>              
-              </div>  
+              </div>
+              <div class="input-group d-none" id="verification-code">
+                <input class="form-control" type="text" placeholder="인증번호">
+                <button class="btn btn-primary" type="button" id="code-submit-button">확인</button>
+              </div><br>
+              <div id="alert" class="alert alert-primary d-none" role="alert">         
+              </div>
               <button id="account-verification-button" class="btn btn-secondary btn-shadow d-block w-100" ><i class="ci-check fs-lg me-2"></i>계좌번호 유효성 검사</button><br>
+              
               <button id="product-upload-button" class="btn btn-primary d-block w-100" type="submit"><i class="ci-cloud-upload fs-lg me-2"></i>작성 완료</button>
             </form>
+            
           </div>
         </section>
       </div>
