@@ -27,30 +27,4 @@ export class HanbyeolBankController {
     const result = await this.hanbyeolBankService.verifyAccountNumber(data);
     return result;
   }
-
-  // @Post()
-  // @HttpCode(201)
-  // create(@Body() createHanbyeolBankDto: CreateHanbyeolBankDto) {
-  //   return this.hanbyeolBankService.create(createHanbyeolBankDto);
-  // }
-
-  // @Get()
-  // findAll() {
-  //   return this.hanbyeolBankService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.hanbyeolBankService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateHanbyeolBankDto: UpdateHanbyeolBankDto) {
-  //   return this.hanbyeolBankService.update(+id, updateHanbyeolBankDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.hanbyeolBankService.remove(+id);
-  // }
 }
