@@ -1,5 +1,6 @@
 const form = document.querySelector('form');
 const accountVerificationBtn = document.querySelector('#account-verification-button');
+const alertSuccessEl = document.querySelector('#alert-success');
 const imageUpload = document.querySelector('#imageUpload');
 const largeCategoryOptionEl = document.querySelector('#unp-category-large');
 const middleCategoryOptionEl = document.querySelector('#unp-category-middle');
@@ -50,7 +51,7 @@ codeSubmitBtn.addEventListener('click', async (e) => {
 
   const data = {
     phoneNumber: phoneNumberEl.value,
-    verificationCode: verificationCodeEl.value,
+    verificationCode: document.querySelector('#verification-code input').value,
   };
 
   const result = await callAPI(`${BANK_API_BASE_PATH}/identity/verify`, 'POST', data);
@@ -61,7 +62,11 @@ codeSubmitBtn.addEventListener('click', async (e) => {
   const _result = await callAPI(`${BANK_API_BASE_PATH}/account/verify`, 'POST', _data);
   console.log(_result);
   if (_result === null) return;
+
   isAccountValid = true;
+  verificationCodeEl.classList.toggle('d-none');
+  accountVerificationBtn.classList.toggle('d-none');
+  alertSuccessEl.classList.toggle('d-none');
 });
 
 //=== 상품 추가하기 ===
