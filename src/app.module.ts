@@ -26,6 +26,7 @@ import { PaymembercheckModule } from './paymembercheck/paymembercheck.module';
 import * as process from 'process';
 import { HanbyeolBankModule } from './hanbyeol-bank/hanbyeol-bank.module';
 import { ReViewModule } from './re-view/review.module';
+import { TradesModule } from './trades/trades.module';
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import { ReViewModule } from './re-view/review.module';
     PaymembercheckModule,
     HanbyeolBankModule,
     ReViewModule,
+    TradesModule,
   ],
   controllers: [],
   providers: [],
