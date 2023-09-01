@@ -15,7 +15,7 @@ export class Review {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Trade, {
+  @OneToOne(() => Trade, (trade) => trade.review, {
     nullable: false,
   })
   @JoinColumn()
