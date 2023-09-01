@@ -6,7 +6,7 @@ import { IRequest } from 'src/_common/interfaces/request.interface';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 import { Review } from 'src/_common/entities';
 
-@Controller('review')
+@Controller('reviews')
 export class ReViewController {
   constructor(private readonly reViewService: ReViewService) {}
 
