@@ -29,7 +29,7 @@ export class PaymembercheckService {
       type: 105,
     };
     const response = await axios.post(bankServerUrl, bankServerPayload);
-    await this.cacheManager.set(checkData.tel, { code: response.data.code, type: 102, sequence: response.data.sequence, verify: false }, { ttl: 300 });
+    await this.cacheManager.set(checkData.tel, { code: response.data.code, sequence: response.data.sequence, verify: false }, { ttl: 300 });
     console.log(await this.cacheManager.get(checkData.tel));
     return response.data;
   }
