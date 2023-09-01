@@ -23,7 +23,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AdminMainboardModule } from './admin-mainboard/admin-mainboard.module';
 import { PickModule } from './pick/pick.module';
 import { PaymembercheckModule } from './paymembercheck/paymembercheck.module';
-import { TradeModule } from './trade/trade.module';
 import * as process from 'process';
 import { HanbyeolBankModule } from './hanbyeol-bank/hanbyeol-bank.module';
 
@@ -61,7 +60,6 @@ import { HanbyeolBankModule } from './hanbyeol-bank/hanbyeol-bank.module';
     AdminMainboardModule,
     PickModule,
     PaymembercheckModule,
-    TradeModule,
     HanbyeolBankModule,
   ],
   controllers: [],
