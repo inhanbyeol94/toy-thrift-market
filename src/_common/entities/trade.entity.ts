@@ -17,7 +17,7 @@ export class Trade {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Review)
+  @OneToOne(() => Review, (review) => review.trade)
   review: Review;
 
   @ManyToOne(() => Product, (product) => product.trades, {
