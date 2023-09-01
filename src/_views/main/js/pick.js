@@ -1,3 +1,4 @@
+const myPickNumberEls = document.querySelectorAll('#countPick');
 const loadPicks = async () => {
   fetch('products/picks', {
     method: 'GET',
@@ -32,6 +33,9 @@ const loadPicks = async () => {
           `;
         pickList.appendChild(product);
       });
+      // 픽 개수
+      const pickNumber = data.length;
+      myPickNumberEls.forEach((element) => (element.innerHTML = pickNumber));
     });
 };
 loadPicks();
