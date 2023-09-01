@@ -91,3 +91,17 @@ function addEventEditBtn() {
 
 const sidebarMenu = document.querySelector('#my-products');
 sidebarMenu.classList.add('active');
+// 내 상품목록 카테고리별 조회
+const myCategories = async () =>{
+  await fetch('/products/myproduct/category/get/:id' , {
+    method:'GET',
+    headers:{
+      'Content-Type': 'application/json',
+    }
+  })
+      .then((response) => response.json())
+      .then((data) =>{
+        console.log(data)
+        const categoryList = document.getElementById('')
+      })
+}
