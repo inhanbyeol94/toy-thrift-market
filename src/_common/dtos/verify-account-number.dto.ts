@@ -4,7 +4,7 @@ import { IsNotEmpty, IsNumberString, IsString, Length, Matches, MaxLength } from
 export class VerifyAccountNumberDto {
   @IsNotEmpty()
   @IsString()
-  @Length(14, 14)
+  @Length(16, 16)
   @Matches(/^\d{6}-\d{2}-\d{6}$/)
   bankAccountNumber: string;
 

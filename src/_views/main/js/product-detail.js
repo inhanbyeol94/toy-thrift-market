@@ -4,7 +4,11 @@ const nameEl = document.querySelector('#product-name');
 const priceEl = document.querySelector('#product-price');
 const contentEl = document.querySelector('#product-content');
 const memberProfileImageEl = document.querySelector('#member-profile-image');
-const memberNameEl = document.querySelector('#member-name');
+const memberNicknameEl = document.querySelector('#member-nickname');
+const reviewerProfileImageEl = document.querySelector('#reviewer-profile-image');
+const reviewerNicknameEl = document.querySelector('#reviewer-nickname');
+const reviewContentEl = document.querySelector('#review-content');
+const reviewUpdatedAtEl = document.querySelector('#review-updated-at');
 const smallImageGalleryEl = document.querySelector('#small-image-gallery');
 const categoryEl = document.querySelector('#small-category');
 
@@ -12,17 +16,32 @@ loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
-
   const { productImages, price, name: productName, content } = result;
-  const { profileImage, name: memberName } = result.member;
+  const { profileImage, nickname: memberNickname } = result.member;
   const { name: categoryName } = result.smallCategory;
+  const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
+  const productReviewEl = document.querySelector('.product-review');
+  if (!result.trades[0].review) {
+    productReviewEl.innerHTML = '';
+  } else {
+    const { id: reviewId, content: reviewContent, updatedAt } = result.trades[0].review;
+    reviewerProfileImageEl.src = reviewerProfile;
+    reviewerNicknameEl.innerHTML = reviewerNickname;
+    reviewContentEl.innerHTML = reviewContent;
+    reviewDeleteBtn.setAttribute('data-review-id', reviewId);
+
+    // 년 월 일만 출력
+    var date_obj = new Date(updatedAt);
+    var reviewUpdatedAt = date_obj.toISOString().split('T')[0];
+    reviewUpdatedAtEl.innerHTML = reviewUpdatedAt;
+  }
 
   productImageEl.src = productImages[0].imageUrl;
   nameEl.innerText = productName;
   contentEl.innerText = content;
   priceEl.innerText = price.toLocaleString() + '원';
   memberProfileImageEl.src = profileImage;
-  memberNameEl.innerText = memberName;
+  memberNicknameEl.innerText = memberNickname;
   categoryEl.innerText = categoryName;
 
   // 이미지가 두장 이상일경우
@@ -50,5 +69,91 @@ async function loadProduct() {
       img.style.width = '380px';
       img.style.height = '308px';
     });
+  }
+}
+
+const reviewForm = document.querySelector('#review-form');
+
+// 리뷰 생성
+reviewForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const reviewText = document.querySelector('#review-text');
+  console.log('dddd');
+  const data = {
+    content: reviewText.value,
+  };
+
+  const result = await callApi(`/reviews/${productId}`, 'POST', data);
+  if (result === null) return;
+  location.reload();
+});
+
+// 리뷰 삭제
+const reviewDeleteBtn = document.querySelector('#review-delete');
+reviewDeleteBtn.addEventListener('click', deleteReview);
+
+async function deleteReview() {
+  const reviewId = reviewDeleteBtn.getAttribute('data-review-id');
+  const result = await callApi(`/reviews/${reviewId}`, 'DELETE');
+  if (result === null) return;
+  location.reload();
+}
+
+// 리뷰 수정 폼 보여주기
+const reviewEditBtn = document.querySelector('#review-edit');
+reviewEditBtn.addEventListener('click', editReview);
+
+async function editReview() {
+  reviewEditBtn.classList.add('d-none');
+  reviewDeleteBtn.classList.add('d-none');
+  const reviewContentWrapper = document.querySelector('#review-content-wrapper');
+  reviewContentWrapper.innerHTML = `<div>
+                                      <div class="mb-3">
+                                      
+                                        <textarea class="form-control" rows="6" required id="review-edit-content"></textarea>
+                                        
+                                      </div>
+                                      
+
+                                      <button id="edit" class="btn btn-primary btn-shadow d-block w-100" type="click">수정</button><br>
+                                    </div>`;
+
+  // 리뷰 수정
+  const updateReviewBtn = document.querySelector('#edit');
+  updateReviewBtn.addEventListener('click', updateReview);
+
+  async function updateReview() {
+    console.log('수정하기');
+    const reviewId = reviewDeleteBtn.getAttribute('data-review-id');
+    const reviewEditContent = document.querySelector('#review-edit-content');
+    const data = {
+      content: reviewEditContent.value,
+    };
+    const result = await callApi(`/reviews/${reviewId}`, 'PATCH', data);
+    if (result === null) return;
+    location.reload();
+  }
+}
+
+async function callApi(url, method = 'GET', bodyData = null) {
+  try {
+    const options = {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    // POST 요청인 경우 body 데이터 추가
+    if (bodyData !== null) options.body = JSON.stringify(bodyData);
+
+    let response = await fetch(url, options);
+
+    // 서버 응답에 문제가 있다면 에러 처리
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 }
