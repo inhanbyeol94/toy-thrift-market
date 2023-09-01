@@ -1,6 +1,6 @@
 import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product, Trade } from 'src/_common/entities';
+import { Member, Product, Trade } from 'src/_common/entities';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -8,6 +8,7 @@ export class TradesService {
   constructor(
     @InjectRepository(Trade) private tradeRepository: Repository<Trade>,
     @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(Member) private memberRepository: Repository<Member>,
   ) {}
 
   // 상품 거래 완료
@@ -19,5 +20,14 @@ export class TradesService {
     trade.status = status;
     await this.tradeRepository.save(trade);
     return { message: '구매 완료 처리 되었습니다' };
+  }
+
+  // 상품 거래 생성
+  async create(productId: number, id: number) {
+    const product = await this.productRepository.findOne({ where: { id: productId } });
+    const member = await this.memberRepository.findOne({ where: { id: id } });
+    const newTrade = this.tradeRepository.create({ product: { id: product.id }, member: { id: member.id }, status: 1 });
+    await this.tradeRepository.save(newTrade);
+    return { message: '상품거래 생성.' };
   }
 }
