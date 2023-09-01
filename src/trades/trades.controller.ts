@@ -19,7 +19,7 @@ export class TradesController {
   }
 
   // 상품 거래 생성
-  @Patch(':id')
+  @Post(':id')
   @UseGuards(AuthGuard)
   @HttpCode(201)
   async create(@Param('id') productId: string, @Req() req: IRequest): Promise<IMessage> {
