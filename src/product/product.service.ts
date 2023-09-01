@@ -184,4 +184,23 @@ export class ProductService {
     if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');
     return products;
   }
+
+  // 내 상품 카테고리별 조회
+  async getMyProductsByCategory(categoryId: number, id: number) {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
+      .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+      .andWhere('product.member.id = :id', { id })
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
+      .limit(20)
+      .getMany();
+
+    return products;
+  }
 }
