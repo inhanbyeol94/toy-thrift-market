@@ -189,4 +189,19 @@ export class ProductService {
     if (!products) throw new NotFoundException('상품이 존재하지 않습니다.');
     return products;
   }
+
+  // 구매내역 조회
+  async findTradedProducts(memberId: number): Promise<Product[]> {
+    const query = `
+    SELECT 
+        p.*, 
+        t.status, 
+        (SELECT image_Url FROM product_image WHERE product_image.product_id = p.id ORDER BY position ASC LIMIT 1) as product_image
+    FROM product p
+    LEFT JOIN trade t ON p.id = t.product_id
+    LEFT JOIN member m ON t.member_id = m.id
+    WHERE m.id = ?`;
+    const products = await this.productRepository.query(query, [memberId]);
+    return products;
+  }
 }

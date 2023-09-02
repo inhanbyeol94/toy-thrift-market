@@ -50,6 +50,14 @@ export class ProductController {
     return await this.productService.findPickedProducts(id);
   }
 
+  // 구매내역 조회
+  @UseGuards(AuthGuard)
+  @Get('trade-history')
+  async getTradedProducts(@Req() req: IRequest): Promise<Product[]> {
+    const { id: memberId } = req.user;
+    return await this.productService.findTradedProducts(memberId);
+  }
+
   // 상품 조회
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Product> {
