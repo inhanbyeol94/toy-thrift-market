@@ -197,10 +197,12 @@ export class ProductService {
     SELECT 
         p.*, 
         t.status, 
-        (SELECT image_Url FROM product_image WHERE product_image.product_id = p.id ORDER BY position ASC LIMIT 1) as product_image
+        (SELECT image_Url FROM product_image WHERE product_image.product_id = p.id ORDER BY position ASC LIMIT 1) as product_image,
+        r.id as review_id
     FROM product p
     LEFT JOIN trade t ON p.id = t.product_id
     LEFT JOIN member m ON t.member_id = m.id
+    LEFT JOIN review r ON t.id = r.trade_id
     WHERE m.id = ?`;
     const products = await this.productRepository.query(query, [memberId]);
     return products;
