@@ -1,11 +1,9 @@
-console.log('==============');
 const tradingProductsEl = document.querySelector('#trading');
 const tradeCompletedProductsEl = document.querySelector('#trade-completed');
 loadTradedProducts();
 
 async function loadTradedProducts() {
   const result = await callApi('/products/trade-history');
-  console.log('🚀 🔶 loadTradedProducts 🔶 result:', result);
   if (result === null) return;
 
   result.forEach((_product) => {
@@ -14,9 +12,13 @@ async function loadTradedProducts() {
     const completeBtnHtml = `<button data-product-id=${productId} type="button" class="btn btn-success btn-icon complete-trade">
                               거래완료
                             </button>`;
-    const reviewBtnHtml = `<button data-product-id=${productId} type="button" class="btn btn-accent btn-shadow write-review">
-                            리뷰쓰기
-                          </button>`;
+    const reviewBtnHtml = _product.review_id
+      ? `<button data-product-id=${productId} type="button" class="btn btn-accent btn-shadow write-review">
+          리뷰쓰기
+        </button>`
+      : `<button type="button" class="btn btn-secondary disabled ">
+          리뷰 작성됨
+        </button>`;
     const productHtml = `<div class="d-block d-sm-flex align-items-center py-4 border-bottom">
                     <!-- 링크 이미지 -->
                     <a class="d-block mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="/product/${productId}" style="width: 12.5rem"
@@ -79,22 +81,10 @@ async function callApi(url, method = 'GET', bodyData = null) {
 
 async function completeTrade(e) {
   const productId = e.target.getAttribute('data-product-id');
-  console.log('🚀 🔶 completeTrade 🔶 productId:', productId);
   const result = await callApi(`trades/complete/${productId}`, 'PATCH');
-  console.log('🚀 🔶 completeTrade 🔶 result:', result);
   if (result === null) return;
-  // location.reload();
+  location.reload();
 }
-
-// async function writeReview(e) {
-//   const productId = e.target.getAttribute('data-product-id');
-//   e.target.
-//   console.log('🚀 🔶 writeReview 🔶 productId:', productId);
-//   return;
-//   // const result = await callApi(, 'POST');
-//   // console.log('🚀 🔶 completeTrade 🔶 result:', result);
-//   // if (result === null) return;
-// }
 
 async function writeReview(e) {
   const productId = e.target.getAttribute('data-product-id');
@@ -146,15 +136,12 @@ function cancelReview(e) {
 
 async function submitReview(e) {
   const productId = e.target.getAttribute('data-product-id');
-  console.log('🚀 🔶 submitReview 🔶 productId:', productId);
   const reviewText = document.querySelector(`#review-form-${productId} #review-text`).value;
-  console.log('🚀 🔶 submitReview 🔶 reviewText:', reviewText);
   // if (reviewText.length < 50) {
   //   alert('최소 50자 이상 입력해주세요');
   //   return;
   // }
   const result = await callApi(`/reviews/${productId}`, 'POST', { content: reviewText });
-  console.log('🚀 🔶 submitReview 🔶 result:', result);
   if (result === null) return;
 
   location.reload();
