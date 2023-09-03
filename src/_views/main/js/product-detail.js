@@ -11,6 +11,7 @@ const reviewContentEl = document.querySelector('#review-content');
 const reviewUpdatedAtEl = document.querySelector('#review-updated-at');
 const smallImageGalleryEl = document.querySelector('#small-image-gallery');
 const categoryEl = document.querySelector('#small-category');
+const productReviewEl = document.querySelector('.product-review');
 
 loadProduct();
 async function loadProduct() {
@@ -19,11 +20,11 @@ async function loadProduct() {
   const { productImages, price, name: productName, content } = result;
   const { profileImage, nickname: memberNickname } = result.member;
   const { name: categoryName } = result.smallCategory;
-  const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
-  const productReviewEl = document.querySelector('.product-review');
-  if (!result.trades[0].review) {
+
+  if (result.trades.length === 0 || !result.trades[0].review) {
     productReviewEl.innerHTML = '';
   } else {
+    const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
     const { id: reviewId, content: reviewContent, updatedAt } = result.trades[0].review;
     reviewerProfileImageEl.src = reviewerProfile;
     reviewerNicknameEl.innerHTML = reviewerNickname;
