@@ -23,8 +23,6 @@ async function loadProduct() {
   const { productImages, price, name: productName, content } = result;
   const { profileImage, nickname: memberNickname } = result.member;
 
-
-  
   const { name: categoryName } = result.smallCategory;
   const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
   const productReviewEl = document.querySelector('.product-review');
@@ -81,7 +79,6 @@ async function loadProduct() {
     });
   }
 }
-
 
 const reviewForm = document.querySelector('#review-form');
 
@@ -169,8 +166,7 @@ async function callApi(url, method = 'GET', bodyData = null) {
   }
 }
 
-// 결제버튼 이벤트
-document.getElementById('payButton').addEventListener('click',function (){
-  window.location.href = `/payment/${productId}`
-})
-
+//결제버튼 이벤트
+document.getElementById('payButton').addEventListener('click', function () {
+  window.location.href = `/payment/${productId}`;
+});
