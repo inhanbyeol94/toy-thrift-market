@@ -14,14 +14,14 @@ const categoryEl = document.querySelector('#small-category');
 const productReviewEl = document.querySelector('.product-review');
 const resister = document.getElementById('resister');
 const updated = document.getElementById('updated');
-const payment = document.getElementById('payment');
+
 
 loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
 
-  const { productImages, price, name: productName, content } = result;
+  const { productImages, price, name: productName, content, createdAt, updatedAt } = result;
   const { profileImage, nickname: memberNickname } = result.member;
 
   const { name: categoryName } = result.smallCategory;
@@ -51,7 +51,7 @@ async function loadProduct() {
   categoryEl.innerText = categoryName;
   resister.innerText = new Date(createdAt).toLocaleString();
   updated.innerText = new Date(updatedAt).toLocaleString();
-  payment.innerText = bankAccountNumber;
+
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {
