@@ -169,6 +169,8 @@ async function callApi(url, method = 'GET', bodyData = null) {
   }
 }
 
-//결제버튼 이벤트
-document.getElementById('payButton').addEventListener('click',())
+// 결제버튼 이벤트
+document.getElementById('payButton').addEventListener('click',function (){
+  window.location.href = `/payment/${productId}`
+})
 
