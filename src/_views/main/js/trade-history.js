@@ -13,11 +13,11 @@ async function loadTradedProducts() {
                               거래완료
                             </button>`;
     const reviewBtnHtml = _product.review_id
-      ? `<button data-product-id=${productId} type="button" class="btn btn-accent btn-shadow write-review">
-          리뷰쓰기
-        </button>`
-      : `<button type="button" class="btn btn-secondary disabled ">
+      ? `<button type="button" class="btn btn-secondary disabled ">
           리뷰 작성됨
+        </button>`
+      : `<button data-product-id=${productId} type="button" class="btn btn-accent btn-shadow write-review">
+          리뷰쓰기
         </button>`;
     const productHtml = `<div class="d-block d-sm-flex align-items-center py-4 border-bottom">
                     <!-- 링크 이미지 -->
