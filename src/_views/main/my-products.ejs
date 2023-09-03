@@ -1,61 +1,45 @@
 <%- include('_includes/header') %>
-<!-- Dashboard header-->
-<main>
-  <div class="page-title-overlap bg-accent pt-4">
-    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
-      <div class="d-flex align-items-center pb-3">
-        <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
-          <img class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6gIZA384GYW4Sd_m0GclH0RqQS4eix2hSbw&usqp=CAU" alt="Createx Studio" />
-        </div>
-        <div class="ps-3">
-          <h3 class="text-light fs-lg mb-0">내 상품</h3>
-          <span class="d-block text-light fs-ms opacity-60 py-1">등록한 나의 상품을 볼 수 있습니다.</span>
-        </div>
-      </div>
-<!--      <div class="d-flex">-->
-<!--        <div class="text-sm-end me-5">-->
-<!--          <div class="text-light fs-base">Total sales</div>-->
-<!--          <h3 class="text-light">426</h3>-->
-<!--        </div>-->
-<!--        <div class="text-sm-end">-->
-<!--          <div class="text-light fs-base">Seller rating</div>-->
-<!--          <div class="star-rating">-->
-<!--            <i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i-->
-<!--            ><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>-->
-<!--          </div>-->
-<!--          <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>-->
-<!--        </div>-->
-      </div>
-    </div>
-  </div>
-  <div class="container mb-5 pb-3">
-    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
-      <div class="row">
-        <!-- Sidebar-->
-        <%- include('_includes/member-sidebar') %>
-        <!-- Content-->
-        <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
-          <div class="pt-2 px-4 ps-lg-0 pe-xl-5" id="product-area">
-            <!-- Title-->
-            <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
-              <h2 class="h3 py-2 me-2 text-center text-sm-start">
-                내 상품<span class="my-products-number badge bg-faded-accent fs-sm text-body align-middle ms-2"></span>
-              </h2>
-              <div class="py-2">
-                <div class="d-flex flex-nowrap align-items-center pb-3">
-                  <label class="form-label fw-normal text-nowrap mb-0 me-2" for="sorting">카테고리 별:</label>
-                  <select class="form-select me-2" id="mycategoryList">
-                    <option>전체</option>
-                  </select>
-                  <button class="btn btn-outline-secondary btn-sm px-2" type="button"><i class="ci-arrow-up"></i></button>
-                </div>
-              </div>
-            </div>
+  <!-- Dashboard header-->
+  <main>
+    <div class="page-title-overlap bg-accent pt-4">
+      <div
+        class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+        <div class="d-flex align-items-center pb-3">
+          <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
+            <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio" />
           </div>
-        </section>
+          <div class="ps-3">
+            <h3 class="text-light fs-lg mb-0">나중애</h3>
+            <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</main>
-<script src="/main/js/my-products.js" defer></script>
-<%- include('_includes/footer') %>
+    <div class="container mb-5 pb-3">
+      <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+        <div class="row">
+          <%- include('_includes/member-sidebar') %>
+            <!-- Content-->
+            <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+              <div class="pt-2 px-4 ps-lg-0 pe-xl-5" id="product-area">
+                <!-- Title-->
+                <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
+                  <h2 class="h3 py-2 me-2 text-center text-sm-start">
+                    내 상품<span class="my-products-number badge bg-faded-accent fs-sm text-body align-middle ms-2"></span>
+                  </h2>
+                  <div class="py-2">
+                    <div class="d-flex flex-nowrap align-items-center pb-3">
+                      <label class="form-label fw-normal text-nowrap mb-0 me-3" for="sorting">정렬</label>
+                      <label class="form-label fw-normal text-nowrap mb-0 me-2" for="sorting">카테고리 별:</label>
+                        <select class="form-select me-2" id="mycategoryList">
+                          <option>전체</option>
+                        </select>
+                    </div>
+                 </div>
+             </section>
+           </div>
+        </div>
+      </div>
+  </main>
+  <script src="/main/js/my-products.js" defer></script>
+  <%- include('_includes/footer') %>
