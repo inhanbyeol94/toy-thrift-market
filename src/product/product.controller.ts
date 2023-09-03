@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards, HttpCode } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from '../_common/dtos/create-product.dto';
 import { UpdateProductDto } from '../_common/dtos/update-product.dto';
@@ -95,5 +95,14 @@ export class ProductController {
   @Get('get/main/all/recent')
   async findAllRecent(): Promise<Product[]> {
     return await this.productService.findAllRecent();
+  }
+
+  // 내 상품 카테고리별 조회
+  @Get('myproduct/category/get/:id')
+  @UseGuards(AuthGuard)
+  @HttpCode(200)
+  async getMyProductsByCategory(@Param('id') categoryId: number, @Req() req: IRequest) {
+    const { id } = req.user;
+    return await this.productService.getMyProductsByCategory(categoryId, id);
   }
 }

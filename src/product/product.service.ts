@@ -53,7 +53,8 @@ export class ProductService {
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.productImages', 'productImage')
       .where('product.member_id = :memberId', { memberId })
-      .orderBy('productImage.position', 'ASC')
+      .orderBy('product.createdAt', 'DESC')
+      .addOrderBy('productImage.position', 'ASC')
       .getMany();
     return products;
   }
@@ -202,6 +203,25 @@ export class ProductService {
     LEFT JOIN member m ON t.member_id = m.id
     WHERE m.id = ?`;
     const products = await this.productRepository.query(query, [memberId]);
+    return products;
+  }
+
+  // 내 상품 카테고리별 조회
+  async getMyProductsByCategory(categoryId: number, id: number) {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
+      .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+      .andWhere('product.member.id = :id', { id })
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
+      .limit(20)
+      .getMany();
+
     return products;
   }
 }

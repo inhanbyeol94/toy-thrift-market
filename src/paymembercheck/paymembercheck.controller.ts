@@ -3,7 +3,7 @@ import { PaymembercheckService } from './paymembercheck.service';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { IRequest } from 'src/_common/interfaces/request.interface';
 import { IMessage } from 'src/_common/interfaces/message.interface';
-import { PayAccountCheckDto, PaymemberCheckDto, PayverifyDto } from 'src/_common/dtos/paymentcheck.dto';
+import { PayAccountCheckDto, PaymemberCheckDto, PayverifyDto, transferDto } from 'src/_common/dtos/paymentcheck.dto';
 
 @Controller('paymembercheck')
 export class PaymembercheckController {
@@ -31,6 +31,14 @@ export class PaymembercheckController {
   @HttpCode(201)
   async accountCheck(@Body() accountCheckData: PayAccountCheckDto) {
     const responseFromBankServer = await this.paymembercheckService.accountCheck(accountCheckData);
+    return responseFromBankServer;
+  }
+
+  @Post('transfer')
+  @UseGuards(AuthGuard)
+  @HttpCode(201)
+  async transfer(@Body() transferData: transferDto) {
+    const responseFromBankServer = await this.paymembercheckService.transfer(transferData);
     return responseFromBankServer;
   }
 }

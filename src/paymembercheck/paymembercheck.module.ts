@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { PaymembercheckService } from './paymembercheck.service';
 import { PaymembercheckController } from './paymembercheck.controller';
-import { Member } from 'src/_common/entities';
+import { Member, Product } from 'src/_common/entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TokenValidMiddleware } from 'src/_common/middlewares/token.valid.middleware';
 import { JwtService } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Member])],
+  imports: [TypeOrmModule.forFeature([Member, Product])],
   controllers: [PaymembercheckController],
   providers: [PaymembercheckService, JwtService],
 })
