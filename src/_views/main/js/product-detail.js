@@ -72,22 +72,6 @@ async function loadProduct() {
   }
 }
 
-const reviewForm = document.querySelector('#review-form');
-
-// 리뷰 생성
-reviewForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const reviewText = document.querySelector('#review-text');
-  console.log('dddd');
-  const data = {
-    content: reviewText.value,
-  };
-
-  const result = await callApi(`/reviews/${productId}`, 'POST', data);
-  if (result === null) return;
-  location.reload();
-});
-
 // 리뷰 삭제
 const reviewDeleteBtn = document.querySelector('#review-delete');
 reviewDeleteBtn.addEventListener('click', deleteReview);
