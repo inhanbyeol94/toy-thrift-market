@@ -21,7 +21,7 @@ async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
 
-  const { productImages, price, name: productName, content } = result;
+  const { productImages, price, name: productName, content, createdAt, updatedAt } = result;
   const { profileImage, nickname: memberNickname } = result.member;
 
   const { name: categoryName } = result.smallCategory;
