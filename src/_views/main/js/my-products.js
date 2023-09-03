@@ -93,60 +93,78 @@ const sidebarMenu = document.querySelector('#my-products');
 sidebarMenu.classList.add('active');
 
 // 내 상품목록 카테고리별 조회
-const myCategories = async () =>{
-  await fetch('/categories/large' , {
-    method:'GET',
-    headers:{
+const myCategories = async () => {
+  await fetch('/categories/large', {
+    method: 'GET',
+    headers: {
       'Content-Type': 'application/json',
-    }
+    },
   })
-      .then((response) => response.json())
-      .then((data) =>{
-        console.log(data)
-        const categoryList = document.getElementById('mycategoryList')
-        data.forEach((category) =>{
-          const option = document.createElement('option')
-          option.textContent = category.name
-          option.setAttribute('data-id',category.id)
-          categoryList.appendChild(option)
-        })
-      })
-}
-const handleCategoryChange = async () =>{
-  const selectedOption = document.getElementById('categoryList')
-  const categoryId = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-id')
-  if(categoryId === null) {
-    await loadRecentProducts(null)
-  } else {
-    await loadRecentProducts(categoryId)
-  }
-}
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      const mycategoryList = document.getElementById('mycategoryList');
+      data.forEach((category) => {
+        const option = document.createElement('option');
+        option.textContent = category.name;
+        option.setAttribute('data-id', category.id);
+        mycategoryList.appendChild(option);
+      });
+    });
+};
 
-const loadRecentProducts = async (categoryId) =>{
-  const productsContainer = document.querySelector('.row.pt-2.mx-n2')
-  console.log(categoryId)
-  let url = 'myproduct/category/get/:id'
-  if(categoryId) {
-    url =  `/products/myproduct/category/get/${categoryId}`
+const handleCategoryChange = async () => {
+  const selectedOption = document.getElementById('mycategoryList');
+  const categoryId = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-id');
+  if (categoryId === null) {
+    location.reload();
+  } else {
+    await loadProductsByMyCategory(categoryId);
   }
-  await fetch(url,{
-    method:'GET',
-    headers:{
+};
+
+const loadProductsByMyCategory = async (categoryId) => {
+  await fetch(`products/myproduct/category/get/${categoryId}`, {
+    method: 'GET',
+    headers: {
       'Content-Type': 'application/json',
-    }
+    },
   })
-      .then((response) => response.json())
-      .then((data) =>{
-        console.log(data)
-        productsContainer.innerHTML = ''
-        data.forEach((product)=>{
-          const productCard = createProductCard(product)
-          productsContainer.appendChild(productCard)
-        })
-      })
-}
-loadRecentProducts(null)
-// const categoryList = document.getElementById('categoryList')
-// console.log(categoryList)
-// categoryList.addEventListener('change', handleCategoryChange)
-myCategories()
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      const productEls = document.querySelectorAll('.d-block.d-sm-flex.align-items-center.py-4.border-bottom');
+      productEls.forEach((productEl) => {
+        productEl.parentNode.removeChild(productEl);
+      });
+
+      data.forEach((product) => {
+        const imageUrl = product.productImages.length ? product.productImages[0].imageUrl : DEFAULT_PRODUCT_IMAGE;
+        const productEl = document.createElement('div');
+        const productHtml = `<div class="d-block d-sm-flex align-items-center py-4 border-bottom">
+                      <!-- 링크 이미지 -->
+                      <a class="d-block mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto" href="/product/${product.id}" style="width: 12.5rem"
+                      ><img class="rounded-3" src=${imageUrl} alt="Product"
+                      /></a>
+                      <div class="text-center text-sm-start">
+                      <!-- 제목 -->
+                      <h3 class="h6 product-title mb-2"><a href="/product/${product.id}">${product.name}</a></h3>
+                      <!-- 가격 -->
+                      <div class="d-inline-block text-accent">${product.price}원</div>
+                      <!-- 버튼 -->
+                      <div class="d-flex justify-content-center justify-content-sm-start pt-3">
+                          <button data-product-id=${product.id} class=" product-edit-button btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
+                          <button data-product-id=${product.id} class="product-delete-button btn bg-faded-danger btn-icon" type="button" data-bs-toggle="tooltip" title="Delete"><i class="ci-trash text-danger"></i></button>
+                      </div>
+                      </div>
+                  </div>`;
+        productEl.innerHTML = productHtml; // 에러
+        productAreaEl.appendChild(productEl);
+      });
+    });
+};
+
+const mycategoryList = document.getElementById('mycategoryList');
+mycategoryList.addEventListener('change', handleCategoryChange);
+
+myCategories();
