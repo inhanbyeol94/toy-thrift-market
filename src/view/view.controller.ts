@@ -181,4 +181,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애', '결제', payload);
   }
+
+  // 구매 내역
+  @Get('trade-history')
+  @Render('main/trade-history.ejs')
+  tradeHistory(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '구매내역', payload);
+  }
 }
