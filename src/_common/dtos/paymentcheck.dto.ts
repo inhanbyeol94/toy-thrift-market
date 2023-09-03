@@ -14,6 +14,36 @@ export class PaymemberCheckDto {
   resistNumber: string;
 }
 
+export class transferDto {
+  @IsNumber()
+  @IsNotEmpty()
+  productId: number;
+
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  phone: string;
+
+  @IsString()
+  @IsNotEmpty()
+  residentRegistrationNumber: string;
+
+  @IsString()
+  @IsNotEmpty()
+  accountNumber: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  sequence: number;
+}
+
 export class PayverifyDto {
   @IsString()
   @IsNotEmpty()

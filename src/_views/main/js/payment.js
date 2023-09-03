@@ -94,10 +94,11 @@ const memberIdentifyVerify = async (sequence) => {
 };
 
 const accountIdentify = async (sequence) => {
+  // const productPrice = document.getElementById('productPrice');
   if (!accountNumItp.value) alert('계좌번호를 입력해주세요');
   if (!accuntPasswordIpt.value) alert('계좌 비밀번호를 입력해주세요');
   try {
-    await fetch('/paymembercheck/account', {
+    await fetch('/paymembercheck/transfer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -105,15 +106,18 @@ const accountIdentify = async (sequence) => {
       body: JSON.stringify({
         name: nameIpt.value,
         phone: telIpt.value,
-        resistNumber: resistNumber.value,
+        residentRegistrationNumber: resistNumber.value,
         accountNumber: accountNumItp.value,
         password: accuntPasswordIpt.value.toString(),
         sequence,
+        // amount: productPrice,
+        productId: productId,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        createTrade();
       });
   } catch (err) {
     console.error(err);
@@ -131,3 +135,18 @@ function autoHyphen2(target) {
     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
     .replace(/(\-{1,2})$/g, '');
 }
+
+const createTrade = async () => {
+  await fetch(`/trades/${productId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      alert('결제가 완료되었습니다.');
+      location.reload();
+    });
+};
