@@ -191,6 +191,21 @@ export class ProductService {
     return products;
   }
 
+  // 구매내역 조회
+  async findTradedProducts(memberId: number): Promise<Product[]> {
+    const query = `
+    SELECT 
+        p.*, 
+        t.status, 
+        (SELECT image_Url FROM product_image WHERE product_image.product_id = p.id ORDER BY position ASC LIMIT 1) as product_image
+    FROM product p
+    LEFT JOIN trade t ON p.id = t.product_id
+    LEFT JOIN member m ON t.member_id = m.id
+    WHERE m.id = ?`;
+    const products = await this.productRepository.query(query, [memberId]);
+    return products;
+  }
+
   // 내 상품 카테고리별 조회
   async getMyProductsByCategory(categoryId: number, id: number) {
     const products = await this.productRepository

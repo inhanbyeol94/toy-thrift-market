@@ -11,6 +11,7 @@ const reviewContentEl = document.querySelector('#review-content');
 const reviewUpdatedAtEl = document.querySelector('#review-updated-at');
 const smallImageGalleryEl = document.querySelector('#small-image-gallery');
 const categoryEl = document.querySelector('#small-category');
+const productReviewEl = document.querySelector('.product-review');
 const resister = document.getElementById('resister');
 const updated = document.getElementById('updated');
 const payment = document.getElementById('payment');
@@ -24,11 +25,11 @@ async function loadProduct() {
   const { profileImage, nickname: memberNickname } = result.member;
 
   const { name: categoryName } = result.smallCategory;
-  const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
-  const productReviewEl = document.querySelector('.product-review');
-  if (!result.trades[0].review) {
+
+  if (result.trades.length === 0 || !result.trades[0].review) {
     productReviewEl.innerHTML = '';
   } else {
+    const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
     const { id: reviewId, content: reviewContent, updatedAt } = result.trades[0].review;
     reviewerProfileImageEl.src = reviewerProfile;
     reviewerNicknameEl.innerHTML = reviewerNickname;
@@ -79,22 +80,6 @@ async function loadProduct() {
     });
   }
 }
-
-const reviewForm = document.querySelector('#review-form');
-
-// 리뷰 생성
-reviewForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const reviewText = document.querySelector('#review-text');
-  console.log('dddd');
-  const data = {
-    content: reviewText.value,
-  };
-
-  const result = await callApi(`/reviews/${productId}`, 'POST', data);
-  if (result === null) return;
-  location.reload();
-});
 
 // 리뷰 삭제
 const reviewDeleteBtn = document.querySelector('#review-delete');
