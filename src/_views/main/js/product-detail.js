@@ -11,13 +11,20 @@ const reviewContentEl = document.querySelector('#review-content');
 const reviewUpdatedAtEl = document.querySelector('#review-updated-at');
 const smallImageGalleryEl = document.querySelector('#small-image-gallery');
 const categoryEl = document.querySelector('#small-category');
+const resister = document.getElementById('resister');
+const updated = document.getElementById('updated');
+const payment = document.getElementById('payment');
 
 loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
+
   const { productImages, price, name: productName, content } = result;
   const { profileImage, nickname: memberNickname } = result.member;
+
+
+  
   const { name: categoryName } = result.smallCategory;
   const { nickname: reviewerNickname, profileImage: reviewerProfile } = result.trades[0].member;
   const productReviewEl = document.querySelector('.product-review');
@@ -43,6 +50,9 @@ async function loadProduct() {
   memberProfileImageEl.src = profileImage;
   memberNicknameEl.innerText = memberNickname;
   categoryEl.innerText = categoryName;
+  resister.innerText = new Date(createdAt).toLocaleString();
+  updated.innerText = new Date(updatedAt).toLocaleString();
+  payment.innerText = bankAccountNumber;
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {
@@ -71,6 +81,7 @@ async function loadProduct() {
     });
   }
 }
+
 
 const reviewForm = document.querySelector('#review-form');
 
@@ -157,3 +168,7 @@ async function callApi(url, method = 'GET', bodyData = null) {
     return null;
   }
 }
+
+//결제버튼 이벤트
+document.getElementById('payButton').addEventListener('click',())
+
