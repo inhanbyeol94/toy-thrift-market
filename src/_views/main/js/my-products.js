@@ -91,9 +91,10 @@ function addEventEditBtn() {
 
 const sidebarMenu = document.querySelector('#my-products');
 sidebarMenu.classList.add('active');
+
 // 내 상품목록 카테고리별 조회
 const myCategories = async () =>{
-  await fetch('/products/myproduct/category/get/:id' , {
+  await fetch('/categories/large' , {
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -102,6 +103,50 @@ const myCategories = async () =>{
       .then((response) => response.json())
       .then((data) =>{
         console.log(data)
-        const categoryList = document.getElementById('')
+        const categoryList = document.getElementById('mycategoryList')
+        data.forEach((category) =>{
+          const option = document.createElement('option')
+          option.textContent = category.name
+          option.setAttribute('data-id',category.id)
+          categoryList.appendChild(option)
+        })
       })
 }
+const handleCategoryChange = async () =>{
+  const selectedOption = document.getElementById('categoryList')
+  const categoryId = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-id')
+  if(categoryId === null) {
+    await loadRecentProducts(null)
+  } else {
+    await loadRecentProducts(categoryId)
+  }
+}
+
+const loadRecentProducts = async (categoryId) =>{
+  const productsContainer = document.querySelector('.row.pt-2.mx-n2')
+  console.log(categoryId)
+  let url = 'myproduct/category/get/:id'
+  if(categoryId) {
+    url =  `/products/myproduct/category/get/${categoryId}`
+  }
+  await fetch(url,{
+    method:'GET',
+    headers:{
+      'Content-Type': 'application/json',
+    }
+  })
+      .then((response) => response.json())
+      .then((data) =>{
+        console.log(data)
+        productsContainer.innerHTML = ''
+        data.forEach((product)=>{
+          const productCard = createProductCard(product)
+          productsContainer.appendChild(productCard)
+        })
+      })
+}
+loadRecentProducts(null)
+// const categoryList = document.getElementById('categoryList')
+// console.log(categoryList)
+// categoryList.addEventListener('change', handleCategoryChange)
+myCategories()
