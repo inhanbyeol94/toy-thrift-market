@@ -49,9 +49,9 @@ export class PayverifyDto {
   @IsNotEmpty()
   phone: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  code: number;
+  code: string;
 
   @IsNumber()
   @IsNotEmpty()

@@ -28,6 +28,6 @@ export class TradesService {
     const member = await this.memberRepository.findOne({ where: { id: id } });
     const newTrade = this.tradeRepository.create({ product: { id: product.id }, member: { id: member.id }, status: 1 });
     await this.tradeRepository.save(newTrade);
-    return { message: '상품거래 생성.' };
+    return { result: true };
   }
 }
