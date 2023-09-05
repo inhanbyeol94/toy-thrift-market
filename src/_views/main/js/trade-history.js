@@ -81,7 +81,7 @@ async function callApi(url, method = 'GET', bodyData = null) {
 
 async function completeTrade(e) {
   const productId = e.target.getAttribute('data-product-id');
-  const result = await callApi(`trades/complete/${productId}`, 'PATCH');
+  const result = await callApi(`paymembercheck/complete/${productId}`, 'PATCH');
   if (result === null) return;
   location.reload();
 }
