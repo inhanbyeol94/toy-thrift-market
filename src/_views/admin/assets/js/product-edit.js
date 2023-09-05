@@ -144,7 +144,7 @@ form.addEventListener('submit', async (e) => {
     console.log('productId :', productId);
 
     // fetch 상품 수정 요청
-    const response = await fetch(`/admin-products/${productId}`, {
+    const response = await fetch(`/products/${productId}`, {
       method: 'PATCH',
       body: formData,
     });
@@ -152,7 +152,7 @@ form.addEventListener('submit', async (e) => {
     if (!response.ok) {
       throw new Error('Failed to post products');
     }
-    location.href = `/my-products`;
+    location.href = `/admins/product/manage`;
   } catch (error) {
     console.error('Error posting products:', error);
   }
