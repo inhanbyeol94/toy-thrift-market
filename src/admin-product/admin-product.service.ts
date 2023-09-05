@@ -54,4 +54,21 @@ export class AdminProductService {
     if (!product) throw new NotFoundException('상품이 존재하지 않습니다.');
     return product;
   }
+
+  //  상품 카테고리별 조회
+  async findProductsByCategory(categoryId: number): Promise<Product[]> {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.smallCategory', 'smallCategory')
+      .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
+      .limit(20)
+      .getMany();
+    return products;
+  }
 }
