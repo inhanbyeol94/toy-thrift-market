@@ -27,4 +27,22 @@ export class PickService {
       return { message: '찜목록에 추가되었습니다.' };
     }
   }
+  //찜 한 목록 불러오기
+  async getMyPicks(id: number, categoryId: number){
+    const picks = await this.pickRepository
+        .createQueryBuilder('pick')
+        .innerJoinAndSelect('pick.product', 'product')
+        .leftJoinAndSelect('product.smallCategory', 'smallCategory')
+        .leftJoinAndSelect('smallCategory.middleCategory', 'middleCategory')
+        .leftJoinAndSelect('product.productImages', 'productImage')
+        .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+        .andWhere('pick.member_id = :memberId', { memberId:id })
+        .orderBy({
+          'product.createdAt': 'DESC',
+          'productImage.position': 'ASC',
+        })
+        .limit(20)
+        .getMany()
+    return picks;
+  }
 }
