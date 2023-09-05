@@ -27,6 +27,7 @@ import * as process from 'process';
 import { HanbyeolBankModule } from './hanbyeol-bank/hanbyeol-bank.module';
 import { ReViewModule } from './re-view/review.module';
 import { TradesModule } from './trades/trades.module';
+import { AdminProductModule } from './admin-product/admin-product.module';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { TradesModule } from './trades/trades.module';
     HanbyeolBankModule,
     ReViewModule,
     TradesModule,
+    AdminProductModule,
   ],
   controllers: [],
   providers: [],
