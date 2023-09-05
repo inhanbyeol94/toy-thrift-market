@@ -226,4 +226,25 @@ export class ProductService {
 
     return products;
   }
+
+  // 구매내역 카테고리 별 조회
+  async findTradedByCategory(categoryId: number, memberId: number): Promise<Product[]> {
+    const products = await this.productRepository
+      .createQueryBuilder('product')
+      .innerJoinAndSelect('product.smallCategory', 'smallCategory')
+      .innerJoinAndSelect('product.trades', 'trade')
+      .innerJoin('trade.member', 'member')
+      .innerJoin('smallCategory.middleCategory', 'middleCategory')
+      .leftJoinAndSelect('trade.review', 'review')
+      .leftJoinAndSelect('product.productImages', 'productImage')
+      .where('middleCategory.largeCategory.id = :categoryId', { categoryId })
+      .andWhere('trade.member_id = :memberId', { memberId })
+      .orderBy({
+        'product.createdAt': 'DESC',
+        'productImage.position': 'ASC',
+      })
+      .getMany();
+
+    return products;
+  }
 }

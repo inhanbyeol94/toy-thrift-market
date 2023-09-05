@@ -105,4 +105,12 @@ export class ProductController {
     const { id } = req.user;
     return await this.productService.getMyProductsByCategory(categoryId, id);
   }
+
+  // 구매내역 카테고리 별 조회
+  @UseGuards(AuthGuard)
+  @Get('trade-history/:id')
+  async findTradedByCategory(@Param('id') categoryId: number, @Req() req: IRequest): Promise<Product[]> {
+    const { id: memberId } = req.user;
+    return await this.productService.findTradedByCategory(categoryId, memberId);
+  }
 }
