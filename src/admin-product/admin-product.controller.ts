@@ -12,15 +12,15 @@ export class AdminProductController {
 
   // 상품 수정
   @Patch(':id')
-  async update(@Param('id') id: number, @Body() data: UpdateProductDto, @Req() req: IRequest): Promise<IMessage> {
+  async update(@Param('id') productId: number, @Body() data: UpdateProductDto, @Req() req: IRequest): Promise<IMessage> {
     const _files = req.files;
-    return await this.adminProductService.update(id, data, _files);
+    return await this.adminProductService.update(productId, data, _files);
   }
 
   // 상품 삭제
   @Delete(':id')
-  async remove(@Param('id') id: number): Promise<IMessage> {
-    return await this.adminProductService.remove(id);
+  async remove(@Param('id') productId: number): Promise<IMessage> {
+    return await this.adminProductService.remove(productId);
   }
 
   //  상품 카테고리별 조회
