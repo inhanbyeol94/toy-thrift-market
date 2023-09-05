@@ -1,30 +1,17 @@
 <%- include('_includes/header') %>
-
   <!-- Dashboard header-->
+<main>
   <div class="page-title-overlap bg-accent pt-4">
-    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+    <div
+            class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
       <div class="d-flex align-items-center pb-3">
         <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
-          <img class="rounded-circle" src="data:image/png;base64,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" alt="Createx Studio" />
+          <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio" />
         </div>
         <div class="ps-3">
-          <h3 class="text-light fs-lg mb-0">상품 추가</h3>
-          <span class="d-block text-light fs-ms opacity-60 py-1">판매하고자 하는 상품을 올려보세요!</span>
+          <h3 class="text-light fs-lg mb-0">나중애</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
         </div>
-      </div>
-      <div class="d-flex">
-<!--        <div class="text-sm-end me-5">-->
-<!--          <div class="text-light fs-base">Total sales</div>-->
-<!--          <h3 class="text-light">426</h3>-->
-<!--        </div>-->
-<!--        <div class="text-sm-end">-->
-<!--          <div class="text-light fs-base">Seller rating</div>-->
-<!--          <div class="star-rating">-->
-<!--            <i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i-->
-<!--            ><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>-->
-<!--          </div>-->
-<!--          <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
