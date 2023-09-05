@@ -1,7 +1,8 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Req } from '@nestjs/common';
 import { HanbyeolBankService } from './hanbyeol-bank.service';
 import { RequestIdentityVerificationDto, VerifyAccountNumberDto, VerifyIdentityDto } from 'src/_common/dtos/verify-account-number.dto';
 import { IMessage } from 'src/_common/interfaces/message.interface';
+import { IRequest } from 'src/_common/interfaces/request.interface';
 
 @Controller('hanbyeol-banks')
 export class HanbyeolBankController {
@@ -9,9 +10,10 @@ export class HanbyeolBankController {
 
   @Post('identity')
   @HttpCode(201)
-  async requestIdentityVerification(@Body() data: RequestIdentityVerificationDto) {
-    const isVerified = await this.hanbyeolBankService.requestIdentityVerification(data);
-    return isVerified;
+  async requestIdentityVerification(@Req() req: IRequest, @Body() data: RequestIdentityVerificationDto): Promise<IMessage> {
+    const { id: userId } = req.user;
+    const result = await this.hanbyeolBankService.requestIdentityVerification(userId, data);
+    return result;
   }
 
   @Post('/identity/verify')

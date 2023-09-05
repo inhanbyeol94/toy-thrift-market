@@ -1,18 +1,28 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { RequestIdentityVerificationDto, VerifyAccountNumberDto, VerifyIdentityDto } from 'src/_common/dtos/verify-account-number.dto';
 import * as querystring from 'querystring';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { IMessage } from 'src/_common/interfaces/message.interface';
-const HANBYEOL_BANK_URL = 'http://121.170.132.3:3005';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Member } from 'src/_common/entities';
+import { Repository } from 'typeorm';
+const HANBYEOL_BANK_HOST = process.env.BANK_HOST;
 const TYPE_ACCOUNT_VERIFICATION = 105;
 
 @Injectable()
 export class HanbyeolBankService {
-  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+  constructor(
+    @InjectRepository(Member) private memberRepository: Repository<Member>,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
   //  본인 확인(요청)
-  async requestIdentityVerification(data: RequestIdentityVerificationDto) {
+  async requestIdentityVerification(userId: number, data: RequestIdentityVerificationDto): Promise<IMessage> {
     const { phoneNumber, accountHolder, residentRegistrationNumber } = data;
+    const existingMember = await this.memberRepository.findOne({ where: { id: userId } });
+    if (existingMember.name !== accountHolder) throw new HttpException('회원 이름과 일치하지 않습니다.', 404);
+    if (existingMember.tel !== phoneNumber) throw new HttpException('회원 연락처와 일치하지 않습니다.', 404);
+
     const bodyData = {
       name: accountHolder,
       phone: phoneNumber,
@@ -24,7 +34,7 @@ export class HanbyeolBankService {
     const formBody = querystring.stringify(bodyData);
 
     // Fetch 요청
-    const response = await fetch(`${HANBYEOL_BANK_URL}/identity`, {
+    const response = await fetch(`${HANBYEOL_BANK_HOST}/identity`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -38,7 +48,7 @@ export class HanbyeolBankService {
     const result = await response.json();
     await this.cacheManager.set(phoneNumber, { sequence: result.sequence }, { ttl: 300 });
 
-    return result;
+    return { message: '인증번호가 전송되었습니다.' };
   }
 
   //  본인 확인(검증)
@@ -53,7 +63,7 @@ export class HanbyeolBankService {
 
     const formBody = querystring.stringify(bodyData);
 
-    const response = await fetch(`${HANBYEOL_BANK_URL}/identity/verify`, {
+    const response = await fetch(`${HANBYEOL_BANK_HOST}/identity/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -83,7 +93,7 @@ export class HanbyeolBankService {
 
     const formBody = querystring.stringify(bodyData);
 
-    const response = await fetch(`${HANBYEOL_BANK_URL}/account/verify`, {
+    const response = await fetch(`${HANBYEOL_BANK_HOST}/account/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
