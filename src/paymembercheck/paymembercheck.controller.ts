@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, HttpCode, Req } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, HttpCode, Req, Patch, Param } from '@nestjs/common';
 import { PaymembercheckService } from './paymembercheck.service';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { IRequest } from 'src/_common/interfaces/request.interface';
@@ -26,19 +26,22 @@ export class PaymembercheckController {
     return responseFromBankServer;
   }
 
-  @Post('account')
-  @UseGuards(AuthGuard)
-  @HttpCode(201)
-  async accountCheck(@Body() accountCheckData: PayAccountCheckDto) {
-    const responseFromBankServer = await this.paymembercheckService.accountCheck(accountCheckData);
-    return responseFromBankServer;
-  }
-
   @Post('transfer')
   @UseGuards(AuthGuard)
   @HttpCode(201)
-  async transfer(@Body() transferData: transferDto) {
-    const responseFromBankServer = await this.paymembercheckService.transfer(transferData);
+  async transfer(@Req() req: IRequest, @Body() transferData: transferDto) {
+    const { id } = req.user;
+    const responseFromBankServer = await this.paymembercheckService.transfer(transferData, id);
     return responseFromBankServer;
+  }
+
+  // 상품 거래 완료
+  @Patch('complete/:id')
+  @UseGuards(AuthGuard)
+  @HttpCode(200)
+  async update(@Param('id') productId: string, @Req() req: IRequest) {
+    const status = 2;
+    const { id } = req.user;
+    return await this.paymembercheckService.endTransfer(+productId, status, id);
   }
 }

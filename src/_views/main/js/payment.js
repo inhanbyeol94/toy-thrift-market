@@ -11,6 +11,7 @@ const codeIpt = document.getElementById('codeIpt');
 const accountNumItp = document.getElementById('accountNumItp');
 const accuntPasswordIpt = document.getElementById('accuntPasswordIpt');
 const paySubmitBtn = document.getElementById('paySubmitBtn');
+let sequence;
 
 const loadProductInfo = async () => {
   await fetch(`/products/${productId}`, {
@@ -32,10 +33,11 @@ telIpt.addEventListener('input', () => {
   autoHyphen2(telIpt);
 });
 
-const memberIdentify = async () => {
+identifyBtn.addEventListener('click', async () => {
   if (!nameIpt.value) alert('이름을 입력해주세요');
   if (!telIpt.value) alert('휴대폰번호를 입력해주세요');
   if (!resistNumber.value) alert('주민등록번호를 입력해주세요');
+
   try {
     await fetch('/paymembercheck', {
       method: 'POST',
@@ -54,79 +56,63 @@ const memberIdentify = async () => {
         alert(data.message);
         document.getElementById('codeBox').style.display = 'block';
 
-        identityVerifyBtn.addEventListener('click', (event) => {
-          event.preventDefault();
-          memberIdentifyVerify(data.sequence);
-        });
+        sequence = data.sequence;
       });
   } catch (err) {
     console.error(err);
   }
-};
+});
 
-const memberIdentifyVerify = async (sequence) => {
+identityVerifyBtn.addEventListener('click', async () => {
   if (!codeIpt.value) alert('인증번호를 입력해주세요');
-  try {
-    await fetch('/paymembercheck/verify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        phone: telIpt.value,
-        code: codeIpt.value,
-        sequence,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        alert(data.message);
 
-        paySubmitBtn.addEventListener('click', (event) => {
-          event.preventDefault();
-          accountIdentify(data.sequence);
-        });
-      });
-  } catch (err) {
-    console.error(err);
+  const api = await fetch('/paymembercheck/verify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      phone: telIpt.value,
+      code: codeIpt.value,
+      sequence,
+    }),
+  });
+
+  const { status } = await api;
+  const result = await api.json();
+
+  alert(result.message);
+
+  if (status === 201) {
+    sequence = result.sequence;
   }
-};
+});
 
-const accountIdentify = async (sequence) => {
-  // const productPrice = document.getElementById('productPrice');
+paySubmitBtn.addEventListener('click', async () => {
   if (!accountNumItp.value) alert('계좌번호를 입력해주세요');
   if (!accuntPasswordIpt.value) alert('계좌 비밀번호를 입력해주세요');
-  try {
-    await fetch('/paymembercheck/transfer', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: nameIpt.value,
-        phone: telIpt.value,
-        residentRegistrationNumber: resistNumber.value,
-        accountNumber: accountNumItp.value,
-        password: accuntPasswordIpt.value.toString(),
-        sequence,
-        // amount: productPrice,
-        productId: productId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        createTrade();
-      });
-  } catch (err) {
-    console.error(err);
-  }
-};
 
-identifyBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  memberIdentify();
+  const api = await await fetch('/paymembercheck/transfer', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: nameIpt.value,
+      phone: telIpt.value,
+      residentRegistrationNumber: resistNumber.value,
+      accountNumber: accountNumItp.value,
+      password: accuntPasswordIpt.value.toString(),
+      sequence,
+      productId: productId,
+    }),
+  });
+
+  const { status } = await api;
+  const result = await api.json();
+
+  alert(result.message);
+  if (status == 201) return (location.href = '/trade-history');
 });
 
 function autoHyphen2(target) {
@@ -135,18 +121,3 @@ function autoHyphen2(target) {
     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
     .replace(/(\-{1,2})$/g, '');
 }
-
-const createTrade = async () => {
-  await fetch(`/trades/${productId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      alert('결제가 완료되었습니다.');
-      location.href = '/trade-history';
-    });
-};
