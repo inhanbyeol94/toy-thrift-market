@@ -13,8 +13,8 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   // 상품 추가
-  @UseGuards(AuthGuard)
   @Post()
+  @UseGuards(AuthGuard)
   async create(@Body() _product: CreateProductDto, @Req() req: IRequest): Promise<{ id: number }> {
     const { id: memberId } = req.user;
     const _files = req.files;
@@ -29,8 +29,8 @@ export class ProductController {
   }
 
   // 내 상품 조회
-  @UseGuards(AuthGuard)
   @Get('my-products')
+  @UseGuards(AuthGuard)
   async findByMemberId(@Req() req: IRequest): Promise<Product[]> {
     const { id } = req.user;
     return await this.productService.findByMemberId(id);
@@ -43,16 +43,16 @@ export class ProductController {
   }
 
   // 찜한 상품 조회
-  @UseGuards(AuthGuard)
   @Get('picks')
+  @UseGuards(AuthGuard)
   async getPickedProducts(@Req() req: IRequest) {
     const { id } = req.user;
     return await this.productService.findPickedProducts(id);
   }
 
   // 구매내역 조회
-  @UseGuards(AuthGuard)
   @Get('trade-history')
+  @UseGuards(AuthGuard)
   async getTradedProducts(@Req() req: IRequest): Promise<Product[]> {
     const { id: memberId } = req.user;
     return await this.productService.findTradedProducts(memberId);
@@ -65,16 +65,16 @@ export class ProductController {
   }
 
   // 상품 수정
-  @UseGuards(AuthGuard)
   @Patch(':id')
+  @UseGuards(AuthGuard)
   async update(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto, @Req() req: IRequest): Promise<IMessage> {
     const _files = req.files;
     return await this.productService.update(id, updateProductDto, _files);
   }
 
   // 상품 삭제
-  @UseGuards(AuthGuard)
   @Delete(':id')
+  @UseGuards(AuthGuard)
   async remove(@Param('id') id: number): Promise<IMessage> {
     return await this.productService.remove(id);
   }
