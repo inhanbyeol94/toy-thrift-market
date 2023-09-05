@@ -190,19 +190,19 @@ export class ViewController {
     return this.viewService.requiredAuth('나중애', '구매내역', payload);
   }
 
+  // 관리자 - 상품 관리
+  @Get('admins/product/manage')
+  @Render('admin/product-manage.ejs')
+  productManage(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '상품 관리', payload);
+  }
+
   // 관리자 - 상품 수정
-  @Get('admins/product/edit')
+  @Get('admins/product/:productId/edit')
   @Render('admin/product-edit.ejs')
   productEdit(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '상품 수정', payload);
-  }
-
-  // 관리자 - 상품 삭제
-  @Get('admins/product/delete')
-  @Render('admin/product-delete.ejs')
-  productDelete(@Req() req: IRequest): IView {
-    const payload = req.user;
-    return this.viewService.requiredAuth('나중애 관리자', '상품 삭제', payload);
   }
 }
