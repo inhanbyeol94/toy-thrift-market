@@ -16,7 +16,9 @@ export class MiddleCategory {
   })
   largeCategory: LargeCategory;
 
-  @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory)
+  @OneToMany(() => SmallCategory, (smallCategory) => smallCategory.middleCategory, {
+    cascade: true,
+  })
   smallCategories: SmallCategory[];
 
   @CreateDateColumn()

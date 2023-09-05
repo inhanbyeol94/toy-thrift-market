@@ -14,6 +14,7 @@ export class SmallCategory {
   products: Product[];
 
   @ManyToOne(() => MiddleCategory, (middleCategory) => middleCategory.smallCategories, {
+    onDelete: 'CASCADE',
     nullable: false,
   })
   middleCategory: MiddleCategory;
