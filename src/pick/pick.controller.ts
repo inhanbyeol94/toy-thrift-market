@@ -1,4 +1,4 @@
-import { Controller, Post, Param, UseGuards, HttpCode, Req } from '@nestjs/common';
+import {Controller, Post, Param, UseGuards, HttpCode, Req, Get} from '@nestjs/common';
 import { PickService } from './pick.service';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { IRequest } from 'src/_common/interfaces/request.interface';
@@ -14,5 +14,14 @@ export class PickController {
   async createPick(@Req() req: IRequest, @Param('productId') productId: number): Promise<IMessage> {
     const { id } = req.user;
     return await this.pickService.createPick(id, productId);
+  }
+
+  // 찜 한 목록 불러오기
+  @Get('mypick/category/get/:id')
+  @UseGuards(AuthGuard)
+  @HttpCode(200)
+  async getMyPicks(@Param('id') categoryId: number, @Req() req: IRequest) {
+    const { id } = req.user;
+    return await this.pickService.getMyPicks(id,categoryId)
   }
 }
