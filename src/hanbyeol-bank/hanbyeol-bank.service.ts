@@ -7,7 +7,6 @@ import { IMessage } from 'src/_common/interfaces/message.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Member } from 'src/_common/entities';
 import { Repository } from 'typeorm';
-const HANBYEOL_BANK_HOST = process.env.BANK_HOST;
 const TYPE_ACCOUNT_VERIFICATION = 105;
 
 @Injectable()
@@ -34,7 +33,7 @@ export class HanbyeolBankService {
     const formBody = querystring.stringify(bodyData);
 
     // Fetch 요청
-    const response = await fetch(`${HANBYEOL_BANK_HOST}/identity`, {
+    const response = await fetch(`${process.env.BANK_HOST}/identity`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -63,7 +62,7 @@ export class HanbyeolBankService {
 
     const formBody = querystring.stringify(bodyData);
 
-    const response = await fetch(`${HANBYEOL_BANK_HOST}/identity/verify`, {
+    const response = await fetch(`${process.env.BANK_HOST}/identity/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -93,7 +92,7 @@ export class HanbyeolBankService {
 
     const formBody = querystring.stringify(bodyData);
 
-    const response = await fetch(`${HANBYEOL_BANK_HOST}/account/verify`, {
+    const response = await fetch(`${process.env.BANK_HOST}/account/verify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
