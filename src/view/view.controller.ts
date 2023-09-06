@@ -213,4 +213,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '계좌 관리', payload);
   }
+
+  // 계좌 등록
+  @Get('/account/registration')
+  @Render('main/account-registration.ejs')
+  accountRegistration(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '계좌 등록', payload);
+  }
 }

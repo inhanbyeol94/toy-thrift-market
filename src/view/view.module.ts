@@ -29,6 +29,7 @@ export class ViewModule {
         { path: 'product/:id/edit', method: RequestMethod.GET },
         { path: 'purchase-history', method: RequestMethod.GET },
         { path: '/account/management', method: RequestMethod.GET },
+        { path: '/account/registration', method: RequestMethod.GET },
       );
 
     /* 로그인 & 관리자 제한 미들웨어 */
