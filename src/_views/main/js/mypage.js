@@ -31,25 +31,25 @@ async function updateMemberInfo() {
   if (!name.value.trim()) return alert('이름을 입력해주세요.');
   if (!nickname.value.trim()) return alert('닉네임을 입력해주세요.');
   if (!address.value.trim()) return alert('주소를 입력해주세요.');
-  if (!tel.value.trim()) return alert('연락처를 입력해주세요.');
+  // if (!tel.value.trim()) return alert('연락처를 입력해주세요.');
   if (!subAddress.value.trim()) return alert('상세 주소를 입력해주세요.');
 
   /* 정규식 검사 */
   const emailRegexp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   const nameRegexp = /[가-힣]/;
   const nicknameRegexp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/;
-  const telRegexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+  // const telRegexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 
   if (!emailRegexp.test(email.value)) return alert('이메일 형식이 일치하지 않습니다.');
   if (!nameRegexp.test(name.value)) return alert('이름은 한글만 입력이 가능합니다.');
   if (!nicknameRegexp.test(nickname.value)) return alert('닉네임은 한글,영문,숫자만 조합이 가능합니다.');
-  if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다. ( - ) 을 포함한 010으로 시작하는 휴대폰 번호를 입력해주세요.');
+  // if (!telRegexp.test(tel.value)) return alert('핸드폰 번호 형식에 일치하지 않습니다. ( - ) 을 포함한 010으로 시작하는 휴대폰 번호를 입력해주세요.');
 
   // 문자열 길이 검사
   if (email.value.length > 50) return alert('이메일을 최대 50자 이내 입력해주세요.');
   if (name.value.length > 5 || name.length < 2) return alert('이름은 최소 2자이상 5자 이하로 입력해주세요.');
   if (nickname.value.length < 2 || nickname.length > 10) return alert('닉네임은 최소 2자이상 10자 이하로 입력해주세요.');
-  if (tel.value.length > 13) return alert('휴대폰 번호는 "-" 포함 최대 13자 미만으로 입력해주세요.');
+  // if (tel.value.length > 13) return alert('휴대폰 번호는 "-" 포함 최대 13자 미만으로 입력해주세요.');
 
   // S3
   let formData = new FormData();
