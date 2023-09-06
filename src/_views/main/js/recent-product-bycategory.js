@@ -52,6 +52,7 @@ const loadRecentProducts = async (categoryId) => {
 };
 
 const createProductCard = (product) => {
+  const timeAgoText = timeAgo(product.createdAt)
   const card = document.createElement('div');
   card.className = 'col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter';
   card.innerHTML = `
@@ -62,7 +63,10 @@ const createProductCard = (product) => {
               </div>
               <div class="card-body">
                 <h3 class="product-title fs-sm mb-2"><a href="/product/${product.id}">${product.name}</a></h3>
-                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2" style="font-size:14px;">${product.price.toLocaleString()}원</div>
+                <div class="bg-faded-accent text-accent rounded-1 py-1 px-2" style="font-size:14px; justify-content: space-between; display: flex">
+                    <div>${product.price.toLocaleString()}원</div>
+                <span style="color:#6e8192">${timeAgoText}</span>
+                </div>
               </div>
             </div>
           </div>
