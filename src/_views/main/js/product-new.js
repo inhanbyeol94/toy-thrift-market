@@ -100,9 +100,6 @@ form.addEventListener('submit', async (e) => {
 
 // formData에 이미지 할당
 imageUpload.addEventListener('change', async (e) => {
-  previewImages();
-  // s3에 저장 후 url반환하기
-
   console.log(e.target.files[0].type);
   const files = e.target.files;
   for (let i = 0; i < files.length; i++) {
@@ -110,16 +107,19 @@ imageUpload.addEventListener('change', async (e) => {
     // 이미지 파일 사이즈 검사
     if (file.size > 1 * 1024 * 1024) {
       alert('파일용량은 최대 1mb입니다.');
+      e.target.value = '';
       return;
     }
     // 확장자 검사
     if (!file.type.includes('jpeg') && !file.type.includes('png')) {
       alert('jpeg 또는 png 파일만 업로드 가능합니다!');
+      e.target.value = '';
       return;
     }
     hasNoImage = false;
     formData.append('images', file);
   }
+  previewImages();
 });
 
 // 이미지 미리보기 메서드
