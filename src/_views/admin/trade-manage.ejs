@@ -1,0 +1,36 @@
+<%- include('_includes/header') %>
+  <%- include('_includes/sidebar') %>
+
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>거래 관리 페이지</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">거래 관리</a></li>
+            <li class="breadcrumb-item active">수정</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section dashboard">
+
+        <div class="member-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>거래ID</th>
+                <th>상태</th>
+                <th>상품명</th>
+                <th>구매자</th>
+                <th>취소처리</th>
+              </tr>
+            </thead>
+            <tbody id="tradeList">
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main><!-- End #main -->
+
+    <script src="/admin/assets/js/trade-manage.js" defer></script>
+    <%- include('_includes/footer') %>
