@@ -1,0 +1,52 @@
+<%- include('_includes/header') %>
+<main>
+  <div class="page-title-overlap bg-accent pt-4">
+    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+      <div class="d-flex align-items-center pb-3">
+        <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
+          <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio" />
+        </div>
+        <div class="ps-3">
+          <h3 class="text-light fs-lg mb-0">나중애</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mb-5 pb-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <%- include('_includes/member-sidebar') %>
+        <!-- Content-->
+        <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+          <div class="pt-2 px-4 ps-lg-0 pe-xl-5" id="product-area">
+            <!-- Title-->
+            <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
+              <h2 class="h3 py-2 me-2 text-center text-sm-start">
+                계좌 관리<span class="my-products-number badge bg-faded-accent fs-sm text-body align-middle ms-2"></span>
+              </h2>
+              <div class="py-2"></div>
+            </div>
+            <div id="accounts"></div>
+            <br />
+            <div class="d-flex justify-content-center">
+              <button class="btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" onclick="window.location.href='/account/registration'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 18 18">
+                  <g fill="#09aa5c" fill-rule="nonzero">
+                    <path d="M9 0a9 9 0 1 1 0 18A9 9 0 0 1 9 0zm0 .9a8.1 8.1 0 1 0 0 16.2A8.1 8.1 0 0 0 9 .9z"></path>
+                    <path d="M8.55 4.95v8.1h1v-8.1z"></path>
+                    <path d="M13.1 8.5H5v1h8.1z"></path>
+                  </g>
+                </svg>
+                <br />
+                <span>계좌 등록</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="/main/js/account-management.js" defer></script>
+<%- include('_includes/footer') %>

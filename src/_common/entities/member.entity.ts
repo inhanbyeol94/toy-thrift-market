@@ -4,6 +4,7 @@ import { Pick } from 'src/_common/entities/pick.entity';
 import { Product } from 'src/_common/entities/product.entity';
 import { Trade } from 'src/_common/entities/trade.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { EasyPassword } from './easy-password.entity';
 
 @Entity()
 export class Member {
@@ -60,4 +61,7 @@ export class Member {
 
   @OneToMany(() => Comment, (comment) => comment.member, { cascade: true })
   comments: Comment[];
+
+  @OneToMany(() => EasyPassword, (easyPassword) => easyPassword.member)
+  easyPasswords: EasyPassword[];
 }
