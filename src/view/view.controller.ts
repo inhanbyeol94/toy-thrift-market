@@ -205,4 +205,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '상품 수정', payload);
   }
+
+  // 관리자 - 거래 관리
+  @Get('admins/trade/manage')
+  @Render('admin/trade-manage.ejs')
+  tradeManage(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '거래 관리', payload);
+  }
 }

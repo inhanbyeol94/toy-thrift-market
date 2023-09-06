@@ -52,6 +52,7 @@ export class ProductService {
     const products = await this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.productImages', 'productImage')
+      .leftJoinAndSelect('product.trades', 'trades')
       .where('product.member_id = :memberId', { memberId })
       .orderBy('product.createdAt', 'DESC')
       .addOrderBy('productImage.position', 'ASC')

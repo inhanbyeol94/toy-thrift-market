@@ -42,10 +42,11 @@ async function loadTradedProducts() {
 
     if (status === 1) {
       tradingProductsEl.appendChild(productEl);
-      return;
+      // return;
+    } else if (status === 2) {
+      tradeCompletedProductsEl.appendChild(productEl);
+    } else {
     }
-
-    tradeCompletedProductsEl.appendChild(productEl);
   });
   const completeTradeButtons = document.querySelectorAll('.complete-trade');
   completeTradeButtons.forEach((Btn) => {
