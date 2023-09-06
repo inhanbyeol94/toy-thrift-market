@@ -14,12 +14,28 @@ const categoryEl = document.querySelector('#small-category');
 const productReviewEl = document.querySelector('.product-review');
 const resister = document.getElementById('resister');
 const updated = document.getElementById('updated');
-
+const productStatus = document.getElementById('productStatus');
+const payButton = document.getElementById('payButton');
 
 loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
+  console.log(result);
+  if (result.trades.length === 0) {
+    productStatus.innerText = '거래없음';
+  } else {
+    const tradeStatus = result.trades[0].status;
+    if (tradeStatus === 1) {
+      productStatus.innerText = '거래중';
+      payButton.disabled = true;
+    } else if (tradeStatus === 2) {
+      productStatus.innerText = '거래완료';
+      payButton.disabled = true;
+    } else {
+      productStatus.innerText = '거래없음';
+    }
+  }
 
   const { productImages, price, name: productName, content, createdAt, updatedAt } = result;
   const { profileImage, nickname: memberNickname } = result.member;
@@ -51,7 +67,6 @@ async function loadProduct() {
   categoryEl.innerText = categoryName;
   resister.innerText = new Date(createdAt).toLocaleString();
   updated.innerText = new Date(updatedAt).toLocaleString();
-
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {
@@ -152,6 +167,6 @@ async function callApi(url, method = 'GET', bodyData = null) {
 }
 
 //결제버튼 이벤트
-document.getElementById('payButton').addEventListener('click', function () {
+payButton.addEventListener('click', function () {
   window.location.href = `/payment/${productId}`;
 });

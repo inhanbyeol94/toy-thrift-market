@@ -14,11 +14,12 @@ async function loadProducts() {
     for (const _product of result) {
       const { id, name, price, productImages } = _product;
       const imageUrl = productImages.length ? productImages[0].imageUrl : DEFAULT_PRODUCT_IMAGE;
-
-      // const statusResponse = await fetch(`/trade/${id}`);
-      // const statusResult = await statusResponse.json();
-      // const statusText = statusResult === 1 ? '거래중' : statusResult === 2 ? '거래완료' : '거래없음';
-      // <div class="status mb-3" style="color:red;" data-product-id=${id}>${statusText}</div>
+      let statusText;
+      if (_product.trades.length === 0) {
+        statusText = '거래없음';
+      } else {
+        statusText = _product.trades[0].status === 1 ? '거래중' : _product.trades[0].status === 2 ? '거래완료' : '거래없음';
+      }
 
       const productEl = document.createElement('div');
       const productHtml = `<div class="d-block d-sm-flex align-items-center py-4 border-bottom">
@@ -27,13 +28,14 @@ async function loadProducts() {
                       ><img class="rounded-3" src=${imageUrl} alt="Product"
                       /></a>
                       <div class="text-center text-sm-start">
+                      <div class="status mb-3" style="color:red;" data-product-id=${id}>${statusText}</div>
                       <!-- 제목 -->
                       <h3 class="h6 product-title mb-4"><a href="/product/${id}">${name}</a></h3>
                       <!-- 가격 -->
                       <div class="d-inline-block text-accent">${price}원</div>
                       <!-- 버튼 -->
                       <div class="d-flex justify-content-center justify-content-sm-start pt-3">
-                          <button data-product-id=${id} class=" product-edit-button btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
+                          <button data-product-id=${id} class="product-edit-button btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit text-info"></i></button>
                           <button data-product-id=${id} class="product-delete-button btn bg-faded-danger btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Delete"><i class="ci-trash text-danger"></i></button>
                       </div>
                       </div>

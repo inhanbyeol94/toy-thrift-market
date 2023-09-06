@@ -1,114 +1,124 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <% if(subtitle !=='메인' ) { %>
-    <title><%= title %> | <%= subtitle %></title>
-    <% } else { %>
-    <title><%= title %></title>
-    <% } %>
-    <!-- SEO Meta Tags-->
-    <meta name="description" content="Cartzilla - Bootstrap E-commerce Template" />
-    <meta
-      name="keywords"
-      content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean"
-    />
-    <meta name="author" content="Createx Studio" />
-    <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/main/img/logo-dark.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/main/img/logo-dark.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/main/img/logo-dark.png" />
-    <link rel="manifest" href="/main/site.webmanifest" />
-    <link rel="mask-icon" color="#fe6a6a" href="/main/img/logo-dark.png" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
-    <link rel="stylesheet" media="screen" href="/main/vendor/simplebar/dist/simplebar.min.css" />
-    <link rel="stylesheet" media="screen" href="/main/vendor/tiny-slider/dist/tiny-slider.css" />
-    <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="/main/css/theme.min.css" />
-  </head>
-  <!-- Body-->
 
-  <body class="handheld-toolbar-enabled">
-    <main class="page-wrapper">
-      <!-- Navbar Marketplace-->
-      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
-      <header class="bg-light shadow-sm navbar-sticky">
-        <div class="navbar navbar-expand-lg navbar-light">
-          <div class="container">
-            <a class="navbar-brand d-none d-sm-block flex-shrink-0 me-4 order-lg-1" href="/"><img src="/main/img/logo-dark.png" width="50" alt="Cartzilla" /></a
-            ><a class="navbar-brand d-sm-none me-2 order-lg-1" href="/"><img src="/main/img/logo-icon.png" width="74" alt="Cartzilla" /></a>
-            <!-- Toolbar-->
-            <div class="navbar-toolbar d-flex align-items-center order-lg-3">
-              <div class="input-group" style="width: 100%">
-                <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                <input class="form-control rounded-start" type="text" placeholder="상품명을 입력해주세요." id="headerSearchInput" />
-              </div>
-              <% if(isLogin) { %>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button
-              ><a class="navbar-tool d-none d-lg-flex" href="/pick"
-                ><span class="navbar-tool-tooltip">Favorites</span>
+<head>
+  <meta charset="utf-8" />
+  <% if(subtitle !=='메인' ) { %>
+    <title>
+      <%= title %> | <%= subtitle %>
+    </title>
+    <% } else { %>
+      <title>
+        <%= title %>
+      </title>
+      <% } %>
+        <!-- SEO Meta Tags-->
+        <meta name="description" content="Cartzilla - Bootstrap E-commerce Template" />
+        <meta name="keywords"
+          content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean" />
+        <meta name="author" content="Createx Studio" />
+        <!-- Viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Favicon and Touch Icons-->
+        <link rel="apple-touch-icon" sizes="180x180" href="/main/img/logo-dark.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/main/img/logo-dark.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/main/img/logo-dark.png" />
+        <link rel="manifest" href="/main/site.webmanifest" />
+        <link rel="mask-icon" color="#fe6a6a" href="/main/img/logo-dark.png" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+        <link rel="stylesheet" media="screen" href="/main/vendor/simplebar/dist/simplebar.min.css" />
+        <link rel="stylesheet" media="screen" href="/main/vendor/tiny-slider/dist/tiny-slider.css" />
+        <!-- Main Theme Styles + Bootstrap-->
+        <link rel="stylesheet" media="screen" href="/main/css/theme.min.css" />
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+  <main>
+    <!-- Navbar Marketplace-->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+    <header class="bg-light shadow-sm navbar-sticky">
+      <div class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand d-none d-sm-block flex-shrink-0 me-4 order-lg-1" href="/"><img
+              src="/main/img/logo-dark.png" width="50" alt="Cartzilla" /></a><a
+            class="navbar-brand d-sm-none me-2 order-lg-1" href="/"><img src="/main/img/logo-icon.png" width="74"
+              alt="Cartzilla" /></a>
+          <!-- Toolbar-->
+          <div class="navbar-toolbar d-flex align-items-center order-lg-3">
+            <div class="input-group" style="width: 100%">
+              <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
+              <input class="form-control rounded-start" type="text" placeholder="상품명을 입력해주세요." id="headerSearchInput" />
+            </div>
+            <% if(isLogin) { %>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a
+                class="navbar-tool d-none d-lg-flex" href="/pick"><span class="navbar-tool-tooltip">Favorites</span>
                 <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div>
               </a>
               <div class="navbar-tool dropdown ms-2">
-                <a class="navbar-tool-icon-box border dropdown-toggle"
-                  ><img src="<%= profileImage %>" width="100%" height="100%" style="object-fit: cover" alt="Createx Studio" /></a
-                ><a class="navbar-tool-text ms-n1" href="#"
-                  ><small> <%= nickname %> </small>
+                <a class="navbar-tool-icon-box border dropdown-toggle"><img src="<%= profileImage %>" width="100%"
+                    height="100%" style="object-fit: cover" alt="Createx Studio" /></a><a class="navbar-tool-text ms-n1"
+                  href="#"><small>
+                    <%= nickname %>
+                  </small>
                   <%= name %>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                   <div style="min-width: 14rem">
                     <h6 class="dropdown-header">정보</h6>
-                    <a class="dropdown-item d-flex align-items-center" href="/myprofile"><i class="ci-settings opacity-60 me-2"></i>마이 프로필</a>
+                    <a class="dropdown-item d-flex align-items-center" href="/myprofile"><i
+                        class="ci-settings opacity-60 me-2"></i>마이 프로필</a>
 
                     <% if(isAdmin) { %>
-                    <a class="dropdown-item d-flex align-items-center" href="/admins"> <i class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
-                    <% } %>
-                    <a class="dropdown-item d-flex align-items-center" href="/pick"
-                      ><i class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-xs text-muted ms-auto"></span
-                    ></a>
+                      <a class="dropdown-item d-flex align-items-center" href="/admins"> <i
+                          class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
+                      <% } %>
+                        <a class="dropdown-item d-flex align-items-center" href="/pick"><i
+                            class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-xs text-muted ms-auto"></span></a>
 
-                    <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout()"><i class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">상품</h6>
-                    <a class="dropdown-item d-flex align-items-center" href="/my-products"
-                      ><i class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-xs text-muted ms-auto"></span>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="/mypage/products/new"><i class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a>
-                    <a class="dropdown-item d-flex align-items-center" href="/trade-history"><i class="ci-bag opacity-60 me-2"></i>구매내역</a>
+                        <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout()"><i
+                            class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">상품</h6>
+                        <a class="dropdown-item d-flex align-items-center" href="/my-products"><i
+                            class="ci-package opacity-60 me-2"></i>내 상품<span class="fs-xs text-muted ms-auto"></span>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="/mypage/products/new"><i
+                            class="ci-cloud-upload opacity-60 me-2"></i>상품 추가하기</a>
+                        <a class="dropdown-item d-flex align-items-center" href="/trade-history"><i
+                            class="ci-bag opacity-60 me-2"></i>구매내역</a>
                   </div>
                 </div>
               </div>
               <% } else { %>
-              <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
-              <% } %>
+                <button class="btn btn-accent ms-2" type="button" onclick="window.location.href ='/login'">로그인</button>
+                <% } %>
+          </div>
+          <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
+            <!-- Search-->
+            <div class="input-group d-lg-none my-3">
+              <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
+              <input class="form-control rounded-start" type="text" placeholder="Search marketplace" />
             </div>
-            <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
-              <!-- Search-->
-              <div class="input-group d-lg-none my-3">
-                <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                <input class="form-control rounded-start" type="text" placeholder="Search marketplace" />
-              </div>
-              <!-- Categories dropdown-->
-              <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown" style="font-size: 15px"
-                    ><i class="ci-menu align-middle mt-n1 me-2"></i>상품 카테고리</a
-                  >
-                  <ul class="dropdown-menu py-1" id="headerLargeCategory"></ul>
-                </li>
-              </ul>
-              <!-- Primary menu-->
-            </div>
+            <!-- Categories dropdown-->
+            <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown"
+                  style="font-size: 15px"><i class="ci-menu align-middle mt-n1 me-2"></i>상품 카테고리</a>
+                <ul class="dropdown-menu py-1" id="headerLargeCategory"></ul>
+              </li>
+            </ul>
+            <!-- Primary menu-->
           </div>
         </div>
-        <!--Project JS-->
-        <script src="/main/js/header.js"></script>
-      </header>
-    </main>
-  </body>
+      </div>
+      <!--Project JS-->
+      <script src="/main/js/header.js"></script>
+    </header>
+  </main>
+</body>
+
 </html>
