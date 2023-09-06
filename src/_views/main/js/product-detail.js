@@ -14,14 +14,34 @@ const categoryEl = document.querySelector('#small-category');
 const productReviewEl = document.querySelector('.product-review');
 const resister = document.getElementById('resister');
 const updated = document.getElementById('updated');
-
+const productStatus = document.getElementById('productStatus');
+const payButton = document.getElementById('payButton');
 
 loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
 
-  const { productImages, price, name: productName, content, createdAt, updatedAt } = result;
+// updateAt쪽이 리뷰와 상품쪽이랑 겹쳐서 상품쪽만 변경
+  const { productImages, price, name: productName, content, createdAt, updatedAt: productUpdatedAt } = result;
+
+  console.log(result);
+  if (result.trades.length === 0) {
+    productStatus.innerText = '거래없음';
+  } else {
+    const tradeStatus = result.trades[0].status;
+    if (tradeStatus === 1) {
+      productStatus.innerText = '거래중';
+      payButton.disabled = true;
+    } else if (tradeStatus === 2) {
+      productStatus.innerText = '거래완료';
+      payButton.disabled = true;
+    } else {
+      productStatus.innerText = '거래없음';
+    }
+  }
+
+
   const { profileImage, nickname: memberNickname } = result.member;
 
   const { name: categoryName } = result.smallCategory;
@@ -49,9 +69,32 @@ async function loadProduct() {
   memberProfileImageEl.src = profileImage;
   memberNicknameEl.innerText = memberNickname;
   categoryEl.innerText = categoryName;
-  resister.innerText = new Date(createdAt).toLocaleString();
-  updated.innerText = new Date(updatedAt).toLocaleString();
+  // resister.innerText = new Date(createdAt).toLocaleString();
+  // updated.innerText = new Date(updatedAt).toLocaleString();
+  function timeAgo(dateParam){
+    const now = new Date()
+    const past = new Date(dateParam)
+    const msPerMinute = 60 * 1000
+    const msPerHour = msPerMinute * 60
+    const msPerDay = msPerHour * 24
 
+    const elapsed = now - past
+
+    if(elapsed < msPerMinute) {
+      return Math.round(elapsed/1000) + ' 초전'
+    }
+    else if(elapsed < msPerHour) {
+      return Math.round(elapsed/msPerMinute) + ' 분전'
+    }
+    else if(elapsed < msPerDay){
+      return Math.round(elapsed/msPerHour) +' 시간전'
+    }
+    else {
+      return Math.round(elapsed/msPerDay) + ' 일전'
+    }
+  }
+  resister.innerText = timeAgo(createdAt)
+  updated.innerText = timeAgo(productUpdatedAt)
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {
@@ -152,6 +195,6 @@ async function callApi(url, method = 'GET', bodyData = null) {
 }
 
 //결제버튼 이벤트
-document.getElementById('payButton').addEventListener('click', function () {
+payButton.addEventListener('click', function () {
   window.location.href = `/payment/${productId}`;
 });

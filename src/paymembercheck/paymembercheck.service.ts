@@ -75,7 +75,7 @@ export class PaymembercheckService {
     try {
       const response = await axios.post(bankServerUrl, bankServerPayload);
 
-      const createTrade = await this.tradeService.create(productId, id);
+      const createTrade = await this.tradeService.create(productId, id, accountNumber);
       if (createTrade.result == true) return { message: '결제가 완료되었습니다.' };
       return { message: '오류가 발생하였습니다.' };
     } catch (error) {
@@ -104,6 +104,31 @@ export class PaymembercheckService {
     try {
       const response = await axios.post(bankServerUrl, bankServerPayload);
       return true;
+    } catch (error) {
+      throw new HttpException(error.response.data.message, error.response.status);
+    }
+  }
+
+  async cancleTransfer(tradeId: number) {
+    await this.tradeService.tradeCancle(tradeId);
+
+    const bankServerUrl = `http://${process.env.BANK_HOST}/trade/direct/deposit`;
+    const trade = await this.tradeRepository.findOne({ where: { id: tradeId }, relations: ['member', 'product'] });
+    const bankServerPayload = {
+      name: `${process.env.NAJUNGE_ACCOUNT_NAME}`,
+      phone: `${process.env.NAJUNGE_PHONE}`,
+      residentRegistrationNumber: `${process.env.NAJUNGE_REGISTRATIONNUM}`,
+      accountNumber: `${process.env.NAJUNGE_ACCOUNT}`,
+      password: `${process.env.NAJUNGE_PASSWORD}`,
+      amount: trade.product.price,
+      requestAccountNubmer: trade.buyerAccountNumber,
+      requestName: trade.member.name,
+      sequence: '101010',
+      partnerKey: `${process.env.NAJUNGE_SECRETKEY}`,
+    };
+    try {
+      const response = await axios.post(bankServerUrl, bankServerPayload);
+      return response.data;
     } catch (error) {
       throw new HttpException(error.response.data.message, error.response.status);
     }

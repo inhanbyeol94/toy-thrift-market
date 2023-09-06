@@ -29,4 +29,7 @@ export class Trade {
     nullable: false,
   })
   member: Member;
+
+  @Column()
+  buyerAccountNumber: string;
 }

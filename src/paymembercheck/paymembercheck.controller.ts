@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { IRequest } from 'src/_common/interfaces/request.interface';
 import { IMessage } from 'src/_common/interfaces/message.interface';
 import { PayAccountCheckDto, PaymemberCheckDto, PayverifyDto, transferDto } from 'src/_common/dtos/paymentcheck.dto';
+import { AdminGuard } from 'src/_common/guards/admin.guard';
 
 @Controller('paymembercheck')
 export class PaymembercheckController {
@@ -43,5 +44,12 @@ export class PaymembercheckController {
     const status = 2;
     const { id } = req.user;
     return await this.paymembercheckService.endTransfer(+productId, status, id);
+  }
+
+  // 상품 거래 취소
+  @Patch('cancle/:id')
+  @UseGuards(AdminGuard)
+  async tradeCancle(@Param('id') tradeId: number) {
+    return await this.paymembercheckService.cancleTransfer(tradeId);
   }
 }

@@ -33,7 +33,7 @@ export class MemberController {
   @HttpCode(200)
   async updateMember(@Req() req: IRequest, @Res() res: Response, @Body() data: UpdateMyPageDto, @UploadedFile() file: Express.Multer.File): Promise<Response> {
     const { id } = req.user;
-    const { message, access_token } = await this.memberService.updateMember(id, data.name, data.nickname, data.tel, file, data.address, data.subAddress);
+    const { message, access_token } = await this.memberService.updateMember(id, data.name, data.nickname, file, data.address, data.subAddress);
     res.cookie('access_token', access_token, { httpOnly: true });
     return res.status(200).json({ message });
   }

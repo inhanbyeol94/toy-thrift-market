@@ -53,7 +53,7 @@ export class MemberService {
     };
   }
   // 회원정보 수정
-  async updateMember(id: number, name: string, nickname: string, tel: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IToken> {
+  async updateMember(id: number, name: string, nickname: string, file: Express.Multer.File, address: string, subAddress: string): Promise<IToken> {
     const member = await this.membersRepository.findOne({ where: { id } });
     if (!member) {
       throw new NotFoundException('회원이 존재하지 않습니다.');
@@ -64,17 +64,12 @@ export class MemberService {
         throw new NotFoundException('이미 존재하는 닉네임입니다.');
       }
     }
-    if (tel !== member.tel) {
-      const existingTel = await this.membersRepository.findOne({ where: { tel } });
-      if (existingTel) {
-        throw new NotFoundException('이미 존재하는 전화번호입니다.');
-      }
-    }
+
     if (file) {
       const imageUpload = await this.uploadService.uploadFile(file);
       member.name = name;
       member.nickname = nickname;
-      member.tel = tel;
+
       member.address = address;
       member.subAddress = subAddress;
       member.profileImage = imageUpload.Location;
@@ -89,7 +84,7 @@ export class MemberService {
 
     member.name = name;
     member.nickname = nickname;
-    member.tel = tel;
+
     member.address = address;
     member.subAddress = subAddress;
     const upData = await this.membersRepository.save(member);

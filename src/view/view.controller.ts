@@ -28,13 +28,6 @@ export class ViewController {
     return this.viewService.requiredAuth('나중애', '회원가입', payload);
   }
 
-  @Get('admins')
-  @Render('admin/index.ejs')
-  admin(@Req() req: IRequest): IView {
-    const payload = req.user;
-    return this.viewService.requiredAuth('나중애 관리자', '대시보드', payload);
-  }
-
   @Get('admins/category')
   @Render('admin/category-manage.ejs')
   category(@Req() req: IRequest): IView {
@@ -220,5 +213,13 @@ export class ViewController {
   accountRegistration(@Req() req: IRequest): IView {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '계좌 등록', payload);
+  }
+
+  // 관리자 - 거래 관리
+  @Get('admins/trade/manage')
+  @Render('admin/trade-manage.ejs')
+  tradeManage(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애 관리자', '거래 관리', payload);
   }
 }
