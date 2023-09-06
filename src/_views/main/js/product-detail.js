@@ -21,6 +21,10 @@ loadProduct();
 async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
+
+// updateAt쪽이 리뷰와 상품쪽이랑 겹쳐서 상품쪽만 변경
+  const { productImages, price, name: productName, content, createdAt, updatedAt: productUpdatedAt } = result;
+
   console.log(result);
   if (result.trades.length === 0) {
     productStatus.innerText = '거래없음';
@@ -37,7 +41,7 @@ async function loadProduct() {
     }
   }
 
-  const { productImages, price, name: productName, content, createdAt, updatedAt } = result;
+
   const { profileImage, nickname: memberNickname } = result.member;
 
   const { name: categoryName } = result.smallCategory;
@@ -65,8 +69,32 @@ async function loadProduct() {
   memberProfileImageEl.src = profileImage;
   memberNicknameEl.innerText = memberNickname;
   categoryEl.innerText = categoryName;
-  resister.innerText = new Date(createdAt).toLocaleString();
-  updated.innerText = new Date(updatedAt).toLocaleString();
+  // resister.innerText = new Date(createdAt).toLocaleString();
+  // updated.innerText = new Date(updatedAt).toLocaleString();
+  function timeAgo(dateParam){
+    const now = new Date()
+    const past = new Date(dateParam)
+    const msPerMinute = 60 * 1000
+    const msPerHour = msPerMinute * 60
+    const msPerDay = msPerHour * 24
+
+    const elapsed = now - past
+
+    if(elapsed < msPerMinute) {
+      return Math.round(elapsed/1000) + ' 초전'
+    }
+    else if(elapsed < msPerHour) {
+      return Math.round(elapsed/msPerMinute) + ' 분전'
+    }
+    else if(elapsed < msPerDay){
+      return Math.round(elapsed/msPerHour) +' 시간전'
+    }
+    else {
+      return Math.round(elapsed/msPerDay) + ' 일전'
+    }
+  }
+  resister.innerText = timeAgo(createdAt)
+  updated.innerText = timeAgo(productUpdatedAt)
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {

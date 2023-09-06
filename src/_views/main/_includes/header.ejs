@@ -73,11 +73,13 @@
                         class="ci-settings opacity-60 me-2"></i>마이 프로필</a>
 
                     <% if(isAdmin) { %>
-                      <a class="dropdown-item d-flex align-items-center" href="/admins"> <i
-                          class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
-                      <% } %>
-                        <a class="dropdown-item d-flex align-items-center" href="/pick"><i
-                            class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-xs text-muted ms-auto"></span></a>
+
+                    <a class="dropdown-item d-flex align-items-center" href="/admins/main-dashboard/manage"> <i class="ci-key opacity-60 me-2"></i>관리자 페이지</a>
+                    <% } %>
+                    <a class="dropdown-item d-flex align-items-center" href="/pick"
+                      ><i class="ci-heart opacity-60 me-2"></i>찜 목록<span class="fs-xs text-muted ms-auto"></span
+                    ></a>
+
 
                         <a class="dropdown-item d-flex align-items-center" href="#" onclick="logout()"><i
                             class="ci-sign-out opacity-60 me-2"></i>로그아웃</a>

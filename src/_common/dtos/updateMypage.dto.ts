@@ -15,11 +15,11 @@ class UpdateMyPageDto {
   @Matches(/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/)
   nickname: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(13)
-  @Matches(/^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/)
-  tel: string;
+  // @IsString()
+  // @IsNotEmpty()
+  // @MaxLength(13)
+  // @Matches(/^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/)
+  // tel: string;
 
   @IsString()
   @IsNotEmpty()
