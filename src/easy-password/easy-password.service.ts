@@ -26,8 +26,8 @@ export class EasyPasswordService {
   }
 
   async findAllByMemberId(memberId) {
-    // const
-    return `This action returns all easyPassword`;
+    const accounts = await this.easyPwdRepository.find({ where: { memberId }, select: { bankAccountNumber: true } });
+    return accounts;
   }
 
   // findOne(id: number) {
