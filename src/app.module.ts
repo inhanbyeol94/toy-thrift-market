@@ -29,6 +29,7 @@ import { ReViewModule } from './re-view/review.module';
 import { TradesModule } from './trades/trades.module';
 import { AdminProductModule } from './admin-product/admin-product.module';
 import { EasyPasswordModule } from './easy-password/easy-password.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import { EasyPasswordModule } from './easy-password/easy-password.module';
     TradesModule,
     AdminProductModule,
     EasyPasswordModule,
+    ChatModule,
   ],
   controllers: [],
   providers: [],

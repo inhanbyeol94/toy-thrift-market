@@ -22,7 +22,7 @@ async function loadProduct() {
   const response = await fetch(`/products/${productId}`);
   const result = await response.json();
 
-// updateAt쪽이 리뷰와 상품쪽이랑 겹쳐서 상품쪽만 변경
+  // updateAt쪽이 리뷰와 상품쪽이랑 겹쳐서 상품쪽만 변경
   const { productImages, price, name: productName, content, createdAt, updatedAt: productUpdatedAt } = result;
 
   console.log(result);
@@ -41,9 +41,8 @@ async function loadProduct() {
     }
   }
 
-
   const { profileImage, nickname: memberNickname } = result.member;
-
+  const sellerId = result.member_id;
   const { name: categoryName } = result.smallCategory;
 
   if (result.trades.length === 0 || !result.trades[0].review) {
@@ -71,30 +70,27 @@ async function loadProduct() {
   categoryEl.innerText = categoryName;
   // resister.innerText = new Date(createdAt).toLocaleString();
   // updated.innerText = new Date(updatedAt).toLocaleString();
-  function timeAgo(dateParam){
-    const now = new Date()
-    const past = new Date(dateParam)
-    const msPerMinute = 60 * 1000
-    const msPerHour = msPerMinute * 60
-    const msPerDay = msPerHour * 24
+  function timeAgo(dateParam) {
+    const now = new Date();
+    const past = new Date(dateParam);
+    const msPerMinute = 60 * 1000;
+    const msPerHour = msPerMinute * 60;
+    const msPerDay = msPerHour * 24;
 
-    const elapsed = now - past
+    const elapsed = now - past;
 
-    if(elapsed < msPerMinute) {
-      return Math.round(elapsed/1000) + ' 초전'
-    }
-    else if(elapsed < msPerHour) {
-      return Math.round(elapsed/msPerMinute) + ' 분전'
-    }
-    else if(elapsed < msPerDay){
-      return Math.round(elapsed/msPerHour) +' 시간전'
-    }
-    else {
-      return Math.round(elapsed/msPerDay) + ' 일전'
+    if (elapsed < msPerMinute) {
+      return Math.round(elapsed / 1000) + ' 초전';
+    } else if (elapsed < msPerHour) {
+      return Math.round(elapsed / msPerMinute) + ' 분전';
+    } else if (elapsed < msPerDay) {
+      return Math.round(elapsed / msPerHour) + ' 시간전';
+    } else {
+      return Math.round(elapsed / msPerDay) + ' 일전';
     }
   }
-  resister.innerText = timeAgo(createdAt)
-  updated.innerText = timeAgo(productUpdatedAt)
+  resister.innerText = timeAgo(createdAt);
+  updated.innerText = timeAgo(productUpdatedAt);
 
   // 이미지가 두장 이상일경우
   if (productImages.length >= 2) {
@@ -122,6 +118,12 @@ async function loadProduct() {
       img.style.height = '308px';
     });
   }
+
+  // 판매자와 채팅하기 버튼 이벤트
+  const chattingButton = document.getElementById('chattingButton');
+  chattingButton.addEventListener('click', function () {
+    window.location.href = '/chat';
+  });
 }
 
 // 리뷰 삭제

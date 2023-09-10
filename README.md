@@ -72,6 +72,11 @@ npm install crypto
 npm install @slack/web-api moment node-schedule
 npm install -D @types/node-schedule
 npm install @nestjs/mongoose mongoose
+npm install --save @nestjs/websockets @nestjs/platform-socket.io
+npm install socket.io
+npm install socket.io-client
+npm install @nestjs/platform-ws
+npm install @nestjs/platform-socket.io
 ```
 
 <br>

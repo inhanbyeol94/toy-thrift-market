@@ -222,4 +222,12 @@ export class ViewController {
     const payload = req.user;
     return this.viewService.requiredAuth('나중애 관리자', '거래 관리', payload);
   }
+
+  // 채팅창
+  @Get('chat')
+  @Render('main/chat.ejs')
+  chat(@Req() req: IRequest): IView {
+    const payload = req.user;
+    return this.viewService.requiredAuth('나중애', '1:1채팅', payload);
+  }
 }
