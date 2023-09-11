@@ -14,10 +14,31 @@
             <h2 class="h5 text-white fw-light" id="subTitle">다양한 상품들을 보시고 좋은 상품들을 구매해 보세요!!</h2>
           </div>
         </div>
-
+        <!-- Fade transition + Layer animations -->
+        <div class="tns-carousel">
+          <div class="tns-carousel-inner" data-carousel-options='{"mode": "gallery", "nav": false, "autoplay": true, "autoplayTimeout": 3000}'>
+            <div>
+              <div class="bg-faded-primary text-center py-5 px-3">
+                <h3 class="from-top">한별은행 서비스</h3>
+                <p class="fs-lg mb-4 pb-3 from-bottom delay-1">한별은행에 계좌를 등록하고 서비스를 이용해보세요!  </p>
+                <button class="btn btn-primary scale-down delay-2" type="button">등록하러가기</button>
+              </div>
+            </div>
+            <div>
+              <div class="bg-faded-success text-center py-5 px-3">
+                <h3 class="from-start">불편한점이 있다면</h3>
+                <p class="fs-lg mb-4 pb-3 from-end">사용하시면서 불편한 점이 있다면 언제든지 말씀해주세요!</p>
+                <a href="https://forms.gle/DGzLcp4kPLD3VRGW9">
+                <button class="btn btn-secondary btn-shadow scale-down delay-2" type="button">제출하기</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+<%- include('_includes/viewed-products') %>
   <!-- Featured products (Carousel)-->
   <section class="container position-relative pt-3 pt-lg-0 pb-5 mt-lg-n10" style="z-index: 10;">
     <div class="card px-lg-2 border-0 shadow-lg">
@@ -100,3 +121,4 @@
     <script src="../main/js/popular.js"></script>
     <script src="../main/js/recent-product-bycategory.js"></script>
     <script src="../main/js/main-dashboard-manage.js"></script>
+    <script src="../main/js/viewed-products.js"></script>
