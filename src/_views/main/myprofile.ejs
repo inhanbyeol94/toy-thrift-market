@@ -1,133 +1,142 @@
 <%- include('_includes/header') %>
-<div class="page-title-overlap bg-accent pt-4">
-  <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
-    <div class="d-flex align-items-center pb-3">
-      <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
-        <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio">
-      </div>
-      <div class="ps-3">
-        <h3 class="text-light fs-lg mb-0" style="margin: 10px">나중애</h3>
-        <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container mb-5 pb-3">
-  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
-    <div class="row">
-      <!-- Sidebar-->
-      <%- include('_includes/member-sidebar') %>
-      <!-- Content-->
-      <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
-        <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
-          <h2 class="h3 py-2 text-center text-sm-start">나의 프로필</h2>
-          <!-- Tabs-->
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link px-0 active" href="#profile" data-bs-toggle="tab" role="tab" aria-selected="true">
-                <div class="d-none d-lg-block"><i class="ci-user opacity-60 me-2"></i>내정보</div>
-                <div class="d-lg-none text-center"><i class="ci-user opacity-60 d-block fs-xl mb-2"></i><span class="fs-ms">내정보</span></div></a
-              >
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link px-0" href="#notifications" data-bs-toggle="tab" role="tab" aria-selected="false" tabindex="-1">
-                <div class="d-none d-lg-block"><i class="ci-bell opacity-60 me-2"></i>비밀번호 변경</div>
-                <div class="d-lg-none text-center"><i class="ci-bell opacity-60 d-block fs-xl mb-2"></i><span class="fs-ms">비밀번호 변경</span></div></a
-              >
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link px-0" href="#payment" data-bs-toggle="tab" role="tab" aria-selected="false" tabindex="-1">
-                <div class="d-none d-lg-block"><i class="ci-card opacity-60 me-2"></i>회원탈퇴</div>
-                <div class="d-lg-none text-center"><i class="ci-card opacity-60 d-block fs-xl mb-2"></i><span class="fs-ms">회원탈퇴</span></div></a
-              >
-            </li>
-          </ul>
-          <!-- Tab content-->
-          <div class="tab-content">
-            <!-- Profile-->
-            <div class="tab-pane fade show active" id="profile" role="tabpanel">
-              <div class="bg-secondary rounded-3 p-4 mb-4">
-                <div class="d-flex align-items-center">
-                  <img class="rounded" style="width: 100px; height: 100px; object-fit: cover" alt="Createx Studio" id="profileImg" />
-                  <div class="ps-3">
-                    <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="memberImage" />
-                    <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row gx-4 gy-3">
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-fn">이메일</label>
-                  <input class="form-control" type="text" id="email" placeholder="이메일" />
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-ln">이름</label>
-                  <input class="form-control" type="text" id="name" placeholder="이름" />
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-profile-name">닉네임</label>
-                  <input class="form-control" type="text" id="nickname" placeholder="닉네임" />
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-country">주소</label>
-                  <input class="form-control" type="text" id="address" placeholder="주소" />
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-city">상세주소</label>
-                  <input class="form-control" type="text" id="subAddress" placeholder="상세주소" />
-                </div>
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-address">전화번호</label>
-                  <input class="form-control" type="text" id="tel" placeholder="전화번호" readonly />
-                </div>
-
-                <div class="col-12">
-                  <hr class="mt-2 mb-4" />
-                  <div class="d-sm-flex justify-content-between align-items-center">
-                    <button class="btn btn-primary mt-3 mt-sm-0" type="button" id="saveButton">변경</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Notifications-->
-            <div class="tab-pane fade" id="notifications" role="tabpanel">
-              <div class="bg-secondary rounded-3 p-4">
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-address">기존 비밀번호</label>
-                  <input class="form-control" type="password" id="password" placeholder="********" />
-                </div>
-                <div class="col-sm-6 mt-3">
-                  <label class="form-label" for="dashboard-password">변경할 비밀번호</label>
-                  <input class="form-control" type="password" id="newPW" placeholder="********" />
-                </div>
-                <div class="col-sm-6 mt-3">
-                  <label class="form-label" for="dashboard-address">비밀번호 확인</label>
-                  <input class="form-control" type="password" id="confirmPW" placeholder="********" />
-                </div>
-                <div class="text-sm-end mt-4">
-                  <button class="btn btn-primary" type="button" id="editButton">변경하기</button>
-                </div>
-              </div>
-            </div>
-            <!-- Payment methods-->
-            <div class="tab-pane fade" id="payment" role="tabpanel">
-              <div class="bg-secondary rounded-3 p-4 mb-4">
-                <div class="col-sm-6">
-                  <label class="form-label" for="dashboard-address">현재 비밀번호를 입력해주세요!</label>
-                  <input class="form-control" type="password" id="textPW" placeholder="********" />
-                  <div class="form-check">
-                    <button class="btn btn-primary" type="button" id="deleteButton" style="margin-top: 20px">회원탈퇴</button>
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive fs-md mb-4"></div>
-            </div>
-          </div>
+  <div class="page-title-overlap bg-accent pt-4">
+    <div
+      class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+      <div class="d-flex align-items-center pb-3">
+        <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
+          <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio">
         </div>
-      </section>
+        <div class="ps-3">
+          <h3 class="text-light fs-lg mb-0" style="margin: 10px">나중애</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<%- include('_includes/footer') %>
-<script src="/main/js/mypage.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <div class="container mb-5 pb-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <!-- Sidebar-->
+        <%- include('_includes/member-sidebar') %>
+          <!-- Content-->
+          <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+            <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+              <h2 class="h3 py-2 text-center text-sm-start">나의 프로필</h2>
+              <!-- Tabs-->
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link px-0 active" href="#profile" data-bs-toggle="tab" role="tab" aria-selected="true">
+                    <div class="d-none d-lg-block"><i class="ci-user opacity-60 me-2"></i>내정보</div>
+                    <div class="d-lg-none text-center"><i class="ci-user opacity-60 d-block fs-xl mb-2"></i><span
+                        class="fs-ms">내정보</span></div>
+                  </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link px-0" href="#notifications" data-bs-toggle="tab" role="tab" aria-selected="false"
+                    tabindex="-1">
+                    <div class="d-none d-lg-block"><i class="ci-bell opacity-60 me-2"></i>비밀번호 변경</div>
+                    <div class="d-lg-none text-center"><i class="ci-bell opacity-60 d-block fs-xl mb-2"></i><span
+                        class="fs-ms">비밀번호 변경</span></div>
+                  </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link px-0" href="#payment" data-bs-toggle="tab" role="tab" aria-selected="false"
+                    tabindex="-1">
+                    <div class="d-none d-lg-block"><i class="ci-card opacity-60 me-2"></i>회원탈퇴</div>
+                    <div class="d-lg-none text-center"><i class="ci-card opacity-60 d-block fs-xl mb-2"></i><span
+                        class="fs-ms">회원탈퇴</span></div>
+                  </a>
+                </li>
+              </ul>
+              <!-- Tab content-->
+              <div class="tab-content">
+                <!-- Profile-->
+                <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                  <div class="bg-secondary rounded-3 p-4 mb-4">
+                    <div class="d-flex align-items-center">
+                      <img class="rounded" style="width: 100px; height: 100px; object-fit: cover" alt="Createx Studio"
+                        id="profileImg" />
+                      <div class="ps-3">
+                        <input class="btn btn-light btn-shadow btn-sm mb-2" type="file" id="memberImage" />
+                        <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row gx-4 gy-3">
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-fn">이메일</label>
+                      <input class="form-control" type="text" id="email" placeholder="이메일" />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-ln">이름</label>
+                      <input class="form-control" type="text" id="name" placeholder="이름" />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-profile-name">닉네임</label>
+                      <input class="form-control" type="text" id="nickname" placeholder="닉네임" />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-country">주소</label>
+                      <input class="form-control" type="text" id="address" placeholder="주소" />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-city">상세주소</label>
+                      <input class="form-control" type="text" id="subAddress" placeholder="상세주소" />
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-address">전화번호</label>
+                      <input class="form-control" type="text" id="tel" placeholder="전화번호" readonly />
+                    </div>
+
+                    <div class="col-12">
+                      <hr class="mt-2 mb-4" />
+                      <div class="d-sm-flex justify-content-between align-items-center">
+                        <button class="btn btn-primary mt-3 mt-sm-0" type="button" id="saveButton">변경</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Notifications-->
+                <div class="tab-pane fade" id="notifications" role="tabpanel">
+                  <div class="bg-secondary rounded-3 p-4">
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-address">기존 비밀번호</label>
+                      <input class="form-control" type="password" id="password" placeholder="********" />
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                      <label class="form-label" for="dashboard-password">변경할 비밀번호</label>
+                      <input class="form-control" type="password" id="newPW" placeholder="********" />
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                      <label class="form-label" for="dashboard-address">비밀번호 확인</label>
+                      <input class="form-control" type="password" id="confirmPW" placeholder="********" />
+                    </div>
+                    <div class="text-sm-end mt-4">
+                      <button class="btn btn-primary" type="button" id="editButton">변경하기</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Payment methods-->
+                <div class="tab-pane fade" id="payment" role="tabpanel">
+                  <div class="bg-secondary rounded-3 p-4 mb-4">
+                    <div class="col-sm-6">
+                      <label class="form-label" for="dashboard-address">현재 비밀번호를 입력해주세요!</label>
+                      <input class="form-control" type="password" id="textPW" placeholder="********" />
+                      <div class="form-check">
+                        <button class="btn btn-primary" type="button" id="deleteButton"
+                          style="margin-top: 20px">회원탈퇴</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive fs-md mb-4"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+      </div>
+    </div>
+  </div>
+  <%- include('_includes/footer') %>
+    <script src="/main/js/mypage.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="../main/js/channel.js"></script>

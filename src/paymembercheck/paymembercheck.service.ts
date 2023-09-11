@@ -68,7 +68,7 @@ export class PaymembercheckService {
       password,
       amount: product.price,
       requestAccountNubmer: `${process.env.NAJUNGE_ACCOUNT}`,
-      requestName: `${process.env.NAJUNGE_ACCOUNT_NAME}`,
+      // requestName: `${process.env.NAJUNGE_ACCOUNT_NAME}`,
       sequence,
     };
 
@@ -87,7 +87,7 @@ export class PaymembercheckService {
     await this.tradeService.update(productId, status, id);
 
     const bankServerUrl = `http://${process.env.BANK_HOST}/trade/direct/deposit`;
-    const product = await this.productRepository.findOne({ where: { id: productId }, relations: ['member'] });
+    const product = await this.productRepository.findOne({ where: { id: productId } });
     const bankServerPayload = {
       name: `${process.env.NAJUNGE_ACCOUNT_NAME}`,
       phone: `${process.env.NAJUNGE_PHONE}`,
@@ -96,7 +96,7 @@ export class PaymembercheckService {
       password: `${process.env.NAJUNGE_PASSWORD}`,
       amount: product.price,
       requestAccountNubmer: product.bankAccountNumber,
-      requestName: product.member.name,
+      // requestName: product.member.name,
       sequence: '101010',
       partnerKey: `${process.env.NAJUNGE_SECRETKEY}`,
     };
@@ -113,7 +113,7 @@ export class PaymembercheckService {
     await this.tradeService.tradeCancle(tradeId);
 
     const bankServerUrl = `http://${process.env.BANK_HOST}/trade/direct/deposit`;
-    const trade = await this.tradeRepository.findOne({ where: { id: tradeId }, relations: ['member', 'product'] });
+    const trade = await this.tradeRepository.findOne({ where: { id: tradeId }, relations: ['product'] });
     const bankServerPayload = {
       name: `${process.env.NAJUNGE_ACCOUNT_NAME}`,
       phone: `${process.env.NAJUNGE_PHONE}`,
@@ -122,7 +122,7 @@ export class PaymembercheckService {
       password: `${process.env.NAJUNGE_PASSWORD}`,
       amount: trade.product.price,
       requestAccountNubmer: trade.buyerAccountNumber,
-      requestName: trade.member.name,
+      // requestName: trade.member.name,
       sequence: '101010',
       partnerKey: `${process.env.NAJUNGE_SECRETKEY}`,
     };

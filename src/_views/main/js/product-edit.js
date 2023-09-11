@@ -171,11 +171,13 @@ imageUpload.addEventListener('change', async (e) => {
 
     if (file.size > 1 * 1024 * 1024) {
       alert('파일용량은 최대1mb입니다.');
+      e.target.value = '';
       return;
     }
 
     if (!file.type.includes('jpeg') && !file.type.includes('png')) {
       alert('jpeg 또는 png 파일만 업로드 가능합니다!');
+      e.target.value = '';
       return;
     }
 
