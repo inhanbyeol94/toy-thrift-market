@@ -45,3 +45,7 @@ loginBtnEl.addEventListener('click', async () => {
     console.error(error);
   }
 });
+
+const loginGoogle = () => {
+  location.href = '/auth/google/login';
+};

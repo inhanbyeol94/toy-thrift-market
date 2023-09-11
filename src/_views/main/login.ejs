@@ -1,33 +1,36 @@
 <%- include('_includes/header') %>
 
-  <div class="container py-4 py-lg-5 my-4">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card border-0 shadow">
-          <div class="card-body">
-            <h2 class="h4 mb-1">로그인</h2>
-            <div class="needs-validation" novalidate>
-              <div class="input-group mb-3"><i
-                  class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-                <input id="login-email" class="form-control rounded-start" type="email" placeholder="Email" required>
+<div class="container py-4 py-lg-5 my-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-0 shadow">
+        <div class="card-body">
+          <h2 class="h4 mb-1">로그인</h2>
+          <div class="needs-validation" novalidate>
+            <div class="input-group mb-3">
+              <i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+              <input id="login-email" class="form-control rounded-start" type="email" placeholder="Email" required />
+            </div>
+            <div class="input-group mb-3">
+              <i class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+              <div class="password-toggle w-100">
+                <input id="login-password" class="form-control" type="password" placeholder="Password" required />
+                <label class="password-toggle-btn" aria-label="Show/hide password">
+                  <input class="password-toggle-check" type="checkbox" /><span class="password-toggle-indicator"></span>
+                </label>
               </div>
-              <div class="input-group mb-3"><i
-                  class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-                <div class="password-toggle w-100">
-                  <input id="login-password" class="form-control" type="password" placeholder="Password" required>
-                  <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                  </label>
-                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between">
+              <div class="form-check"></div>
+              <a class="nav-link-inline fs-sm" href="/signup">회원가입</a>
+            </div>
+            <hr class="mt-4" />
+            <div class="d-flex justify-content-end">
+              <div class="pt-4 me-3">
+                <button id="google-login-button" class="btn btn-danger" type="submit" onclick="loginGoogle()"><i class="ci-google me-2 ms-n21"></i>google 로그인</button>
               </div>
-              <div class="d-flex flex-wrap justify-content-between">
-                <div class="form-check">
-                </div><a class="nav-link-inline fs-sm" href="/signup">회원가입</a>
-              </div>
-              <hr class="mt-4">
-              <div class="text-end pt-4">
-                <button id="login-button" class="btn btn-primary" type="submit"><i
-                    class="ci-sign-in me-2 ms-n21"></i>로그인</button>
+              <div class="pt-4">
+                <button id="login-button" class="btn btn-primary" type="submit"><i class="ci-sign-in me-2 ms-n21"></i>로그인</button>
               </div>
             </div>
           </div>
@@ -35,5 +38,6 @@
       </div>
     </div>
   </div>
-  <script src="../main/js/login.js" defer></script>
-  <%- include('_includes/footer') %>
+</div>
+<script src="../main/js/login.js" defer></script>
+<%- include('_includes/footer') %>
