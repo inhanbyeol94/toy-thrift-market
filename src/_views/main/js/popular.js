@@ -35,10 +35,10 @@ const loadPopularProducts = async () => {
           const timeAgoText = timeAgo(product.created_at);
         const productCard = document.createElement('div');
         productCard.innerHTML = `
-            <div class="card product-card-alt">
+            <div class="card product-card-alt" style="width: 300px; height: 300px; text-align: center">
               <div class="product-thumb">
                 <a class="product-thumb-overlay" href="/product/${product.id}"></a><img
-                  src=${product.product_image} alt="Product">
+                  src=${product.product_image} alt="Product" style="width: 100%; height: 100%; object-fit: contain; margin: auto">
               </div>
              <div class="card-body">
                 <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">${product.name}</a></h3>
@@ -48,10 +48,11 @@ const loadPopularProducts = async () => {
                     </div>
                   </div>
             </div>
+            </div>
         `;
         productContainer.appendChild(productCard);
       });
     });
 };
+loadPopularProducts()
 
-loadPopularProducts();
