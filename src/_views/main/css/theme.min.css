@@ -16261,9 +16261,62 @@ a.nav-link:hover .media-tab-media {
   touch-action: manipulation;
   opacity: 0;
 }
+/** 캐러셀 글씨 색상 **/
+.tns-carousel-inner h3{
+  color: white;
+}
+.tns-carousel-inner p{
+  color: white;
+}
 .tns-carousel .tns-carousel-inner:active {
   cursor: -webkit-grab;
   cursor: grab;
+}
+/* 최근에 본 상품 */
+.product-list-page .featured {
+  padding-top: 2rem;
+}
+.viewed-products {
+  position: fixed;
+  right: 10px;
+  top: 40%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: rgba(200,200,200,0.3);
+  box-shadow:none;
+  z-index:100;
+}
+#viewedProductList {
+  height :240px;
+  overflow:auto;
+  padding :20px ;
+}
+#viewedProductList > li {
+  margin :8px auto ;
+  width :67px ;
+  height :67px ;
+  border-radius :10px ;
+  overflow:hidden;
+  box-shadow :0rem .2rem .5rem rgba(0 ,0 ,0 ,.1);
+}
+#viewedProductList > li:last-child { margin-bottom :0;}
+.btn-viewed-products {
+  display:flex;
+  font-size :14px ;
+  background-color:#f5f5f5 ;
+  color:#333 ;
+  border-radius:30px;
+  padding:10px 20px;
+  transition-duration:.3s;
+}
+.btn-viewed-products:hover{
+  background-color:#ddd;
+}
+#noViewedProducts {
+  text-align: center;
+  font-size: 1.0em;
+  color: #888;
 }
 .tns-carousel .tns-carousel-inner.tns-slider {
   display: block;
