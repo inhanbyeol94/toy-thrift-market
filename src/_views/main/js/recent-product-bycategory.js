@@ -56,10 +56,10 @@ const createProductCard = (product) => {
   const card = document.createElement('div');
   card.className = 'col-lg-3 col-md-4 col-sm-6 px-2 mb-grid-gutter';
   card.innerHTML = `
-            <div class="card product-card-alt">
+            <div class="card product-card-alt" style="width: 300px; height: 300px; text-align: center">
               <div class="product-thumb">
                 <a class="product-thumb-overlay" href="/product/${product.id}"></a><img
-                  src=${product.productImages[0].imageUrl} alt="Product" style="height:295px; object-fit: cover">
+                  src=${product.productImages[0].imageUrl} alt="Product" style="width: 100%; height: 100%; object-fit: contain; margin: auto">
               </div>
               <div class="card-body">
                 <h3 class="product-title fs-sm mb-2"><a href="/product/${product.id}">${product.name}</a></h3>

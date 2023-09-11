@@ -24,6 +24,25 @@ async function loadProduct() {
 
 // updateAt쪽이 리뷰와 상품쪽이랑 겹쳐서 상품쪽만 변경
   const { productImages, price, name: productName, content, createdAt, updatedAt: productUpdatedAt } = result;
+  /** 최근본 상품 로컬스토리지  **/
+  const product = {
+    id: productId,
+    product_image: productImages[0].imageUrl,
+    product_name: productName
+  };
+// 기존에 저장된 viewedProducts 데이터 가져오기
+  let viewedProducts = localStorage.getItem('viewedProducts');
+  if (!viewedProducts) {
+    // 만약 데이터가 없다면 빈 배열로 초기화하기
+    viewedProducts = [];
+  } else {
+    // 데이터가 있다면 파싱하여 사용하기
+    viewedProducts = JSON.parse(viewedProducts);
+  }
+// 새로운 상품 정보 추가하기
+  viewedProducts.push(product);
+// 변경된 데이터 다시 저장하기
+  localStorage.setItem('viewedProducts', JSON.stringify(viewedProducts));
 
   console.log(result);
   if (result.trades.length === 0) {

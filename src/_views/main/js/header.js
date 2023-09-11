@@ -78,6 +78,8 @@ const headerLoadCategories = async () => {
 headerLoadCategories();
 
 async function logout() {
+  // 최근 본 상품목록 초기화 하려고 로컬스토리지에 저장된거 삭제
+  localStorage.removeItem('viewedProducts')
   const api = await fetch('/auth', {
     method: 'DELETE',
   });
