@@ -125,12 +125,8 @@ async function loadProduct() {
       const smallImage = document.createElement('div');
       smallImage.setAttribute('class', 'col-sm-6');
       smallImage.innerHTML = `<a
-                            class="gallery-item rounded-3 mb-grid-gutter smallImage"
-                            href="img/marketplace/single/02.jpg"
-                            data-sub-html='&lt;h6 class="fs-sm text-light"&gt;UI Psd iPhone X Monochrome&lt;/h6&gt;'
-                          >
-                            <img src=${imageUrl} alt="Gallery preview" />
-                            <span class="gallery-item-caption">UI Psd iPhone X Monochrome</span>
+                            class="gallery-item rounded-3 mb-grid-gutter smallImage">
+                            <img src=${imageUrl} alt="Gallery preview" style="cursor: default"/>                            
                           </a>`;
 
       smallImageGalleryEl.appendChild(smallImage);
