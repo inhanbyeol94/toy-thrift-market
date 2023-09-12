@@ -1,77 +1,52 @@
 <%- include('_includes/header') %>
-  <main>
-    <div class="page-title-overlap bg-accent pt-4">
-      <div
-        class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
-        <div class="d-flex align-items-center pb-3">
-          <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
-            <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio">
-          </div>
-          <div class="ps-3">
-            <h3 class="text-light fs-lg mb-0">나중애</h3>
-            <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
-          </div>
+<main>
+  <div class="page-title-overlap bg-accent pt-4">
+    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+      <div class="d-flex align-items-center pb-3">
+        <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem">
+          <img class="rounded-circle" src="/main/img/logo-dark.png" alt="Createx Studio" />
+        </div>
+        <div class="ps-3">
+          <h3 class="text-light fs-lg mb-0">나중애</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">나의 중고 애물단지 - 중고거래 플랫폼</span>
         </div>
       </div>
     </div>
-    <div class="container mb-5 pb-3">
-      <div class="bg-light shadow-lg rounded-3 overflow-hidden">
-        <div class="row">
-          <%- include('_includes/member-sidebar') %>
-            <!-- Content-->
-            <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
-              <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
-                <div class="pt-2 px-4 ps-lg-0 pe-xl-5" id="product-area">
-                  <!-- Title-->
-                  <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
-                    <h2 class="h3 py-2 me-2 text-center text-sm-start">
-                      찜 목록<span id="countPick"
-                        class="my-products-number badge bg-faded-accent fs-sm text-body align-middle ms-2">0</span>
-                    </h2>
-                    <div class="py-2">
-                      <div class="d-flex flex-nowrap align-items-center pb-3">
-                        <label class="form-label fw-normal text-nowrap mb-0 me-2" for="sorting">카테고리 별</label>
-                        <select class="form-select me-2" id="mypickList">
-                          <option>전체</option>
-                        </select>
-                      </div>
-                    </div>
+  </div>
+  <div class="container mb-5 pb-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <%- include('_includes/member-sidebar') %>
+        <!-- Content-->
+        <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+          <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+            <div class="pt-2 px-4 ps-lg-0 pe-xl-5" id="product-area">
+              <!-- Title-->
+              <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom">
+                <h2 class="h3 py-2 me-2 text-center text-sm-start">
+                  찜 목록<span id="countPick" class="my-products-number badge bg-faded-accent fs-sm text-body align-middle ms-2">0</span>
+                </h2>
+                <div class="py-2">
+                  <div class="d-flex flex-nowrap align-items-center pb-3">
+                    <label class="form-label fw-normal text-nowrap mb-0 me-2" for="sorting">카테고리 별</label>
+                    <select class="form-select me-2" id="mypickList">
+                      <option>전체</option>
+                    </select>
                   </div>
                 </div>
-
-                <div id="pickList">
-                  <!-- Product-->
-                  <div class="d-block d-sm-flex align-items-center py-4 border-bottom"><a
-                      class="d-block position-relative mb-3 mb-sm-0 me-sm-4 ms-sm-0 mx-auto"
-                      style="width: 12.5rem;"><img class="rounded-3" src="main/img/marketplace/products/th02.jpg"
-                        alt="Product"></a>
-                    <div class="text-center text-sm-start">
-                      <button id="trashButton" class="btn btn-outline-danger btn-icon mb-2 me-2" type="button"><i
-                          class="ci-trash"></i></button>
-                      <h3 class="h6 product-title mb-2"><a href="">상품명</a>
-                      </h3>
-                      <div class="d-inline-block text-accent">가격</div><a
-                        class="d-inline-block text-accent fs-ms border-start ms-2 ps-2" href="">by
-                        uidesigner</a>
-                      <div class="d-sm-flex align-items-center pt-2">
-                        <select class="form-select form-select-sm my-1 me-2">
-                          <option>Standard license</option>
-                          <option>Extended license</option>
-                        </select>
-                        <button class="btn btn-primary btn-sm mx-auto mx-sm-0 my-2" type="button"><i
-                            class="ci-cart me-1"></i>Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
-            </section>
-        </div>
+            </div>
+
+            <div id="pickList">
+              <!-- Product-->
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
-  <%- include('_includes/footer') %>
-    <script src="../main/js/pick.js"></script>
-    <script src="../main/js/channel.js"></script>
+<%- include('_includes/footer') %>
+<script src="../main/js/pick.js"></script>
+<script src="../main/js/channel.js"></script>
