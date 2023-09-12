@@ -41,7 +41,7 @@ const loadPopularProducts = async () => {
                   src=${product.product_image} alt="Product" style="width: 100%; height: 100%; object-fit: contain; margin: auto">
               </div>
              <div class="card-body">
-                <h3 class="product-title fs-sm mb-2"><a href="marketplace-single.html">${product.name}</a></h3>
+                <h3 class="product-title fs-sm mb-2"><a href="/product/${product.id}">${product.name}</a></h3>
              <div class="bg-faded-accent text-accent rounded-1 py-1 px-2" style="display: flex; justify-content: space-between;">
                 <div>₩ ${product.price.toLocaleString()}원</div>
                   <span style="color: #6e8192">${timeAgoText}</span>
