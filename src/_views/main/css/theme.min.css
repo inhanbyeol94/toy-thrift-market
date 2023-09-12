@@ -16549,28 +16549,28 @@ a.nav-link:hover .media-tab-media {
   height: 100%;
   transition: opacity 0.3s ease-in-out;
   background-color: rgba(43, 52, 69, 0.5);
-  content: '';
+  content: none !important;
   opacity: 0;
   z-index: 1;
 }
-.gallery-item::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2.875rem;
-  height: 2.875rem;
-  margin-top: -1.4375rem;
-  margin-left: -1.4375rem;
-  transform: scale(0.3);
-  color: #fff;
-  font-family: 'cartzilla-icons';
-  font-size: 1.75rem;
-  text-align: center;
-  line-height: 2.875rem;
-  content: '';
-  z-index: 5;
-}
+/*.gallery-item::after {*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  left: 50%;*/
+/*  width: 2.875rem;*/
+/*  height: 2.875rem;*/
+/*  margin-top: -1.4375rem;*/
+/*  margin-left: -1.4375rem;*/
+/*  transform: scale(0.3);*/
+/*  color: #fff;*/
+/*  font-family: 'cartzilla-icons';*/
+/*  font-size: 1.75rem;*/
+/*  text-align: center;*/
+/*  line-height: 2.875rem;*/
+/*  content: '';*/
+/*  z-index: 5;*/
+/*}*/
 .gallery-item .gallery-item-caption {
   display: block;
   position: absolute;
