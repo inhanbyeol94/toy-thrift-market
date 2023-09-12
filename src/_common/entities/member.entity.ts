@@ -5,6 +5,7 @@ import { Product } from 'src/_common/entities/product.entity';
 import { Trade } from 'src/_common/entities/trade.entity';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { EasyPassword } from './easy-password.entity';
+import { IsOptional } from 'class-validator';
 
 @Entity()
 export class Member {
@@ -20,23 +21,30 @@ export class Member {
   @Column()
   nickname: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @IsOptional()
   password: string;
 
   @Column()
   profileImage: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @IsOptional()
   tel: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @IsOptional()
   address: string;
 
-  @Column()
+  @Column({ nullable: true })
+  @IsOptional()
   subAddress: string;
 
-  @Column()
+  @Column({ default: false })
   isAdmin: boolean;
+
+  @Column({ default: 'none' })
+  provider: string;
 
   @CreateDateColumn()
   createdAt: Date;
