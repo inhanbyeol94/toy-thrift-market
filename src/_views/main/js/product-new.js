@@ -236,7 +236,12 @@ function validateInputForAddProduct() {
   if (hasNoImage) return alert('최소 1장의 이미지를 업로드하세요');
 }
 
-function populateFormData(formData) {
+function populateFormData(_formData) {
+  let formData = new FormData();
+  for (let pair of _formData.entries()) {
+    formData.append(pair[0], pair[1]);
+  }
+
   const smallCategoryId = smallCategoryOptionEl.value;
   const productName = productNameEl.value;
   const content = contentEl.value;
