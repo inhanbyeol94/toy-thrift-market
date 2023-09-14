@@ -22,9 +22,6 @@ telIpt.addEventListener('input', () => {
 
 identifyBtn.addEventListener('click', async () => {
   if (!validateForIdentify()) return;
-  // if (!nameIpt.value) alert('이름을 입력해주세요');
-  // if (!telIpt.value) alert('휴대폰번호를 입력해주세요');
-  // if (!resistNumber.value) alert('주민등록번호를 입력해주세요');
 
   try {
     const response = await fetch('/paymembercheck', {
@@ -44,7 +41,7 @@ identifyBtn.addEventListener('click', async () => {
       console.log(data);
       return;
     }
-    // alert(data.message);
+
     document.getElementById('codeBox').style.display = 'block';
 
     sequence = data.sequence;
@@ -55,8 +52,6 @@ identifyBtn.addEventListener('click', async () => {
 
 identityVerifyBtn.addEventListener('click', async () => {
   if (!validateForIdentityVerification()) return;
-
-  // if (!codeIpt.value) alert('인증번호를 입력해주세요');
 
   const api = await fetch('/paymembercheck/verify', {
     method: 'POST',
@@ -123,7 +118,6 @@ paySubmitBtn.addEventListener('click', async () => {
       body: JSON.stringify(data),
     });
     const _result = await _response.json();
-    console.log('🚀 🔶 paySubmitBtn.addEventListener 🔶 _result:', _result);
     if (!_response.ok) {
       alert(_result.message);
       throw new Error(`HTTP error! ${_result.message}`);
