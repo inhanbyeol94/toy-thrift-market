@@ -34,9 +34,9 @@ telIpt.addEventListener('input', () => {
 });
 
 identifyBtn.addEventListener('click', async () => {
-  if (!nameIpt.value) alert('이름을 입력해주세요');
-  if (!telIpt.value) alert('휴대폰번호를 입력해주세요');
-  if (!resistNumber.value) alert('주민등록번호를 입력해주세요');
+  if (!nameIpt.value) return alert('이름을 입력해주세요');
+  if (!telIpt.value) return alert('휴대폰번호를 입력해주세요');
+  if (!resistNumber.value) return alert('주민등록번호를 입력해주세요');
 
   try {
     await fetch('/paymembercheck', {
