@@ -25,6 +25,7 @@ const loadProductInfo = async () => {
       productImg.setAttribute('src', data.productImages[0].imageUrl);
       productName.innerText = data.name;
       productPrice.innerText = data.price + ' ₩';
+      productImg.parentNode.setAttribute('href', `/product/${data.id}`);
     });
 };
 loadProductInfo();
@@ -34,9 +35,9 @@ telIpt.addEventListener('input', () => {
 });
 
 identifyBtn.addEventListener('click', async () => {
-  if (!nameIpt.value) alert('이름을 입력해주세요');
-  if (!telIpt.value) alert('휴대폰번호를 입력해주세요');
-  if (!resistNumber.value) alert('주민등록번호를 입력해주세요');
+  if (!nameIpt.value) return alert('이름을 입력해주세요');
+  if (!telIpt.value) return alert('휴대폰번호를 입력해주세요');
+  if (!resistNumber.value) return alert('주민등록번호를 입력해주세요');
 
   try {
     await fetch('/paymembercheck', {
@@ -64,7 +65,7 @@ identifyBtn.addEventListener('click', async () => {
 });
 
 identityVerifyBtn.addEventListener('click', async () => {
-  if (!codeIpt.value) alert('인증번호를 입력해주세요');
+  if (!codeIpt.value) return alert('인증번호를 입력해주세요');
 
   const api = await fetch('/paymembercheck/verify', {
     method: 'POST',
@@ -89,8 +90,8 @@ identityVerifyBtn.addEventListener('click', async () => {
 });
 
 paySubmitBtn.addEventListener('click', async () => {
-  if (!accountNumItp.value) alert('계좌번호를 입력해주세요');
-  if (!accuntPasswordIpt.value) alert('계좌 비밀번호를 입력해주세요');
+  if (!accountNumItp.value) return alert('계좌번호를 입력해주세요');
+  if (!accuntPasswordIpt.value) return alert('계좌 비밀번호를 입력해주세요');
 
   const api = await await fetch('/paymembercheck/transfer', {
     method: 'POST',
