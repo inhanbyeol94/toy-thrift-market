@@ -156,7 +156,7 @@ function validateForIdentify() {
 
 function validateForIdentityVerification() {
   const verificationCode = codeIpt.value;
-  const verificationCodeRegExp = /^d{6}$/;
+  const verificationCodeRegExp = /^\d{6}$/;
   const isValidInput =
     showAlertAndReturnFalse(!verificationCode, '인증번호를 입력해주세요') &&
     showAlertAndReturnFalse(!verificationCodeRegExp.test(verificationCode), '인증번호는 6자리 숫자입니다.');
